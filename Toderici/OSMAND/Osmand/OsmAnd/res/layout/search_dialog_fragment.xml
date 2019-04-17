@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/dashboard_map_toolbar"
+                android:background="?attr/bg_color"
+                android:minHeight="@dimen/dashboard_map_toolbar"
+                android:theme="?attr/toolbar_theme"
+                app:contentInsetLeft="54dp"
+                app:contentInsetStart="54dp">
+
+                <include layout="@layout/search_text_layout"/>
+
+            </android.support.v7.widget.Toolbar>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/dashboard_map_toolbar"
+                android:background="@color/osmand_orange"
+                android:minHeight="@dimen/dashboard_map_toolbar"
+                android:theme="?attr/toolbar_theme"
+                android:visibility="gone"
+                app:contentInsetLeft="54dp"
+                app:contentInsetStart="54dp"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/titleEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:text="5 selected"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/default_list_text_size_large"/>
+
+                    <ImageButton
+                        android:id="@+id/shareButton"
+                        style="@style/Widget.AppCompat.ActionButton"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/shared_string_share"
+                        android:src="@drawable/ic_action_gshare_dark"/>
+
+                    <ImageButton
+                        android:id="@+id/deleteButton"
+                        style="@style/Widget.AppCompat.ActionButton"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/shared_string_delete"
+                        android:src="@drawable/ic_action_delete_dark"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+            <LinearLayout
+                android:id="@+id/tab_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?attr/ctx_menu_info_divider"/>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/ctx_menu_info_view_bg"
+                    android:theme="?attr/search_tabbar_layout_theme"
+                    app:tabGravity="fill"
+                    app:tabMaxWidth="0dp"
+                    app:tabMode="fixed"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/ctx_menu_info_view_bg"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?attr/ctx_menu_info_divider"/>
+
+                <LinearLayout
+                    android:id="@+id/buttonToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:minHeight="48dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/buttonToolbarImage"
+                        android:layout_width="54dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_action_marker_dark"/>
+
+                    <TextView
+                        android:id="@+id/buttonToolbarTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:text="@string/shared_string_show_on_map"
+                        android:textColor="?attr/color_dialog_buttons"
+                        android:textSize="@dimen/default_desc_text_size"/>
+
+                    <ImageButton
+                        android:id="@+id/filterButton"
+                        style="@style/Widget.AppCompat.ActionButton"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/poi_filter_custom_filter"
+                        android:src="@drawable/ic_action_filter"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/tabs_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <net.osmand.plus.LockableViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/fab"
+        android:contentDescription="@string/save_filter"
+        android:layout_width="@dimen/fab_size_with_shadow"
+        android:layout_height="@dimen/fab_size_with_shadow"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="@dimen/fab_margin_right"
+        android:layout_marginBottom="@dimen/fab_margin_right"
+        android:background="@drawable/fab_background_style"
+        android:scaleType="center"
+        android:clickable="true"
+        android:src="@drawable/ic_action_save"/>
+
+</FrameLayout>

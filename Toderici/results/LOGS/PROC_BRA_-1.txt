@@ -1,0 +1,520 @@
+Route: 
+id:17051750439 name:| distance:49.36349 routeTime:31.0 speed(m/s):1.5923706 density:0.0034398776
+id:29847221661 name:Strada Teleorman| distance:41.893696 routeTime:5.0 speed(m/s):8.378739 density:0.0034398776
+id:2026702841 name:Strada Teleorman| distance:29.463715 routeTime:9.0 speed(m/s):3.273746 density:0.0034398776
+id:29847221565 name:Strada Ialomiței| distance:95.85475 routeTime:17.0 speed(m/s):5.638515 density:0.0034398776
+id:17788701885 name:Strada Dâmboviței| distance:9.536627 routeTime:2.0 speed(m/s):4.7683134 density:0.0034398776
+id:17788701885 name:Strada Dâmboviței| distance:13.614164 routeTime:15.0 speed(m/s):0.90761095 density:0.0034398776
+id:17788701787 name:Strada Ialomiței| distance:27.92835 routeTime:4.0 speed(m/s):6.9820876 density:0.0034398776
+id:1579292817 name:Strada Ialomiței| distance:67.80562 routeTime:71.0 speed(m/s):0.9550087 density:0.0034398776
+id:29741299431 name:Strada Ialomiței| distance:46.80223 routeTime:4.0 speed(m/s):11.700558 density:0.0034398776
+id:24937342541 name:Strada Ialomiței| distance:54.927574 routeTime:5.0 speed(m/s):10.985515 density:0.0034398776
+id:1579291557 name:Strada Ialomiței| distance:90.77696 routeTime:13.0 speed(m/s):6.9828434 density:0.0034398776
+id:20388928215 name:Strada Teodor Mihali| distance:8.80174 routeTime:1.0 speed(m/s):8.80174 density:0.0034398776
+id:30073931987 name:Strada Teodor Mihali| distance:45.75804 routeTime:4.0 speed(m/s):11.43951 density:0.0034398776
+id:3551581867 name:Strada Teodor Mihali| distance:6.739034 routeTime:26.0 speed(m/s):0.25919363 density:0.0034398776
+id:26079750007 name:Strada Teodor Mihali| distance:94.91864 routeTime:7.0 speed(m/s):13.559806 density:0.0034398776
+id:1554167893 name:Strada Venus| distance:393.89737 routeTime:98.0 speed(m/s):4.019361 density:0.0034398776
+id:23357001263 name:Strada Venus| distance:21.17472 routeTime:3.0 speed(m/s):7.0582404 density:0.0034398776
+id:28097682621 name:Strada Bistriței| distance:466.0621 routeTime:59.0 speed(m/s):7.899358 density:0.0034398776
+id:2023905923 name:Strada Nicolae Pascaly| distance:90.85321 routeTime:16.0 speed(m/s):5.6783257 density:0.0034398776
+id:11513612297 name:Strada Nicolae Pascaly| distance:37.35672 routeTime:10.0 speed(m/s):3.735672 density:0.0034398776
+id:11513611881 name:Strada Nicolae Pascaly| distance:310.50473 routeTime:73.0 speed(m/s):4.2534895 density:0.0034398776
+id:16942491909 name:Strada Nicolae Pascaly| distance:30.922491 routeTime:5.0 speed(m/s):6.1844983 density:0.0034398776
+Routing TIME 478.0
+
+Route: 
+id:2928880257 name:Strada Constanța| distance:69.53887 routeTime:8.0 speed(m/s):8.692359 density:0.0021709176
+id:31863052621 name:Strada Constanța| distance:198.11876 routeTime:28.0 speed(m/s):7.07567 density:0.0021709176
+id:1702333033 name:Strada Argeș| distance:257.9536 routeTime:98.0 speed(m/s):2.6321797 density:0.0021709176
+id:3630421575 name:Strada Cuza Vodă| distance:36.87835 routeTime:3.0 speed(m/s):12.292783 density:0.0021709176
+id:3716134389 name:Strada Cuza Vodă| distance:155.2626 routeTime:13.0 speed(m/s):11.943277 density:0.0021709176
+id:510492715 name:Strada Cuza Vodă| distance:103.56473 routeTime:24.0 speed(m/s):4.315197 density:0.0021709176
+id:2838821863 name:Piața Avram Iancu| distance:215.241 routeTime:18.0 speed(m/s):11.957833 density:0.0021709176
+id:26362196943 name:Piața Avram Iancu| distance:20.057926 routeTime:17.0 speed(m/s):1.179878 density:0.0021709176
+id:507924157 name:Piața Ștefan cel Mare| distance:58.601826 routeTime:5.0 speed(m/s):11.720366 density:0.0021709176
+id:19335262357 name:Piața Ștefan cel Mare| distance:31.571112 routeTime:3.0 speed(m/s):10.523704 density:0.0021709176
+id:19335262421 name:Piața Ștefan cel Mare| distance:31.071281 routeTime:3.0 speed(m/s):10.357094 density:0.0021709176
+id:26362360381 name:Piața Ștefan cel Mare| distance:103.365845 routeTime:9.0 speed(m/s):11.485094 density:0.0021709176
+id:18309008441 name:Piața Ștefan cel Mare| distance:51.54692 routeTime:20.0 speed(m/s):2.577346 density:0.0021709176
+id:507923415 name:Piața Ștefan cel Mare| distance:21.810207 routeTime:8.0 speed(m/s):2.726276 density:0.0021709176
+id:507923415 name:Piața Ștefan cel Mare| distance:8.335613 routeTime:3.0 speed(m/s):2.7785378 density:0.0021709176
+id:11956621593 name:Piața Ștefan cel Mare| distance:66.81117 routeTime:21.0 speed(m/s):3.1814845 density:0.0021709176
+id:11956621781 name:Piața Ștefan cel Mare| distance:47.982067 routeTime:25.0 speed(m/s):1.9192827 density:0.0021709176
+id:1554156451 name:Strada Milton Lehrer| distance:50.75697 routeTime:4.0 speed(m/s):12.689242 density:0.0021709176
+id:26465838369 name:Strada Milton Lehrer| distance:46.39203 routeTime:4.0 speed(m/s):11.598007 density:0.0021709176
+id:23262228715 name:Strada Milton Lehrer| distance:14.86443 routeTime:2.0 speed(m/s):7.432215 density:0.0021709176
+id:23262227767 name:Bulevardul Nicolae Titulescu| distance:59.587914 routeTime:6.0 speed(m/s):9.931319 density:0.0021709176
+id:2377371591 name:Bulevardul Nicolae Titulescu| distance:17.319992 routeTime:17.0 speed(m/s):1.018823 density:0.0021709176
+id:24184482511 name:Strada Constantin Brâncuși| distance:28.373867 routeTime:18.0 speed(m/s):1.5763259 density:0.0021709176
+id:11369424535 name:Strada Constantin Brâncuși| distance:8.173835 routeTime:1.0 speed(m/s):8.173835 density:0.0021709176
+id:23262228187 name:Strada Constantin Brâncuși| distance:15.61611 routeTime:2.0 speed(m/s):7.808055 density:0.0021709176
+id:26465807595 name:Strada Constantin Brâncuși| distance:58.72122 routeTime:5.0 speed(m/s):11.744244 density:0.0021709176
+id:19335263311 name:Strada Constantin Brâncuși| distance:110.83969 routeTime:10.0 speed(m/s):11.083969 density:0.0021709176
+id:25289484049 name:Strada Constantin Brâncuși| distance:189.02469 routeTime:17.0 speed(m/s):11.1191 density:0.0021709176
+id:25289484113 name:Strada Constantin Brâncuși| distance:145.2853 routeTime:13.0 speed(m/s):11.175792 density:0.0021709176
+id:37540615293 name:Strada Constantin Brâncuși| distance:8.946171 routeTime:1.0 speed(m/s):8.946171 density:0.0021709176
+id:2854847981 name:Strada Constantin Brâncuși| distance:151.6874 routeTime:18.0 speed(m/s):8.427077 density:0.0021709176
+id:7193547787 name:Strada Axente Sever| distance:283.49258 routeTime:76.0 speed(m/s):3.7301655 density:0.0021709176
+id:24190838003 name:Strada Septimiu Albini| distance:9.843064 routeTime:2.0 speed(m/s):4.921532 density:0.0021709176
+id:16844728411 name:Strada Heltai Gáspár| distance:165.15921 routeTime:30.0 speed(m/s):5.505307 density:0.0021709176
+id:2025422465 name:Strada Heltai Gáspár| distance:280.68405 routeTime:43.0 speed(m/s):6.527536 density:0.0021709176
+id:2025422763 name:Strada Diaconul Coresi| distance:101.96243 routeTime:12.0 speed(m/s):8.496869 density:0.0021709176
+Routing TIME 587.0
+
+Route: 
+id:2025426735 name:Aleea Padiș| distance:83.47302 routeTime:15.0 speed(m/s):5.564868 density:9.7563385E-4
+id:2025424241 name:Strada Albac| distance:102.019936 routeTime:12.0 speed(m/s):8.501661 density:9.7563385E-4
+id:24941254603 name:Strada Albac| distance:19.301792 routeTime:10.0 speed(m/s):1.9301792 density:9.7563385E-4
+id:24941254603 name:Strada Albac| distance:61.482906 routeTime:30.0 speed(m/s):2.0494301 density:9.7563385E-4
+id:24941254659 name:Strada Albac| distance:113.24137 routeTime:19.0 speed(m/s):5.960072 density:9.7563385E-4
+id:24190838003 name:Strada Septimiu Albini| distance:81.962654 routeTime:9.0 speed(m/s):9.106961 density:9.7563385E-4
+id:2025413693 name:Strada Madách Imre| distance:111.80981 routeTime:13.0 speed(m/s):8.600755 density:9.7563385E-4
+id:2025415911 name:Strada Măcinului| distance:78.48692 routeTime:10.0 speed(m/s):7.8486924 density:9.7563385E-4
+id:15548808827 name:Strada Măcinului| distance:463.78616 routeTime:59.0 speed(m/s):7.8607826 density:9.7563385E-4
+id:19335262837 name:Strada Alexandru Bohățiel| distance:38.864376 routeTime:5.0 speed(m/s):7.7728753 density:9.7563385E-4
+id:1578196793 name:Strada Titu Maiorescu| distance:175.68098 routeTime:21.0 speed(m/s):8.365761 density:9.7563385E-4
+id:1578196589 name:Strada Predeal| distance:326.6847 routeTime:43.0 speed(m/s):7.5973186 density:9.7563385E-4
+id:2025431139 name:Strada Amos Frâncu| distance:58.949486 routeTime:7.0 speed(m/s):8.421355 density:9.7563385E-4
+id:2025436775 name:Strada Nicolae Iorga| distance:469.594 routeTime:54.0 speed(m/s):8.696185 density:9.7563385E-4
+id:2943061967 name:Calea Turzii| distance:33.704132 routeTime:4.0 speed(m/s):8.426033 density:9.7563385E-4
+id:1703388661 name:Calea Turzii| distance:140.8212 routeTime:84.0 speed(m/s):1.6764429 density:9.7563385E-4
+id:21462969519 name:Calea Turzii| distance:31.237207 routeTime:3.0 speed(m/s):10.412402 density:9.7563385E-4
+id:23257421121 name:Calea Turzii| distance:50.74152 routeTime:5.0 speed(m/s):10.148304 density:9.7563385E-4
+id:21432644837 name:Calea Turzii| distance:59.951256 routeTime:5.0 speed(m/s):11.990252 density:9.7563385E-4
+id:21432644917 name:Calea Turzii| distance:194.41847 routeTime:16.0 speed(m/s):12.1511545 density:9.7563385E-4
+id:24232677545 name:Calea Turzii| distance:17.070095 routeTime:2.0 speed(m/s):8.535048 density:9.7563385E-4
+id:24232677599 name:Calea Turzii| distance:194.50032 routeTime:16.0 speed(m/s):12.15627 density:9.7563385E-4
+id:502521167 name:Calea Turzii| distance:189.80057 routeTime:16.0 speed(m/s):11.862535 density:9.7563385E-4
+id:31002362029 name:Calea Turzii| distance:8.690722 routeTime:1.0 speed(m/s):8.690722 density:9.7563385E-4
+id:3313535613 name:Calea Turzii| distance:50.90572 routeTime:10.0 speed(m/s):5.090572 density:9.7563385E-4
+id:9245398741 name:Calea Turzii| distance:21.258194 routeTime:2.0 speed(m/s):10.629097 density:9.7563385E-4
+id:3313535619 name:Strada Observatorului| distance:38.455948 routeTime:4.0 speed(m/s):9.613987 density:9.7563385E-4
+id:30938698835 name:Strada Observatorului| distance:68.98417 routeTime:6.0 speed(m/s):11.497361 density:9.7563385E-4
+id:3551249091 name:Strada Observatorului| distance:9.946044 routeTime:1.0 speed(m/s):9.946044 density:9.7563385E-4
+id:14824364861 name:Strada Observatorului| distance:26.365522 routeTime:2.0 speed(m/s):13.182761 density:9.7563385E-4
+id:3555659231 name:Strada Observatorului| distance:44.549892 routeTime:19.0 speed(m/s):2.344731 density:0.0019512677
+id:33632648939 name:Strada Observatorului| distance:383.64456 routeTime:31.0 speed(m/s):12.375631 density:0.0019512677
+id:33759330059 name:Strada Observatorului| distance:40.458935 routeTime:4.0 speed(m/s):10.114734 density:0.0019512677
+id:33759330165 name:Strada Observatorului| distance:121.76066 routeTime:10.0 speed(m/s):12.176065 density:0.0019512677
+id:672698143 name:Strada Observatorului| distance:194.92453 routeTime:17.0 speed(m/s):11.466148 density:0.0019512677
+id:672698143 name:Strada Observatorului| distance:6.74195 routeTime:1.0 speed(m/s):6.74195 density:0.0019512677
+id:33632651167 name:Strada Observatorului| distance:17.758972 routeTime:2.0 speed(m/s):8.879486 density:0.0019512677
+id:3555659161 name:Strada Observatorului| distance:218.08171 routeTime:23.0 speed(m/s):9.481813 density:0.0019512677
+id:18554870027 name:Strada Observatorului| distance:302.81357 routeTime:40.0 speed(m/s):7.570339 density:0.0019512677
+id:18554869981 name:Strada Observatorului| distance:22.907629 routeTime:2.0 speed(m/s):11.4538145 density:0.0019512677
+id:18554870117 name:Strada Observatorului| distance:47.20058 routeTime:4.0 speed(m/s):11.800145 density:0.0019512677
+id:495547157 name:Strada Frunzișului| distance:19.690681 routeTime:7.0 speed(m/s):2.8129544 density:0.0019512677
+id:18554869663 name:Strada Frunzișului| distance:67.51254 routeTime:6.0 speed(m/s):11.25209 density:0.0019512677
+id:24930571325 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:361.10898 routeTime:30.0 speed(m/s):12.036966 density:0.0019512677
+id:33270412571 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:25.059038 routeTime:12.0 speed(m/s):2.0882533 density:0.0019512677
+id:33270412651 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:5.896263 routeTime:1.0 speed(m/s):5.896263 density:0.0019512677
+id:30812722483 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:23.24244 routeTime:2.0 speed(m/s):11.62122 density:0.0019512677
+id:24930571209 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:172.99323 routeTime:14.0 speed(m/s):12.356659 density:0.0019512677
+id:26309639711 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:73.89822 routeTime:14.0 speed(m/s):5.278444 density:0.0019512677
+id:26309639711 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:90.120926 routeTime:17.0 speed(m/s):5.301231 density:0.0019512677
+id:26309639637 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:13.876115 routeTime:2.0 speed(m/s):6.9380574 density:0.0019512677
+id:12302876815 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:5.235559 routeTime:1.0 speed(m/s):5.235559 density:0.0019512677
+id:30812793935 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:760.90796 routeTime:62.0 speed(m/s):12.272709 density:0.0019512677
+id:33270412797 name:Strada Frunzișului (Varianta Zorilor-Mănăștur)| distance:23.648941 routeTime:12.0 speed(m/s):1.9707451 density:0.0019512677
+id:3551600275 name:Strada Frunzișului| distance:56.728046 routeTime:5.0 speed(m/s):11.34561 density:0.0019512677
+id:7150336297 name:Strada Frunzișului| distance:26.930681 routeTime:3.0 speed(m/s):8.976893 density:0.0019512677
+id:33270412843 name:Strada Frunzișului| distance:111.53784 routeTime:10.0 speed(m/s):11.153784 density:0.0019512677
+id:2023499979 name:Strada Izlazului| distance:18.281288 routeTime:2.0 speed(m/s):9.140644 density:0.0019512677
+id:33485974219 name:Strada Izlazului| distance:10.968762 routeTime:1.0 speed(m/s):10.968762 density:0.0019512677
+id:33485974179 name:Strada Izlazului| distance:10.0761 routeTime:1.0 speed(m/s):10.0761 density:0.0019512677
+id:33485973921 name:Strada Izlazului| distance:8.281094 routeTime:1.0 speed(m/s):8.281094 density:0.0019512677
+id:2023511039 name:Strada Izlazului| distance:16.854519 routeTime:7.0 speed(m/s):2.4077885 density:0.0019512677
+id:38053296113 name:Strada Izlazului| distance:85.124954 routeTime:7.0 speed(m/s):12.160707 density:0.0019512677
+id:20274987809 name:Strada Izlazului| distance:32.74346 routeTime:3.0 speed(m/s):10.914487 density:0.0019512677
+id:38053296273 name:Strada Izlazului| distance:80.32558 routeTime:7.0 speed(m/s):11.475082 density:0.0019512677
+id:21394023553 name:Strada Izlazului| distance:19.65075 routeTime:2.0 speed(m/s):9.825375 density:0.0019512677
+id:33042492665 name:Strada Izlazului| distance:11.216281 routeTime:6.0 speed(m/s):1.8693801 density:0.0019512677
+id:33042893649 name:Strada Izlazului| distance:23.7656 routeTime:7.0 speed(m/s):3.3950858 density:0.0019512677
+id:33042893805 name:Strada Izlazului| distance:9.056746 routeTime:1.0 speed(m/s):9.056746 density:0.0019512677
+id:33042524593 name:Strada Izlazului| distance:2.3124292 routeTime:1.0 speed(m/s):2.3124292 density:0.0019512677
+id:33042492537 name:Strada Izlazului| distance:8.805475 routeTime:69.0 speed(m/s):0.12761559 density:0.0019512677
+id:1530175635 name:Strada Mehedinți| distance:90.06935 routeTime:11.0 speed(m/s):8.188123 density:0.0019512677
+id:1530174715 name:Strada Bucegi| distance:121.05062 routeTime:19.0 speed(m/s):6.371085 density:0.0019512677
+id:25920593059 name:Strada Bucegi| distance:64.818 routeTime:33.0 speed(m/s):1.9641819 density:0.0019512677
+Routing TIME 1013.0
+
+Route: 
+id:2026702841 name:Strada Teleorman| distance:94.83747 routeTime:27.0 speed(m/s):3.5124989 density:0.0011996314
+id:29848405931 name:Strada Teleorman| distance:70.494156 routeTime:9.0 speed(m/s):7.832684 density:0.0011996314
+id:17134862345 name:Strada Teleorman| distance:116.850136 routeTime:19.0 speed(m/s):6.1500072 density:0.0023992627
+id:5982796559 name:Strada Dâmboviței| distance:81.17179 routeTime:15.0 speed(m/s):5.411453 density:0.003598894
+id:17788701885 name:Strada Dâmboviței| distance:21.524815 routeTime:6.0 speed(m/s):3.587469 density:0.003598894
+id:17788701885 name:Strada Dâmboviței| distance:13.614164 routeTime:5.0 speed(m/s):2.722833 density:0.003598894
+id:17788701787 name:Strada Ialomiței| distance:27.92835 routeTime:4.0 speed(m/s):6.9820876 density:0.003598894
+id:1579292817 name:Strada Ialomiței| distance:67.80562 routeTime:71.0 speed(m/s):0.9550087 density:0.003598894
+id:29741299431 name:Strada Ialomiței| distance:46.80223 routeTime:4.0 speed(m/s):11.700558 density:0.003598894
+id:2021432617 name:Strada Ialomiței| distance:108.57238 routeTime:15.0 speed(m/s):7.2381587 density:0.003598894
+id:2377624667 name:Strada Aurel Vlaicu| distance:11.703386 routeTime:1.0 speed(m/s):11.703386 density:0.003598894
+id:7684378905 name:Strada Aurel Vlaicu| distance:85.22821 routeTime:7.0 speed(m/s):12.175459 density:0.003598894
+id:19347186897 name:Strada Aurel Vlaicu| distance:123.0887 routeTime:11.0 speed(m/s):11.189881 density:0.003598894
+id:19347186897 name:Strada Aurel Vlaicu| distance:5.1685333 routeTime:1.0 speed(m/s):5.1685333 density:0.003598894
+id:33555333599 name:Strada Aurel Vlaicu| distance:14.912813 routeTime:7.0 speed(m/s):2.1304018 density:0.003598894
+id:33485703407 name:Piața Mărăști| distance:21.22643 routeTime:2.0 speed(m/s):10.613215 density:0.003598894
+id:33485703301 name:Piața Mărăști| distance:35.542305 routeTime:3.0 speed(m/s):11.847435 density:0.003598894
+id:33485703259 name:Piața Mărăști| distance:22.171667 routeTime:2.0 speed(m/s):11.085834 density:0.003598894
+id:33632651665 name:Bulevardul 21 Decembrie 1989| distance:6.738966 routeTime:1.0 speed(m/s):6.738966 density:0.003598894
+id:854115529 name:Bulevardul 21 Decembrie 1989| distance:162.58398 routeTime:14.0 speed(m/s):11.613142 density:0.0059981565
+id:29847961593 name:Bulevardul 21 Decembrie 1989| distance:50.548878 routeTime:5.0 speed(m/s):10.109776 density:0.0059981565
+id:19347186253 name:Bulevardul 21 Decembrie 1989| distance:265.19174 routeTime:58.0 speed(m/s):4.5722713 density:0.0059981565
+id:19347186253 name:Bulevardul 21 Decembrie 1989| distance:91.733 routeTime:20.0 speed(m/s):4.58665 density:0.0059981565
+id:19347186253 name:Bulevardul 21 Decembrie 1989| distance:166.41885 routeTime:36.0 speed(m/s):4.622746 density:0.0059981565
+id:1815102763 name:Bulevardul 21 Decembrie 1989| distance:40.20364 routeTime:4.0 speed(m/s):10.05091 density:0.0059981565
+id:19347186339 name:Bulevardul 21 Decembrie 1989| distance:30.714573 routeTime:18.0 speed(m/s):1.7063651 density:0.0059981565
+id:2741447193 name:Bulevardul 21 Decembrie 1989| distance:414.92758 routeTime:49.0 speed(m/s):8.46791 density:0.0059981565
+id:2380208509 name:Bulevardul 21 Decembrie 1989| distance:182.50471 routeTime:15.0 speed(m/s):12.166981 density:0.0059981565
+id:19347186405 name:Bulevardul 21 Decembrie 1989| distance:42.41463 routeTime:4.0 speed(m/s):10.603658 density:0.0059981565
+id:34985040467 name:Bulevardul 21 Decembrie 1989| distance:31.529556 routeTime:18.0 speed(m/s):1.751642 density:0.0059981565
+id:2377372007 name:Bulevardul 21 Decembrie 1989| distance:16.098965 routeTime:2.0 speed(m/s):8.049482 density:0.0059981565
+id:19335261727 name:Bulevardul 21 Decembrie 1989| distance:81.52171 routeTime:6.0 speed(m/s):13.586952 density:0.0059981565
+id:2838821863 name:Piața Avram Iancu| distance:215.241 routeTime:18.0 speed(m/s):11.957833 density:0.0059981565
+id:26362196943 name:Piața Avram Iancu| distance:20.057926 routeTime:17.0 speed(m/s):1.179878 density:0.0059981565
+id:507924157 name:Piața Ștefan cel Mare| distance:58.601826 routeTime:5.0 speed(m/s):11.720366 density:0.0059981565
+id:19335262357 name:Piața Ștefan cel Mare| distance:31.571112 routeTime:3.0 speed(m/s):10.523704 density:0.0059981565
+id:19335262421 name:Piața Ștefan cel Mare| distance:31.071281 routeTime:3.0 speed(m/s):10.357094 density:0.0059981565
+id:26362360381 name:Piața Ștefan cel Mare| distance:103.365845 routeTime:9.0 speed(m/s):11.485094 density:0.0059981565
+id:18309008441 name:Piața Ștefan cel Mare| distance:51.54692 routeTime:20.0 speed(m/s):2.577346 density:0.0059981565
+id:507923415 name:Piața Ștefan cel Mare| distance:21.810207 routeTime:8.0 speed(m/s):2.726276 density:0.0059981565
+id:507923415 name:Piața Ștefan cel Mare| distance:8.335613 routeTime:3.0 speed(m/s):2.7785378 density:0.0059981565
+id:11956621557 name:Piața Ștefan cel Mare| distance:47.567028 routeTime:19.0 speed(m/s):2.5035279 density:0.0059981565
+id:2405761013 name:Calea Turzii| distance:87.61587 routeTime:8.0 speed(m/s):10.951983 density:0.0059981565
+id:19335262011 name:Calea Turzii| distance:126.09711 routeTime:11.0 speed(m/s):11.463373 density:0.0059981565
+id:21432541025 name:Calea Turzii| distance:54.90851 routeTime:5.0 speed(m/s):10.981702 density:0.0059981565
+id:21432540989 name:Calea Turzii| distance:120.16993 routeTime:10.0 speed(m/s):12.016993 density:0.0059981565
+id:7507071339 name:Calea Turzii| distance:95.95769 routeTime:8.0 speed(m/s):11.994711 density:0.0059981565
+id:7507071441 name:Calea Turzii| distance:11.560422 routeTime:1.0 speed(m/s):11.560422 density:0.0059981565
+id:23018072405 name:Calea Turzii| distance:129.12445 routeTime:11.0 speed(m/s):11.738586 density:0.0059981565
+id:21462969519 name:Calea Turzii| distance:31.237207 routeTime:3.0 speed(m/s):10.412402 density:0.0059981565
+id:23257421121 name:Calea Turzii| distance:50.74152 routeTime:5.0 speed(m/s):10.148304 density:0.0059981565
+id:21432644837 name:Calea Turzii| distance:59.951256 routeTime:5.0 speed(m/s):11.990252 density:0.0059981565
+id:21432644917 name:Calea Turzii| distance:194.41847 routeTime:16.0 speed(m/s):12.1511545 density:0.0059981565
+id:24232677545 name:Calea Turzii| distance:17.070095 routeTime:2.0 speed(m/s):8.535048 density:0.0059981565
+id:24232677599 name:Calea Turzii| distance:194.50032 routeTime:16.0 speed(m/s):12.15627 density:0.0059981565
+id:502521167 name:Calea Turzii| distance:189.80057 routeTime:16.0 speed(m/s):11.862535 density:0.0059981565
+id:513818865 name:Calea Turzii| distance:111.69989 routeTime:15.0 speed(m/s):7.4466596 density:0.0059981565
+id:30938698835 name:Strada Observatorului| distance:68.98417 routeTime:6.0 speed(m/s):11.497361 density:0.0059981565
+id:3551249091 name:Strada Observatorului| distance:9.946044 routeTime:1.0 speed(m/s):9.946044 density:0.0059981565
+id:14824364861 name:Strada Observatorului| distance:26.365522 routeTime:2.0 speed(m/s):13.182761 density:0.0059981565
+id:3555659231 name:Strada Observatorului| distance:44.549892 routeTime:19.0 speed(m/s):2.344731 density:0.0059981565
+id:33632648939 name:Strada Observatorului| distance:383.64456 routeTime:31.0 speed(m/s):12.375631 density:0.0059981565
+id:33759330059 name:Strada Observatorului| distance:40.458935 routeTime:4.0 speed(m/s):10.114734 density:0.0059981565
+id:33759330165 name:Strada Observatorului| distance:121.76066 routeTime:10.0 speed(m/s):12.176065 density:0.0059981565
+id:672698143 name:Strada Observatorului| distance:194.92453 routeTime:17.0 speed(m/s):11.466148 density:0.0059981565
+id:37573999833 name:Strada Observatorului| distance:13.77087 routeTime:7.0 speed(m/s):1.9672672 density:0.0059981565
+id:507661033 name:Strada Viilor| distance:314.92416 routeTime:99.0 speed(m/s):3.1810522 density:0.0059981565
+Routing TIME 892.0
+
+Route: 
+id:23265303107 name:Piața Ștefan cel Mare| distance:125.03007 routeTime:26.0 speed(m/s):4.808849 density:0.0014625055
+id:7285682173 name:Piața Avram Iancu| distance:55.6937 routeTime:5.0 speed(m/s):11.13874 density:0.0014625055
+id:19335262173 name:Piața Avram Iancu| distance:129.32962 routeTime:11.0 speed(m/s):11.757238 density:0.0014625055
+id:34985223337 name:Piața Avram Iancu| distance:43.260136 routeTime:4.0 speed(m/s):10.815034 density:0.0014625055
+id:15556211047 name:Piața Avram Iancu| distance:11.701987 routeTime:21.0 speed(m/s):0.5572375 density:0.0014625055
+id:19335261727 name:Bulevardul 21 Decembrie 1989| distance:81.52171 routeTime:6.0 speed(m/s):13.586952 density:0.0014625055
+id:1509286843 name:Bulevardul 21 Decembrie 1989| distance:191.83551 routeTime:31.0 speed(m/s):6.1882424 density:0.0014625055
+id:23003442933 name:Bulevardul 21 Decembrie 1989| distance:86.51232 routeTime:8.0 speed(m/s):10.81404 density:0.0014625055
+id:19347186445 name:Bulevardul 21 Decembrie 1989| distance:63.75447 routeTime:21.0 speed(m/s):3.0359273 density:0.0014625055
+id:26362455343 name:Bulevardul 21 Decembrie 1989| distance:102.89171 routeTime:39.0 speed(m/s):2.638249 density:0.0014625055
+id:2377834323 name:Piața Unirii| distance:20.236168 routeTime:2.0 speed(m/s):10.118084 density:0.0014625055
+id:20809387621 name:Piața Unirii| distance:123.41493 routeTime:40.0 speed(m/s):3.0853734 density:0.0014625055
+id:854264001 name:Strada Memorandumului| distance:189.29742 routeTime:16.0 speed(m/s):11.831089 density:0.0014625055
+id:26362551987 name:Strada Memorandumului| distance:34.4843 routeTime:3.0 speed(m/s):11.494766 density:0.0014625055
+id:26362552037 name:Strada Memorandumului| distance:54.423767 routeTime:20.0 speed(m/s):2.7211883 density:0.0014625055
+id:19806875883 name:Strada Memorandumului| distance:35.364525 routeTime:18.0 speed(m/s):1.9646958 density:0.0014625055
+id:16904257499 name:Calea Moților| distance:86.317276 routeTime:7.0 speed(m/s):12.331039 density:0.0014625055
+id:3585271437 name:Calea Moților| distance:251.4514 routeTime:21.0 speed(m/s):11.973876 density:0.0014625055
+id:26362621971 name:Calea Moților| distance:25.848225 routeTime:18.0 speed(m/s):1.4360125 density:0.0014625055
+id:7139813823 name:Calea Moților| distance:407.68933 routeTime:48.0 speed(m/s):8.493527 density:0.0014625055
+id:26362765275 name:Calea Moților| distance:39.852913 routeTime:4.0 speed(m/s):9.963228 density:0.0014625055
+id:26079842843 name:Calea Moților| distance:76.06549 routeTime:7.0 speed(m/s):10.866499 density:0.0014625055
+id:3551532875 name:Calea Moților| distance:21.315884 routeTime:2.0 speed(m/s):10.657942 density:0.0014625055
+id:21702289353 name:Calea Moților| distance:4.087139 routeTime:1.0 speed(m/s):4.087139 density:0.0014625055
+id:3551533069 name:Calea Moților| distance:35.0024 routeTime:3.0 speed(m/s):11.667466 density:0.0014625055
+id:3551533037 name:Calea Moților| distance:179.9302 routeTime:15.0 speed(m/s):11.995347 density:0.0014625055
+id:38248984081 name:Calea Mănăștur| distance:24.145754 routeTime:3.0 speed(m/s):8.048585 density:0.0014625055
+id:853936965 name:Calea Mănăștur| distance:58.131157 routeTime:5.0 speed(m/s):11.626231 density:0.0014625055
+id:26362938683 name:Calea Mănăștur| distance:84.45164 routeTime:7.0 speed(m/s):12.06452 density:0.0014625055
+id:854378257 name:Calea Mănăștur| distance:143.1919 routeTime:12.0 speed(m/s):11.932658 density:0.0014625055
+id:38248984001 name:Calea Mănăștur| distance:70.078896 routeTime:6.0 speed(m/s):11.679816 density:0.0014625055
+id:20483480777 name:Calea Mănăștur| distance:39.07642 routeTime:4.0 speed(m/s):9.769105 density:0.0014625055
+id:20483457345 name:Calea Mănăștur| distance:45.814873 routeTime:4.0 speed(m/s):11.453718 density:0.0014625055
+id:20483450105 name:Calea Mănăștur| distance:28.971306 routeTime:3.0 speed(m/s):9.657102 density:0.0014625055
+id:21804085837 name:Calea Mănăștur| distance:26.415205 routeTime:3.0 speed(m/s):8.805068 density:0.0014625055
+id:38248983921 name:Calea Mănăștur| distance:8.534687 routeTime:1.0 speed(m/s):8.534687 density:0.0014625055
+id:3585270511 name:Calea Mănăștur| distance:38.386574 routeTime:4.0 speed(m/s):9.596643 density:0.0014625055
+id:20483443323 name:Calea Mănăștur| distance:59.61355 routeTime:5.0 speed(m/s):11.922709 density:0.002925011
+id:3551532981 name:Calea Mănăștur| distance:189.07567 routeTime:16.0 speed(m/s):11.817229 density:0.002925011
+id:39052543805 name:Calea Mănăștur| distance:3.3705914 routeTime:1.0 speed(m/s):3.3705914 density:0.002925011
+id:33044133879 name:Calea Mănăștur| distance:8.628507 routeTime:6.0 speed(m/s):1.4380845 density:0.002925011
+id:33044133659 name:Calea Mănăștur| distance:11.841545 routeTime:6.0 speed(m/s):1.9735909 density:0.002925011
+id:33044135081 name:Calea Mănăștur| distance:7.034942 routeTime:1.0 speed(m/s):7.034942 density:0.002925011
+id:33044134711 name:Calea Mănăștur| distance:9.794681 routeTime:31.0 speed(m/s):0.31595743 density:0.002925011
+id:39052543869 name:Strada Câmpului| distance:4.9049444 routeTime:6.0 speed(m/s):0.81749076 density:0.002925011
+id:20621990541 name:Strada Câmpului| distance:79.29716 routeTime:7.0 speed(m/s):11.328165 density:0.002925011
+id:34960574573 name:Strada Câmpului| distance:50.77115 routeTime:5.0 speed(m/s):10.15423 density:0.002925011
+id:28149865363 name:Strada Câmpului| distance:32.92942 routeTime:3.0 speed(m/s):10.976474 density:0.002925011
+id:2023498155 name:Strada Câmpului| distance:74.84025 routeTime:7.0 speed(m/s):10.691464 density:0.002925011
+id:28149865443 name:Strada Câmpului| distance:295.3715 routeTime:25.0 speed(m/s):11.814859 density:0.002925011
+id:2023504637 name:Strada Câmpului| distance:19.621483 routeTime:2.0 speed(m/s):9.810741 density:0.002925011
+id:33485973921 name:Strada Izlazului| distance:8.281094 routeTime:1.0 speed(m/s):8.281094 density:0.002925011
+id:33485973667 name:Strada Izlazului| distance:8.80544 routeTime:1.0 speed(m/s):8.80544 density:0.002925011
+id:33485974441 name:Strada Izlazului| distance:10.24769 routeTime:1.0 speed(m/s):10.24769 density:0.002925011
+id:2023510347 name:Strada Câmpului| distance:20.699156 routeTime:70.0 speed(m/s):0.29570222 density:0.002925011
+id:23017308155 name:Strada Câmpului| distance:230.83748 routeTime:27.0 speed(m/s):8.549537 density:0.002925011
+id:1530175333 name:Strada Mehedinți| distance:223.10655 routeTime:26.0 speed(m/s):8.581021 density:0.002925011
+id:1703359127 name:Strada Mehedinți| distance:81.536896 routeTime:15.0 speed(m/s):5.435793 density:0.002925011
+id:1703359465 name:Strada Moldoveanu| distance:192.74591 routeTime:23.0 speed(m/s):8.380257 density:0.002925011
+id:1703359507 name:Strada Moldoveanu| distance:119.43922 routeTime:19.0 speed(m/s):6.2862744 density:0.002925011
+Routing TIME 753.0
+
+Route: 
+id:15674843833 name:| distance:112.42016 routeTime:41.0 speed(m/s):2.741955 density:0.0013917485
+id:1704047643 name:Strada Mărginașă| distance:111.534386 routeTime:81.0 speed(m/s):1.3769677 density:0.0013917485
+id:3551533037 name:Calea Moților| distance:179.9302 routeTime:15.0 speed(m/s):11.995347 density:0.0013917485
+id:3551533069 name:Calea Moților| distance:35.0024 routeTime:3.0 speed(m/s):11.667466 density:0.0013917485
+id:21702289353 name:Calea Moților| distance:4.087139 routeTime:1.0 speed(m/s):4.087139 density:0.0013917485
+id:3551532875 name:Calea Moților| distance:21.315884 routeTime:2.0 speed(m/s):10.657942 density:0.0013917485
+id:26079842843 name:Calea Moților| distance:76.06549 routeTime:7.0 speed(m/s):10.866499 density:0.0013917485
+id:26362765275 name:Calea Moților| distance:39.852913 routeTime:4.0 speed(m/s):9.963228 density:0.0013917485
+id:1522231123 name:Strada George Coșbuc| distance:54.95564 routeTime:7.0 speed(m/s):7.8508058 density:0.0013917485
+id:26362746729 name:Strada George Coșbuc| distance:166.98215 routeTime:20.0 speed(m/s):8.349108 density:0.0013917485
+id:21394087171 name:Strada George Coșbuc| distance:29.7534 routeTime:4.0 speed(m/s):7.43835 density:0.0013917485
+id:21985117241 name:Strada George Coșbuc| distance:14.27503 routeTime:2.0 speed(m/s):7.137515 density:0.0013917485
+id:21985117109 name:Strada George Coșbuc| distance:8.803499 routeTime:1.0 speed(m/s):8.803499 density:0.0013917485
+id:21985840711 name:Strada George Coșbuc| distance:91.40244 routeTime:11.0 speed(m/s):8.309313 density:0.0013917485
+id:6934615375 name:Strada George Coșbuc| distance:4.904229 routeTime:1.0 speed(m/s):4.904229 density:0.0013917485
+id:2769995053 name:Strada George Coșbuc| distance:193.61317 routeTime:90.0 speed(m/s):2.1512575 density:0.0013917485
+id:20172509291 name:Splaiul Independenței| distance:346.05096 routeTime:28.0 speed(m/s):12.358963 density:0.0013917485
+id:20172509191 name:Splaiul Independenței| distance:87.647194 routeTime:7.0 speed(m/s):12.521028 density:0.0013917485
+id:21985116541 name:Splaiul Independenței| distance:221.09766 routeTime:13.0 speed(m/s):17.007511 density:0.0013917485
+id:21985116541 name:Splaiul Independenței| distance:289.02878 routeTime:17.0 speed(m/s):17.001694 density:0.0013917485
+id:21985116371 name:Splaiul Independenței| distance:28.12691 routeTime:3.0 speed(m/s):9.375636 density:0.0013917485
+id:507837283 name:Splaiul Independenței| distance:81.80481 routeTime:7.0 speed(m/s):11.686401 density:0.0013917485
+id:20172642739 name:Strada Plopilor| distance:284.24493 routeTime:23.0 speed(m/s):12.358476 density:0.00974224
+id:20172595973 name:Strada Plopilor| distance:114.08059 routeTime:10.0 speed(m/s):11.408059 density:0.00974224
+id:21442333319 name:Strada Plopilor| distance:365.1296 routeTime:30.0 speed(m/s):12.170987 density:0.00974224
+id:507833791 name:Strada Plopilor| distance:24.545662 routeTime:2.0 speed(m/s):12.272831 density:0.00974224
+id:854715359 name:Strada Plopilor| distance:89.76269 routeTime:8.0 speed(m/s):11.220336 density:0.00974224
+id:2751764391 name:Strada Plopilor| distance:57.08203 routeTime:5.0 speed(m/s):11.416407 density:0.00974224
+id:854755475 name:Strada Primăverii| distance:71.23555 routeTime:11.0 speed(m/s):6.4759593 density:0.00974224
+id:21394055327 name:Strada Primăverii| distance:100.5793 routeTime:8.0 speed(m/s):12.5724125 density:0.00974224
+id:21394042265 name:Strada Primăverii| distance:52.492012 routeTime:5.0 speed(m/s):10.498403 density:0.00974224
+id:21337961079 name:Strada Primăverii| distance:28.440884 routeTime:3.0 speed(m/s):9.480294 density:0.00974224
+id:21394035151 name:Strada Primăverii| distance:118.048676 routeTime:10.0 speed(m/s):11.804868 density:0.00974224
+id:2366223211 name:Strada Primăverii| distance:38.22466 routeTime:19.0 speed(m/s):2.0118241 density:0.00974224
+id:2366222713 name:Strada Primăverii| distance:53.392094 routeTime:5.0 speed(m/s):10.678419 density:0.00974224
+id:37580777993 name:Strada Primăverii| distance:29.613356 routeTime:3.0 speed(m/s):9.871119 density:0.00974224
+id:37580569759 name:Strada Primăverii| distance:25.483698 routeTime:3.0 speed(m/s):8.494566 density:0.00974224
+id:37580568955 name:Strada Primăverii| distance:63.43933 routeTime:6.0 speed(m/s):10.573222 density:0.00974224
+id:37580778133 name:Strada Primăverii| distance:10.968914 routeTime:1.0 speed(m/s):10.968914 density:0.00974224
+id:33042330643 name:Strada Primăverii| distance:33.66984 routeTime:3.0 speed(m/s):11.223281 density:0.00974224
+id:33042330529 name:Strada Primăverii| distance:16.453434 routeTime:2.0 speed(m/s):8.226717 density:0.00974224
+id:21461634069 name:Strada Primăverii| distance:25.97189 routeTime:18.0 speed(m/s):1.4428828 density:0.00974224
+id:21629689017 name:Strada Primăverii| distance:136.65233 routeTime:12.0 speed(m/s):11.387694 density:0.00974224
+id:21632404269 name:Strada Primăverii| distance:11.7151575 routeTime:1.0 speed(m/s):11.7151575 density:0.00974224
+id:6541474883 name:Strada Primăverii| distance:39.017117 routeTime:87.0 speed(m/s):0.4484726 density:0.00974224
+id:6541475435 name:Strada Parâng| distance:381.3455 routeTime:44.0 speed(m/s):8.666943 density:0.00974224
+id:1678653711 name:Aleea Ciucaș| distance:177.20926 routeTime:21.0 speed(m/s):8.438536 density:0.00974224
+id:1678656595 name:Aleea Iezer| distance:184.61163 routeTime:28.0 speed(m/s):6.5932727 density:0.00974224
+id:1678656595 name:Aleea Iezer| distance:56.314533 routeTime:9.0 speed(m/s):6.25717 density:0.00974224
+id:1678656935 name:Aleea Meziad| distance:88.14677 routeTime:11.0 speed(m/s):8.013343 density:0.00974224
+id:15289637551 name:Aleea Meziad| distance:153.1173 routeTime:18.0 speed(m/s):8.506516 density:0.00974224
+Routing TIME 771.0
+
+Route: 
+id:1530178165 name:Strada Ion Meșter| distance:114.78009 routeTime:56.0 speed(m/s):2.0496445 density:0.0015394049
+id:28149865443 name:Strada Câmpului| distance:157.47354 routeTime:14.0 speed(m/s):11.24811 density:0.0015394049
+id:2023498155 name:Strada Câmpului| distance:74.84025 routeTime:7.0 speed(m/s):10.691464 density:0.0015394049
+id:28149865363 name:Strada Câmpului| distance:32.92942 routeTime:3.0 speed(m/s):10.976474 density:0.0015394049
+id:34960574573 name:Strada Câmpului| distance:50.77115 routeTime:5.0 speed(m/s):10.15423 density:0.0015394049
+id:20621990541 name:Strada Câmpului| distance:79.29716 routeTime:7.0 speed(m/s):11.328165 density:0.0015394049
+id:34345492665 name:Strada Câmpului| distance:25.475756 routeTime:8.0 speed(m/s):3.1844695 density:0.0015394049
+id:3551532981 name:Calea Mănăștur| distance:189.07567 routeTime:16.0 speed(m/s):11.817229 density:0.0015394049
+id:20483443323 name:Calea Mănăștur| distance:59.61355 routeTime:5.0 speed(m/s):11.922709 density:0.0015394049
+id:3585270511 name:Calea Mănăștur| distance:38.386574 routeTime:4.0 speed(m/s):9.596643 density:0.0030788097
+id:38248983921 name:Calea Mănăștur| distance:8.534687 routeTime:1.0 speed(m/s):8.534687 density:0.0030788097
+id:21804085837 name:Calea Mănăștur| distance:26.415205 routeTime:3.0 speed(m/s):8.805068 density:0.0030788097
+id:20483450105 name:Calea Mănăștur| distance:28.971306 routeTime:3.0 speed(m/s):9.657102 density:0.0030788097
+id:20483457345 name:Calea Mănăștur| distance:45.814873 routeTime:4.0 speed(m/s):11.453718 density:0.0030788097
+id:20483480777 name:Calea Mănăștur| distance:39.07642 routeTime:4.0 speed(m/s):9.769105 density:0.0046182144
+id:38248984001 name:Calea Mănăștur| distance:70.078896 routeTime:6.0 speed(m/s):11.679816 density:0.0046182144
+id:854378257 name:Calea Mănăștur| distance:143.1919 routeTime:12.0 speed(m/s):11.932658 density:0.0046182144
+id:26362938683 name:Calea Mănăștur| distance:84.45164 routeTime:7.0 speed(m/s):12.06452 density:0.0046182144
+id:853936965 name:Calea Mănăștur| distance:58.131157 routeTime:5.0 speed(m/s):11.626231 density:0.0046182144
+id:38248984081 name:Calea Mănăștur| distance:24.145754 routeTime:3.0 speed(m/s):8.048585 density:0.0046182144
+id:3551533037 name:Calea Moților| distance:179.9302 routeTime:15.0 speed(m/s):11.995347 density:0.0046182144
+id:3551533069 name:Calea Moților| distance:35.0024 routeTime:3.0 speed(m/s):11.667466 density:0.0046182144
+id:21702289353 name:Calea Moților| distance:4.087139 routeTime:1.0 speed(m/s):4.087139 density:0.0046182144
+id:11081016275 name:Strada Clinicilor| distance:67.27282 routeTime:6.0 speed(m/s):11.212136 density:0.0046182144
+id:26079842913 name:Strada Clinicilor| distance:722.08734 routeTime:62.0 speed(m/s):11.64657 density:0.0046182144
+id:29740570789 name:Strada Clinicilor| distance:65.24533 routeTime:21.0 speed(m/s):3.1069205 density:0.0046182144
+id:24182500431 name:Piața Lucian Blaga| distance:57.90147 routeTime:5.0 speed(m/s):11.580294 density:0.0046182144
+id:24182500411 name:Piața Lucian Blaga| distance:63.75613 routeTime:5.0 speed(m/s):12.751226 density:0.0046182144
+id:507772439 name:Strada Republicii| distance:127.52159 routeTime:31.0 speed(m/s):4.1136 density:0.0046182144
+id:507802741 name:Strada Republicii| distance:282.69168 routeTime:56.0 speed(m/s):5.0480657 density:0.0046182144
+id:507677577 name:Strada Ion Creangă| distance:249.62717 routeTime:57.0 speed(m/s):4.379424 density:0.016933452
+id:3810528421 name:Strada Profesor Gheorghe Marinescu| distance:38.348618 routeTime:5.0 speed(m/s):7.6697235 density:0.016933452
+id:20043032305 name:Strada Profesor Gheorghe Marinescu| distance:371.41418 routeTime:43.0 speed(m/s):8.637539 density:0.016933452
+id:22987448665 name:Strada Profesor Gheorghe Marinescu| distance:9.568391 routeTime:2.0 speed(m/s):4.7841954 density:0.016933452
+id:20292798689 name:Strada Profesor Gheorghe Marinescu| distance:71.10266 routeTime:9.0 speed(m/s):7.9002957 density:0.016933452
+id:3810528345 name:Strada Profesor Gheorghe Marinescu| distance:150.5142 routeTime:18.0 speed(m/s):8.3619 density:0.016933452
+id:1703395201 name:Strada Pajiștei| distance:16.350267 routeTime:2.0 speed(m/s):8.175134 density:0.016933452
+id:1703487225 name:Strada Sighișoarei| distance:145.94633 routeTime:17.0 speed(m/s):8.585078 density:0.016933452
+id:1529166513 name:Strada Viilor| distance:215.77704 routeTime:30.0 speed(m/s):7.192568 density:0.016933452
+id:507661033 name:Strada Viilor| distance:152.38583 routeTime:48.0 speed(m/s):3.1747048 density:0.016933452
+id:1529168129 name:Strada Turturicii| distance:140.19452 routeTime:22.0 speed(m/s):6.372478 density:0.016933452
+id:1703362413 name:Strada Robert Koch| distance:29.032084 routeTime:28.0 speed(m/s):1.0368601 density:0.016933452
+Routing TIME 659.0
+
+Route: 
+id:1692823315 name:Strada Ialomiței| distance:114.43805 routeTime:19.0 speed(m/s):6.023055 density:8.6702174E-4
+id:1692824127 name:Strada Fabricii de Zahăr| distance:162.50423 routeTime:19.0 speed(m/s):8.552854 density:8.6702174E-4
+id:1815100809 name:Strada Banilor| distance:143.01385 routeTime:17.0 speed(m/s):8.41258 density:8.6702174E-4
+id:1579285873 name:Strada Grădinarilor| distance:73.78866 routeTime:9.0 speed(m/s):8.19874 density:8.6702174E-4
+id:10637325885 name:Strada Grădinarilor| distance:157.0284 routeTime:61.0 speed(m/s):2.574236 density:8.6702174E-4
+id:33555334051 name:Strada Fabricii| distance:87.156334 routeTime:8.0 speed(m/s):10.894542 density:0.0017340435
+id:24940632901 name:Strada Fabricii| distance:27.696463 routeTime:8.0 speed(m/s):3.4620578 density:0.0017340435
+id:33486888831 name:Strada Fabricii| distance:8.23485 routeTime:1.0 speed(m/s):8.23485 density:0.0017340435
+id:33486888571 name:Strada Fabricii| distance:4.5804987 routeTime:1.0 speed(m/s):4.5804987 density:0.0017340435
+id:24940632811 name:Strada Fabricii| distance:13.629976 routeTime:2.0 speed(m/s):6.814988 density:0.0017340435
+id:33486888501 name:Strada Fabricii| distance:4.0856805 routeTime:1.0 speed(m/s):4.0856805 density:0.0017340435
+id:33486888441 name:Strada Fabricii| distance:3.2685463 routeTime:1.0 speed(m/s):3.2685463 density:0.0017340435
+id:24940632833 name:Strada Fabricii| distance:29.291763 routeTime:3.0 speed(m/s):9.763921 density:0.0017340435
+id:33555334051 name:Strada Fabricii| distance:87.156334 routeTime:8.0 speed(m/s):10.894542 density:0.0017340435
+id:33758097063 name:Strada Fabricii| distance:55.62067 routeTime:5.0 speed(m/s):11.124134 density:0.0017340435
+id:20350679657 name:Strada Fabricii| distance:32.94969 routeTime:18.0 speed(m/s):1.8305384 density:0.0017340435
+id:33758097171 name:Strada București| distance:60.853283 routeTime:6.0 speed(m/s):10.142214 density:0.0017340435
+id:21985118563 name:Strada București| distance:530.8588 routeTime:46.0 speed(m/s):11.540409 density:0.0017340435
+id:21985118255 name:Strada București| distance:15.068079 routeTime:2.0 speed(m/s):7.5340395 density:0.0017340435
+id:20040220181 name:Strada București| distance:28.224741 routeTime:3.0 speed(m/s):9.408247 density:0.0017340435
+id:20040220135 name:Strada București| distance:15.068099 routeTime:7.0 speed(m/s):2.1525855 density:0.0017340435
+id:20040220473 name:Strada București| distance:22.029118 routeTime:2.0 speed(m/s):11.014559 density:0.0017340435
+id:2378019963 name:Strada București| distance:355.23337 routeTime:31.0 speed(m/s):11.459141 density:0.0017340435
+id:33758294223 name:Strada București| distance:67.32875 routeTime:21.0 speed(m/s):3.206131 density:0.0017340435
+id:33758294195 name:Strada București| distance:110.281494 routeTime:10.0 speed(m/s):11.02815 density:0.0017340435
+id:33353337165 name:Strada București| distance:259.30038 routeTime:28.0 speed(m/s):9.260728 density:0.003468087
+id:33353337261 name:Strada București| distance:16.023882 routeTime:2.0 speed(m/s):8.011941 density:0.003468087
+id:2769996521 name:Strada Daniil P. Bărceanu| distance:32.947098 routeTime:3.0 speed(m/s):10.982366 density:0.003468087
+id:2769996411 name:Strada Daniil P. Bărceanu| distance:42.77617 routeTime:4.0 speed(m/s):10.694042 density:0.003468087
+id:1703935725 name:Strada Daniil P. Bărceanu| distance:130.15065 routeTime:27.0 speed(m/s):4.8203945 density:0.0043351087
+id:2458653165 name:Strada Traian| distance:51.51581 routeTime:20.0 speed(m/s):2.5757904 density:0.0043351087
+id:1691726685 name:Strada Traian| distance:373.34827 routeTime:47.0 speed(m/s):7.94358 density:0.0052021304
+id:20177610277 name:Podul Decebal| distance:12.149335 routeTime:2.0 speed(m/s):6.0746675 density:0.0052021304
+id:20177610481 name:Podul Traian| distance:40.468582 routeTime:4.0 speed(m/s):10.117146 density:0.0052021304
+id:510499579 name:Strada Ion Popescu Voitești| distance:12.149413 routeTime:17.0 speed(m/s):0.7146714 density:0.0052021304
+id:510495685 name:Piața Mihai Viteazu| distance:107.356865 routeTime:10.0 speed(m/s):10.735686 density:0.0052021304
+id:11007017035 name:Piața Mihai Viteazu| distance:149.6985 routeTime:56.0 speed(m/s):2.6731875 density:0.0052021304
+id:11007017035 name:Piața Mihai Viteazu| distance:30.642906 routeTime:12.0 speed(m/s):2.5535755 density:0.0052021304
+id:510501965 name:Strada Gheorghe Barițiu| distance:111.44661 routeTime:9.0 speed(m/s):12.3829565 density:0.0052021304
+id:21633612541 name:Strada Gheorghe Barițiu| distance:246.35828 routeTime:20.0 speed(m/s):12.317914 density:0.0052021304
+id:32047986043 name:Strada Emil Isac| distance:13.666278 routeTime:1.0 speed(m/s):13.666278 density:0.0052021304
+id:32047986043 name:Strada Emil Isac| distance:122.98818 routeTime:18.0 speed(m/s):6.832677 density:0.0052021304
+id:4418174315 name:Splaiul Independenței| distance:368.77206 routeTime:30.0 speed(m/s):12.292402 density:0.0052021304
+id:33775695179 name:Splaiul Independenței| distance:41.35744 routeTime:4.0 speed(m/s):10.33936 density:0.0052021304
+id:33775694959 name:Splaiul Independenței| distance:249.64812 routeTime:21.0 speed(m/s):11.888005 density:0.0052021304
+id:20172509291 name:Splaiul Independenței| distance:396.40897 routeTime:32.0 speed(m/s):12.38778 density:0.0052021304
+id:20172509191 name:Splaiul Independenței| distance:87.647194 routeTime:7.0 speed(m/s):12.521028 density:0.0052021304
+id:21985116541 name:Splaiul Independenței| distance:221.09766 routeTime:13.0 speed(m/s):17.007511 density:0.0052021304
+id:21985116541 name:Splaiul Independenței| distance:289.02878 routeTime:17.0 speed(m/s):17.001694 density:0.0052021304
+id:21985116371 name:Splaiul Independenței| distance:28.12691 routeTime:3.0 speed(m/s):9.375636 density:0.0052021304
+id:507837283 name:Splaiul Independenței| distance:81.80481 routeTime:7.0 speed(m/s):11.686401 density:0.0052021304
+id:20172642739 name:Strada Plopilor| distance:284.24493 routeTime:23.0 speed(m/s):12.358476 density:0.0052021304
+id:20172595973 name:Strada Plopilor| distance:114.08059 routeTime:10.0 speed(m/s):11.408059 density:0.0052021304
+id:21442333319 name:Strada Plopilor| distance:365.1296 routeTime:30.0 speed(m/s):12.170987 density:0.0052021304
+id:507833791 name:Strada Plopilor| distance:24.545662 routeTime:2.0 speed(m/s):12.272831 density:0.0052021304
+id:854715359 name:Strada Plopilor| distance:89.76269 routeTime:8.0 speed(m/s):11.220336 density:0.0052021304
+id:2751764391 name:Strada Plopilor| distance:57.08203 routeTime:5.0 speed(m/s):11.416407 density:0.0052021304
+id:854755475 name:Strada Primăverii| distance:71.23555 routeTime:11.0 speed(m/s):6.4759593 density:0.0052021304
+id:21394055327 name:Strada Primăverii| distance:100.5793 routeTime:8.0 speed(m/s):12.5724125 density:0.0052021304
+id:21394042265 name:Strada Primăverii| distance:52.492012 routeTime:5.0 speed(m/s):10.498403 density:0.0052021304
+id:21337961079 name:Strada Primăverii| distance:28.440884 routeTime:3.0 speed(m/s):9.480294 density:0.0052021304
+id:21394035151 name:Strada Primăverii| distance:118.048676 routeTime:10.0 speed(m/s):11.804868 density:0.0052021304
+id:2366223211 name:Strada Primăverii| distance:38.22466 routeTime:19.0 speed(m/s):2.0118241 density:0.0052021304
+id:2366222713 name:Strada Primăverii| distance:53.392094 routeTime:5.0 speed(m/s):10.678419 density:0.0052021304
+id:37580777993 name:Strada Primăverii| distance:29.613356 routeTime:3.0 speed(m/s):9.871119 density:0.0052021304
+id:38838004751 name:Strada Primăverii| distance:15.512206 routeTime:2.0 speed(m/s):7.756103 density:0.0052021304
+id:38838004633 name:Strada Primăverii| distance:40.077675 routeTime:4.0 speed(m/s):10.019419 density:0.0052021304
+id:37580569313 name:Strada Primăverii| distance:3.3709252 routeTime:1.0 speed(m/s):3.3709252 density:0.0052021304
+id:37580777789 name:Strada Izlazului| distance:60.88522 routeTime:6.0 speed(m/s):10.147536 density:0.0052021304
+id:507823425 name:Strada Izlazului| distance:117.89563 routeTime:25.0 speed(m/s):4.715825 density:0.0052021304
+id:21397143347 name:Strada Izlazului| distance:49.119743 routeTime:4.0 speed(m/s):12.279936 density:0.0052021304
+id:21281773605 name:Strada Izlazului| distance:59.01783 routeTime:5.0 speed(m/s):11.803566 density:0.0052021304
+id:33042492339 name:Strada Izlazului| distance:13.189511 routeTime:7.0 speed(m/s):1.884216 density:0.0052021304
+id:33042524593 name:Strada Izlazului| distance:2.3124292 routeTime:1.0 speed(m/s):2.3124292 density:0.0052021304
+id:33042492537 name:Strada Izlazului| distance:8.805475 routeTime:685.0 speed(m/s):0.012854708 density:0.0052021304
+id:1530175635 name:Strada Mehedinți| distance:216.45897 routeTime:25.0 speed(m/s):8.658359 density:0.0052021304
+id:1703359465 name:Strada Moldoveanu| distance:90.86828 routeTime:11.0 speed(m/s):8.260753 density:0.0052021304
+id:1703359465 name:Strada Moldoveanu| distance:130.8079 routeTime:15.0 speed(m/s):8.720527 density:0.0052021304
+id:1703383381 name:Strada Moldoveanu| distance:64.39353 routeTime:33.0 speed(m/s):1.9513191 density:0.0052021304
+id:22904479223 name:Strada Moldoveanu| distance:47.758545 routeTime:8.0 speed(m/s):5.969818 density:0.0052021304
+Routing TIME 1697.0
+
+Route: 
+id:29847961105 name:| distance:63.150436 routeTime:33.0 speed(m/s):1.9136496 density:0.0013954844
+id:17759259009 name:| distance:43.217693 routeTime:48.0 speed(m/s):0.90036863 density:0.0013954844
+id:21985118563 name:Strada București| distance:300.51547 routeTime:26.0 speed(m/s):11.558288 density:0.0013954844
+id:21985118255 name:Strada București| distance:15.068079 routeTime:2.0 speed(m/s):7.5340395 density:0.0013954844
+id:20040220181 name:Strada București| distance:28.224741 routeTime:3.0 speed(m/s):9.408247 density:0.0013954844
+id:20040220135 name:Strada București| distance:15.068099 routeTime:7.0 speed(m/s):2.1525855 density:0.0013954844
+id:20040220473 name:Strada București| distance:22.029118 routeTime:2.0 speed(m/s):11.014559 density:0.0013954844
+id:2378019963 name:Strada București| distance:355.23337 routeTime:31.0 speed(m/s):11.459141 density:0.0013954844
+id:33758294223 name:Strada București| distance:67.32875 routeTime:21.0 speed(m/s):3.206131 density:0.0013954844
+id:33758294195 name:Strada București| distance:110.281494 routeTime:10.0 speed(m/s):11.02815 density:0.0013954844
+id:33353337165 name:Strada București| distance:259.30038 routeTime:28.0 speed(m/s):9.260728 density:0.0027909689
+id:33353337261 name:Strada București| distance:16.023882 routeTime:2.0 speed(m/s):8.011941 density:0.0027909689
+id:2769996521 name:Strada Daniil P. Bărceanu| distance:32.947098 routeTime:3.0 speed(m/s):10.982366 density:0.0027909689
+id:2769996411 name:Strada Daniil P. Bărceanu| distance:42.77617 routeTime:4.0 speed(m/s):10.694042 density:0.0027909689
+id:1703935725 name:Strada Daniil P. Bărceanu| distance:130.15065 routeTime:27.0 speed(m/s):4.8203945 density:0.008372907
+id:2458653165 name:Strada Traian| distance:51.51581 routeTime:20.0 speed(m/s):2.5757904 density:0.008372907
+id:1691726685 name:Strada Traian| distance:373.34827 routeTime:47.0 speed(m/s):7.94358 density:0.008372907
+id:20177610277 name:Podul Decebal| distance:12.149335 routeTime:2.0 speed(m/s):6.0746675 density:0.008372907
+id:20177610481 name:Podul Traian| distance:40.468582 routeTime:4.0 speed(m/s):10.117146 density:0.008372907
+id:510499579 name:Strada Ion Popescu Voitești| distance:12.149413 routeTime:17.0 speed(m/s):0.7146714 density:0.008372907
+id:510495685 name:Piața Mihai Viteazu| distance:107.356865 routeTime:10.0 speed(m/s):10.735686 density:0.009768391
+id:11007017035 name:Piața Mihai Viteazu| distance:149.6985 routeTime:56.0 speed(m/s):2.6731875 density:0.011163875
+id:11007017035 name:Piața Mihai Viteazu| distance:30.642906 routeTime:12.0 speed(m/s):2.5535755 density:0.011163875
+id:510501965 name:Strada Gheorghe Barițiu| distance:111.44661 routeTime:9.0 speed(m/s):12.3829565 density:0.011163875
+id:21633612541 name:Strada Gheorghe Barițiu| distance:246.35828 routeTime:20.0 speed(m/s):12.317914 density:0.011163875
+id:32047986043 name:Strada Emil Isac| distance:13.666278 routeTime:1.0 speed(m/s):13.666278 density:0.011163875
+id:32047986043 name:Strada Emil Isac| distance:122.98818 routeTime:7.0 speed(m/s):17.56974 density:0.011163875
+id:4418174315 name:Splaiul Independenței| distance:368.77206 routeTime:30.0 speed(m/s):12.292402 density:0.011163875
+id:33775695179 name:Splaiul Independenței| distance:41.35744 routeTime:4.0 speed(m/s):10.33936 density:0.011163875
+id:33775694959 name:Splaiul Independenței| distance:249.64812 routeTime:21.0 speed(m/s):11.888005 density:0.011163875
+id:20172509291 name:Splaiul Independenței| distance:396.40897 routeTime:32.0 speed(m/s):12.38778 density:0.011163875
+id:20172509191 name:Splaiul Independenței| distance:87.647194 routeTime:7.0 speed(m/s):12.521028 density:0.011163875
+id:21985116541 name:Splaiul Independenței| distance:221.09766 routeTime:13.0 speed(m/s):17.007511 density:0.011163875
+id:21985116541 name:Splaiul Independenței| distance:289.02878 routeTime:17.0 speed(m/s):17.001694 density:0.011163875
+id:21985116371 name:Splaiul Independenței| distance:28.12691 routeTime:3.0 speed(m/s):9.375636 density:0.011163875
+id:507837283 name:Splaiul Independenței| distance:81.80481 routeTime:7.0 speed(m/s):11.686401 density:0.011163875
+id:20172642739 name:Strada Plopilor| distance:168.21222 routeTime:14.0 speed(m/s):12.015159 density:0.011163875
+id:2028501947 name:Strada Șesului| distance:207.45648 routeTime:92.0 speed(m/s):2.2549617 density:0.011163875
+id:33474408411 name:Strada Șesului| distance:57.403576 routeTime:7.0 speed(m/s):8.200511 density:0.011163875
+id:22034434215 name:Strada Șesului| distance:46.110184 routeTime:11.0 speed(m/s):4.191835 density:0.011163875
+Routing TIME 710.0
+
+Route: 
+id:2023882119 name:Strada Simion Mușat| distance:82.74552 routeTime:33.0 speed(m/s):2.50744 density:0.0032586695
+id:2023882413 name:Strada Simion Mușat| distance:178.0411 routeTime:52.0 speed(m/s):3.4238675 density:0.026069356
+id:33694380701 name:Strada Simion Mușat| distance:35.091377 routeTime:4.0 speed(m/s):8.772844 density:0.026069356
+id:7219016595 name:Strada Trotușului| distance:104.31026 routeTime:13.0 speed(m/s):8.023866 density:0.026069356
+id:10704327563 name:Strada Trotușului| distance:258.08087 routeTime:35.0 speed(m/s):7.3737392 density:0.026069356
+id:17788701885 name:Strada Dâmboviței| distance:12.796975 routeTime:2.0 speed(m/s):6.3984876 density:0.026069356
+id:17788701787 name:Strada Ialomiței| distance:27.92835 routeTime:4.0 speed(m/s):6.9820876 density:0.026069356
+id:1579292817 name:Strada Ialomiței| distance:67.80562 routeTime:71.0 speed(m/s):0.9550087 density:0.026069356
+id:29741299431 name:Strada Ialomiței| distance:46.80223 routeTime:4.0 speed(m/s):11.700558 density:0.026069356
+id:2021432617 name:Strada Ialomiței| distance:108.57238 routeTime:15.0 speed(m/s):7.2381587 density:0.026069356
+id:2377624667 name:Strada Aurel Vlaicu| distance:8.333941 routeTime:1.0 speed(m/s):8.333941 density:0.026069356
+id:2860924697 name:Strada Ioan Alexandru| distance:164.51929 routeTime:87.0 speed(m/s):1.8910263 density:0.026069356
+id:1554171383 name:Strada Progresului| distance:149.26735 routeTime:18.0 speed(m/s):8.29263 density:0.026069356
+id:1554167893 name:Strada Venus| distance:245.33429 routeTime:61.0 speed(m/s):4.0218735 density:0.026069356
+id:23357001263 name:Strada Venus| distance:21.17472 routeTime:3.0 speed(m/s):7.0582404 density:0.026069356
+id:28097682621 name:Strada Bistriței| distance:511.75287 routeTime:65.0 speed(m/s):7.8731213 density:0.026069356
+id:11515977109 name:Strada Bistriței| distance:41.169434 routeTime:5.0 speed(m/s):8.233887 density:0.026069356
+id:11513615119 name:Strada Bistriței| distance:84.38974 routeTime:10.0 speed(m/s):8.438974 density:0.026069356
+Routing TIME 483.0
+

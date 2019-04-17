@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="libs4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/junidecode-0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/simple-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/tuprolog.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/gson-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/QtAndroid-bundled.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/jts-core-1.14.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/gnu-trove-osmand.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/icu4j-49_1_patched.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/bsh-core-2.0b4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/QtAndroidAccessibility-bundled.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/android-support-multidex.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAnd/libs/bzip2-20090327.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

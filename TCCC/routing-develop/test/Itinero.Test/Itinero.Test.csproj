@@ -1,0 +1,86 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="test-data\networks\network1.geojson" />
+    <None Remove="test-data\networks\network10-meta.geojson" />
+    <None Remove="test-data\networks\network10.osm" />
+    <None Remove="test-data\networks\network11-meta.geojson" />
+    <None Remove="test-data\networks\network11.osm" />
+    <None Remove="test-data\networks\network12.geojson" />
+    <None Remove="test-data\networks\network13.geojson" />
+    <None Remove="test-data\networks\network14.geojson" />
+    <None Remove="test-data\networks\network15.geojson" />
+    <None Remove="test-data\networks\network16.geojson" />
+    <None Remove="test-data\networks\network17.geojson" />
+    <None Remove="test-data\networks\network18.geojson" />
+    <None Remove="test-data\networks\network2.geojson" />
+    <None Remove="test-data\networks\network3.geojson" />
+    <None Remove="test-data\networks\network4.geojson" />
+    <None Remove="test-data\networks\network5.geojson" />
+    <None Remove="test-data\networks\network6.geojson" />
+    <None Remove="test-data\networks\network7.geojson" />
+    <None Remove="test-data\networks\network8.geojson" />
+    <None Remove="test-data\networks\network9.geojson" />
+    <None Remove="test-data\profiles\osm\car.lua" />
+    <None Remove="test-data\profiles\shape\car.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="test-data\networks\network1.geojson" />
+    <EmbeddedResource Include="test-data\networks\network10-meta.geojson" />
+    <EmbeddedResource Include="test-data\networks\network10.osm" />
+    <EmbeddedResource Include="test-data\networks\network11-meta.geojson" />
+    <EmbeddedResource Include="test-data\networks\network11.osm" />
+    <EmbeddedResource Include="test-data\networks\network12.geojson" />
+    <EmbeddedResource Include="test-data\networks\network13.geojson" />
+    <EmbeddedResource Include="test-data\networks\network14.geojson" />
+    <EmbeddedResource Include="test-data\networks\network15.geojson" />
+    <EmbeddedResource Include="test-data\networks\network16.geojson" />
+    <EmbeddedResource Include="test-data\networks\network17.geojson" />
+    <EmbeddedResource Include="test-data\networks\network18.geojson" />
+    <EmbeddedResource Include="test-data\networks\network2.geojson" />
+    <EmbeddedResource Include="test-data\networks\network3.geojson" />
+    <EmbeddedResource Include="test-data\networks\network4.geojson" />
+    <EmbeddedResource Include="test-data\networks\network5.geojson" />
+    <EmbeddedResource Include="test-data\networks\network6.geojson" />
+    <EmbeddedResource Include="test-data\networks\network7.geojson" />
+    <EmbeddedResource Include="test-data\networks\network8.geojson" />
+    <EmbeddedResource Include="test-data\networks\network9.geojson" />
+    <EmbeddedResource Include="test-data\points\polyArea.hull.geojson" />
+    <EmbeddedResource Include="test-data\points\polyArea1.hull.geojson" />
+    <EmbeddedResource Include="test-data\points\polyArea2.hull.geojson" />
+    <EmbeddedResource Include="test-data\profiles\osm\car.lua" />
+    <EmbeddedResource Include="test-data\profiles\shape\car.lua" />
+    <EmbeddedResource Include="test-data\routerdbs\*.routerdb" />
+    <None Remove="test-data\points\points1.geojson" />
+    <EmbeddedResource Include="test-data\points\points1.geojson" />
+    <None Remove="test-data\points\points1.hull.geojson" />
+    <EmbeddedResource Include="test-data\points\points1.hull.geojson" />
+    <None Remove="test-data\points\points2.geojson.json" />
+    <None Remove="test-data\points\points2.geojson" />
+    <EmbeddedResource Include="test-data\points\points2.geojson" />
+    <EmbeddedResource Include="test-data\points\points2.hull.geojson" />
+    <None Remove="test-data\networks\network19.geojson" />
+    <EmbeddedResource Include="test-data\networks\network19.geojson" />
+    <None Remove="test-data\networks\network20.geojson" />
+    <None Remove="test-data\routes\route2.json" />
+    <EmbeddedResource Include="test-data\routes\route2.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="dotnet-test-nunit" Version="3.4.0-beta-3" />
+    <PackageReference Include="nunit" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="NetTopologySuite" Version="1.15.0-pre027" />
+    <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="1.15.0-pre027" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Itinero.Geo" Version="1.4.0-pre18" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0-beta.1.build3958" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Itinero.IO.Osm\Itinero.IO.Osm.csproj" />
+    <ProjectReference Include="..\..\src\Itinero\Itinero.csproj" />
+  </ItemGroup>
+</Project>

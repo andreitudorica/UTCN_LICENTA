@@ -1,0 +1,2 @@
+*.osm.pbf filter=lfs diff=lfs merge=lfs -text
+*.obf filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="libs2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAndCore-sample/libs/gnu-trove-osmand.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAndCore-sample/libs/simple-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAndCore-sample/libs/icu4j-49_1_patched.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Osmand/OsmAndCore-sample/libs/junidecode-0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
