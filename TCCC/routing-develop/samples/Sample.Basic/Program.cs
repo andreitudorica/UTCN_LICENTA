@@ -52,24 +52,30 @@ namespace Sample.Basic
             {
                 routerDb.LoadOsmData(stream, Vehicle.Car);
             }
+            var v =routerDb.Network ;
+            char command = 'c';
+            int i = 0;
+            while (command != 'q')
+            {
+                // get the profile from the routerdb.
+                // this is best-practice in Itinero, to prevent mis-matches.
+                var car = routerDb.GetSupportedProfile("car");
 
-            // get the profile from the routerdb.
-            // this is best-practice in Itinero, to prevent mis-matches.
-            var car = routerDb.GetSupportedProfile("car");
+                // add a contraction hierarchy.
+                routerDb.AddContracted(car);
 
-            // add a contraction hierarchy.
-            routerDb.AddContracted(car);
-            
-            // create router.
-            var router = new Router(routerDb);
+                // create router.
+                var router = new Router(routerDb);
 
-            // calculate route.
-            var home = new Coordinate(46.768293f, 23.629875f);
-            var carina = new Coordinate(46.752623f, 23.577261f);
-            var route = router.Calculate(car,home ,carina );
-            var routeGeoJson = route.ToGeoJson();
-            File.WriteAllText("route1.geojson", routeGeoJson);
-            
+                // calculate route.
+                var home = new Coordinate(46.768293f, 23.629875f);
+                var carina = new Coordinate(46.752623f, 23.577261f);
+                var route = router.Calculate(car, home, carina);
+                var routeGeoJson = route.ToGeoJson();
+                File.WriteAllText("route"+i+".geojson", routeGeoJson);
+                i++;
+                command = Console.ReadKey().KeyChar;
+            }
             // calculate a sequence.
             // this should be the result: http://geojson.io/#id=gist:xivk/760552b0abbcb37a3026273b165f63b8&map=16/49.5881/6.1115
            /* var locations = new []
