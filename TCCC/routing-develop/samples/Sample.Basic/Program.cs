@@ -71,7 +71,19 @@ namespace Sample.Basic
                 var home = new Coordinate(46.768293f, 23.629875f);
                 var carina = new Coordinate(46.752623f, 23.577261f);
                 var route = router.Calculate(car, home, carina);
+               
                 var routeGeoJson = route.ToGeoJson();
+                for (uint j = 0; j < routerDb.Network.GeometricGraph.Graph.VertexCount; j++)
+                {
+                    uint fromIndex = routerDb.Network.GeometricGraph.GetEdge(j).From;
+                    Coordinate fromCoord = routerDb.Network.GeometricGraph.GetVertex(fromIndex);
+                    uint toIndex = routerDb.Network.GeometricGraph.GetEdge(j).To;
+                    Coordinate toCoord = routerDb.Network.GeometricGraph.GetVertex(toIndex);
+                    if (fromCoord.Latitude == route.Shape[55].Latitude && fromCoord.Longitude == route.Shape[55].Longitude
+                        && toCoord.Latitude == route.Shape[56].Latitude && toCoord.Longitude == route.Shape[56].Longitude)//nu gasesc pereche :(
+                        Console.WriteLine("AI DE PULA MEA CE TARE!!!");
+                }
+
                 File.WriteAllText("route"+i+".geojson", routeGeoJson);
                 i++;
                 command = Console.ReadKey().KeyChar;
