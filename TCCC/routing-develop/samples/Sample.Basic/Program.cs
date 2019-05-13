@@ -87,54 +87,59 @@ namespace Sample.Basic
                 File.WriteAllText("route"+i+".geojson", routeGeoJson);
                 i++;
                 command = Console.ReadKey().KeyChar;
+
+                var instructions = route.GenerateInstructions(routerDb);
+                int a;
+                a = 0;
             }
+
             // calculate a sequence.
             // this should be the result: http://geojson.io/#id=gist:xivk/760552b0abbcb37a3026273b165f63b8&map=16/49.5881/6.1115
-           /* var locations = new []
-            {
-                new Coordinate(49.58562050646863f, 6.1020684242248535f), 
-                new Coordinate(49.58645517402537f, 6.1063170433044430f), 
-                new Coordinate(49.58976588133606f, 6.1078405380249020f),
-                new Coordinate(49.59126814499573f, 6.1184406280517570f),
-                new Coordinate(49.58816619787410f, 6.1208438873291010f)
-            };
-            route = router.Calculate(car, locations);
-            routeGeoJson = route.ToGeoJson();
-            File.WriteAllText("sequence1-undirected.geojson", routeGeoJson);
-            
-            // calculate a directed sequence with a turn penalty of 120 secs.
-            // this should be the result: http://geojson.io/#id=gist:xivk/49f5d843c16adb68c740f8fc0b4d8583&map=16/49.5881/6.1115
-            route = router.Calculate(car, locations, turnPenalty: 120, preferredDirections: null); 
-            routeGeoJson = route.ToGeoJson();
-            File.WriteAllText("sequence2-turn-penalty-120.geojson", routeGeoJson);
-            
-            // calculate a directed sequence without turn penalty but with a departure angle.
-            // this should be the result: http://geojson.io/#id=gist:xivk/c93be9a18072a78ea931dbc5a772f34f&map=16/49.5881/6.1111
-            var angles = new float?[]
-            {
-                -90, // leave west.
-                null, // don't-care
-                null, // don't-care
-                null, // don't-care
-                null // don't-care
-            };
-            route = router.Calculate(car, locations, preferredDirections: angles);
-            routeGeoJson = route.ToGeoJson();
-            File.WriteAllText("sequence3-preferred-directions.geojson", routeGeoJson);
-            
-            // calculate a direction with a turn penalty of 120 secs and more preferred departure/arrival angles.
-            // this should be the result: http://geojson.io/#id=gist:xivk/660effe2cff422e183aed8efe1fc72c9&map=16/49.5881/6.1112
-            angles = new float?[]
-            {
-                -90, // leave west.
-                -90, // pass in western direction.
-                null, // don't-care
-                null, // don't-care
-                -45 // arrive in north-west direction.
-            };
-            route = router.Calculate(car, locations, turnPenalty: 120, preferredDirections: angles);
-            routeGeoJson = route.ToGeoJson();
-            File.WriteAllText("sequence4-turn-penalty-120-preferred-directions.geojson", routeGeoJson);*/
+            /* var locations = new []
+             {
+                 new Coordinate(49.58562050646863f, 6.1020684242248535f), 
+                 new Coordinate(49.58645517402537f, 6.1063170433044430f), 
+                 new Coordinate(49.58976588133606f, 6.1078405380249020f),
+                 new Coordinate(49.59126814499573f, 6.1184406280517570f),
+                 new Coordinate(49.58816619787410f, 6.1208438873291010f)
+             };
+             route = router.Calculate(car, locations);
+             routeGeoJson = route.ToGeoJson();
+             File.WriteAllText("sequence1-undirected.geojson", routeGeoJson);
+
+             // calculate a directed sequence with a turn penalty of 120 secs.
+             // this should be the result: http://geojson.io/#id=gist:xivk/49f5d843c16adb68c740f8fc0b4d8583&map=16/49.5881/6.1115
+             route = router.Calculate(car, locations, turnPenalty: 120, preferredDirections: null); 
+             routeGeoJson = route.ToGeoJson();
+             File.WriteAllText("sequence2-turn-penalty-120.geojson", routeGeoJson);
+
+             // calculate a directed sequence without turn penalty but with a departure angle.
+             // this should be the result: http://geojson.io/#id=gist:xivk/c93be9a18072a78ea931dbc5a772f34f&map=16/49.5881/6.1111
+             var angles = new float?[]
+             {
+                 -90, // leave west.
+                 null, // don't-care
+                 null, // don't-care
+                 null, // don't-care
+                 null // don't-care
+             };
+             route = router.Calculate(car, locations, preferredDirections: angles);
+             routeGeoJson = route.ToGeoJson();
+             File.WriteAllText("sequence3-preferred-directions.geojson", routeGeoJson);
+
+             // calculate a direction with a turn penalty of 120 secs and more preferred departure/arrival angles.
+             // this should be the result: http://geojson.io/#id=gist:xivk/660effe2cff422e183aed8efe1fc72c9&map=16/49.5881/6.1112
+             angles = new float?[]
+             {
+                 -90, // leave west.
+                 -90, // pass in western direction.
+                 null, // don't-care
+                 null, // don't-care
+                 -45 // arrive in north-west direction.
+             };
+             route = router.Calculate(car, locations, turnPenalty: 120, preferredDirections: angles);
+             routeGeoJson = route.ToGeoJson();
+             File.WriteAllText("sequence4-turn-penalty-120-preferred-directions.geojson", routeGeoJson);*/
         }
     }
 }
