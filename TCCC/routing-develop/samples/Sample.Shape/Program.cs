@@ -64,6 +64,8 @@ namespace Sample.Shape
 
             // generate instructions based on lua profile.
             var instructions = route.GenerateInstructions(routerDb);
+            int a;
+            a = 0;
         }
     }
 }
