@@ -52,20 +52,22 @@ namespace Sample.Basic
             {
                 routerDb.LoadOsmData(stream, Vehicle.Car);
             }
-            var v =routerDb.Network ;
+            // get the profile from the routerdb.
+            // this is best-practice in Itinero, to prevent mis-matches.
+            var car = routerDb.GetSupportedProfile("car");
+
+            // add a contraction hierarchy.
+            routerDb.AddContracted(car);
+
+            // create router.
+            var router = new Router(routerDb);
+
+
+            var v =routerDb.Network;
             char command = 'c';
             int i = 0;
             while (command != 'q')
             {
-                // get the profile from the routerdb.
-                // this is best-practice in Itinero, to prevent mis-matches.
-                var car = routerDb.GetSupportedProfile("car");
-
-                // add a contraction hierarchy.
-                routerDb.AddContracted(car);
-
-                // create router.
-                var router = new Router(routerDb);
 
                 // calculate route.
                 var home = new Coordinate(46.768293f, 23.629875f);
