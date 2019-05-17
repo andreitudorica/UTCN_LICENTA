@@ -1,0 +1,8 @@
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\CoreApiClient\bin\Debug\netcoreapp2.0\CoreApiClient.deps.json
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\CoreApiClient\bin\Debug\netcoreapp2.0\CoreApiClient.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\CoreApiClient\obj\Debug\netcoreapp2.0\CoreApiClient.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\CoreApiClient\obj\Debug\netcoreapp2.0\CoreApiClient.AssemblyInfoInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\CoreApiClient\obj\Debug\netcoreapp2.0\CoreApiClient.AssemblyInfo.cs
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\CoreApiClient\bin\Debug\netcoreapp2.0\CoreApiClient.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\CoreApiClient\obj\Debug\netcoreapp2.0\CoreApiClient.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\CoreApiClient\obj\Debug\netcoreapp2.0\CoreApiClient.pdb

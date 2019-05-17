@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Itinero;
 using Itinero.IO.Osm;
 using Itinero.LocalGeo;
@@ -13,16 +16,44 @@ namespace LiveTrafficServer.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<string> Get()
         {
             var routerDb = new RouterDb();
-
-            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
+            var time =DateTime.Now;
+            string result = "";
+            /*using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
             {
                 routerDb.LoadOsmData(stream, Vehicle.Car);
+            }*/
+            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
+            {
+                routerDb = RouterDb.Deserialize(stream);
+            }
+            result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss")+" ";
+
+
+            //change distance of one edge
+
+
+
+            //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
+            using (var stream = System.IO.File.OpenWrite("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
+            {
+                routerDb.Serialize(stream);
             }
 
-            return new string[] { "value1", "value2" };
+            result += " writing RouterDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
+            string apiResponse;
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startX=46.768293&startY=23.629875&endX=46.752623&endY=23.577261"))
+                {
+                    apiResponse = await response.Content.ReadAsStringAsync();
+                }
+            }
+
+            result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
+            return result;
         }
 
         // GET api/values/5

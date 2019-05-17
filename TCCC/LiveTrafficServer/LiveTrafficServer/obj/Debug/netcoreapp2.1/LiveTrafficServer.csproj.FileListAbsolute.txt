@@ -2,10 +2,13 @@ D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\bin\Debug\netc
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\bin\Debug\netcoreapp2.1\LiveTrafficServer.runtimeconfig.json
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\bin\Debug\netcoreapp2.1\LiveTrafficServer.runtimeconfig.dev.json
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\bin\Debug\netcoreapp2.1\LiveTrafficServer.dll
-D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.csprojAssemblyReference.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\bin\Debug\netcoreapp2.1\LiveTrafficServer.pdb
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.csproj.CoreCompileInputs.cache
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.RazorAssemblyInfo.cache
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.RazorAssemblyInfo.cs
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.AssemblyInfoInputs.cache
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.AssemblyInfo.cs
 D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.RazorTargetAssemblyInfo.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\LiveTrafficServer\obj\Debug\netcoreapp2.1\LiveTrafficServer.csprojAssemblyReference.cache

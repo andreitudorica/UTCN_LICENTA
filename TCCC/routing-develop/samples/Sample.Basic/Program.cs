@@ -48,20 +48,15 @@ namespace Sample.Basic
             // load some routing data and create a router.
             var routerDb = new RouterDb();
             
-            using (var stream = File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
+            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
             {
-                routerDb.LoadOsmData(stream, Vehicle.Car);
+                routerDb = RouterDb.Deserialize(stream);
             }
-            // get the profile from the routerdb.
-            // this is best-practice in Itinero, to prevent mis-matches.
-            var car = routerDb.GetSupportedProfile("car");
-
-            // add a contraction hierarchy.
-            routerDb.AddContracted(car);
 
             // create router.
             var router = new Router(routerDb);
 
+            var currentProfile = routerDb.GetSupportedProfile("car");
 
             var v =routerDb.Network;
             char command = 'c';
@@ -72,7 +67,7 @@ namespace Sample.Basic
                 // calculate route.
                 var home = new Coordinate(46.768293f, 23.629875f);
                 var carina = new Coordinate(46.752623f, 23.577261f);
-                var route = router.Calculate(car, home, carina);
+                var route = router.Calculate(currentProfile, home, carina);
                
                 var routeGeoJson = route.ToGeoJson();
                 for (uint j = 0; j < routerDb.Network.GeometricGraph.Graph.VertexCount; j++)
