@@ -37,10 +37,13 @@ namespace TrafficSimulator
         private static void Main(string[] args)
         {
             //GenerateDefaultConfig();
-            //MainAsync().Wait();
             configuration = GetSimulationParameters();
             simulation = new Simulation(configuration);
-            simulation.FuckAround();
+            MainAsync().Wait();
+            //
+            //configuration = GetSimulationParameters();
+            //simulation = new Simulation(configuration);
+            //simulation.FuckAround();
         }
 
         static async Task MainAsync()
