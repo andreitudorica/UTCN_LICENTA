@@ -1,0 +1,12 @@
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\bin\Debug\netstandard2.0\Itinero.IO.Osm.deps.json
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\bin\Debug\netstandard2.0\Itinero.IO.Osm.dll
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\bin\Debug\netstandard2.0\Itinero.IO.Osm.pdb
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\bin\Debug\netstandard2.0\Itinero.dll
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\bin\Debug\netstandard2.0\Itinero.pdb
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard2.0\Itinero.IO.Osm.csprojAssemblyReference.cache
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard2.0\Itinero.IO.Osm.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard2.0\Itinero.IO.Osm.AssemblyInfoInputs.cache
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard2.0\Itinero.IO.Osm.AssemblyInfo.cs
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard2.0\Itinero.IO.Osm.csproj.CopyComplete
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard2.0\Itinero.IO.Osm.dll
+D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard2.0\Itinero.IO.Osm.pdb

@@ -56,7 +56,7 @@ namespace Itinero
         /// </summary>
         public RouterDb(float maxEdgeDistance = Constants.DefaultMaxEdgeDistance)
         {
-            _network = new RoutingNetwork(new Graphs.Geometric.GeometricGraph(1), maxEdgeDistance);
+            _network = new RoutingNetwork(new Graphs.Geometric.GeometricGraph(1), maxEdgeDistance);//modified
             _edgeProfiles = new AttributesIndex(AttributesIndexMode.IncreaseOne
                 | AttributesIndexMode.ReverseAll);
             _meta = new AttributesIndex(AttributesIndexMode.ReverseStringIndexKeysOnly);

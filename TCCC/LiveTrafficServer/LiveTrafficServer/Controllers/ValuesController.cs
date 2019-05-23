@@ -34,7 +34,7 @@ namespace LiveTrafficServer.Controllers
 
             //change distance of one edge
 
-
+           
 
             //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
             using (var stream = System.IO.File.OpenWrite("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))

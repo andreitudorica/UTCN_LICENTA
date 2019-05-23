@@ -1,0 +1,4 @@
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Release\netstandard1.6\Itinero.IO.Osm.csprojAssemblyReference.cache
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Release\netstandard1.6\Itinero.IO.Osm.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Release\netstandard1.6\Itinero.IO.Osm.AssemblyInfoInputs.cache
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Release\netstandard1.6\Itinero.IO.Osm.AssemblyInfo.cs

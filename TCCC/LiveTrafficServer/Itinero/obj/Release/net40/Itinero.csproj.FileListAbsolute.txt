@@ -1,0 +1,4 @@
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.csprojAssemblyReference.cache
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.AssemblyInfoInputs.cache
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.AssemblyInfo.cs

@@ -47,48 +47,62 @@ namespace Sample.Basic
 
             // load some routing data and create a router.
             var routerDb = new RouterDb();
-            
-            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
+            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
+            {
+                routerDb.LoadOsmData(stream, Vehicle.Car);
+            }
+            /*using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
             {
                 routerDb = RouterDb.Deserialize(stream);
-            }
+            }*/
 
             // create router.
             var router = new Router(routerDb);
+            var e1 = routerDb.Network.GeometricGraph.Graph.GetEdge(1);
+            var d1 = routerDb.Network.GeometricGraph.Graph.GetEdge(1).Data;
+            Console.WriteLine(d1[0]);
+            var d2 = routerDb.Network.GeometricGraph.GetEdge(1).Data;
+            var d3 = routerDb.Network.GetEdge(1).Data;
+            routerDb.Network.GeometricGraph.Graph.UpdateEdgeData(1, new uint[2] { 12,13 });
+            d1 = routerDb.Network.GeometricGraph.Graph.GetEdge(1).Data;
+            d2 = routerDb.Network.GeometricGraph.GetEdge(1).Data;
+            Console.WriteLine(d1[0] + " " + d1[1]);
+            Console.WriteLine(d2[0]);
+            Console.WriteLine(d3.Distance);
 
             var currentProfile = routerDb.GetSupportedProfile("car");
 
-            var v =routerDb.Network;
-            char command = 'c';
-            int i = 0;
-            while (command != 'q')
-            {
+            //var v =routerDb.Network;
+            //char command = 'c';
+            //int i = 0;
+            //while (command != 'q')
+            //{
 
-                // calculate route.
-                var home = new Coordinate(46.768293f, 23.629875f);
-                var carina = new Coordinate(46.752623f, 23.577261f);
-                var route = router.Calculate(currentProfile, home, carina);
+            //    // calculate route.
+            //    var home = new Coordinate(46.768293f, 23.629875f);
+            //    var carina = new Coordinate(46.752623f, 23.577261f);
+            //    var route = router.Calculate(currentProfile, home, carina);
                
-                var routeGeoJson = route.ToGeoJson();
-                for (uint j = 0; j < routerDb.Network.GeometricGraph.Graph.VertexCount; j++)
-                {
-                    uint fromIndex = routerDb.Network.GeometricGraph.GetEdge(j).From;
-                    Coordinate fromCoord = routerDb.Network.GeometricGraph.GetVertex(fromIndex);
-                    uint toIndex = routerDb.Network.GeometricGraph.GetEdge(j).To;
-                    Coordinate toCoord = routerDb.Network.GeometricGraph.GetVertex(toIndex);
-                    if (fromCoord.Latitude == route.Shape[55].Latitude && fromCoord.Longitude == route.Shape[55].Longitude
-                        && toCoord.Latitude == route.Shape[56].Latitude && toCoord.Longitude == route.Shape[56].Longitude)//nu gasesc pereche :(
-                        Console.WriteLine("AI DE PULA MEA CE TARE!!!");
-                }
+            //    var routeGeoJson = route.ToGeoJson();
+            //    for (uint j = 0; j < routerDb.Network.GeometricGraph.Graph.VertexCount; j++)
+            //    {
+            //        uint fromIndex = routerDb.Network.GeometricGraph.GetEdge(j).From;
+            //        Coordinate fromCoord = routerDb.Network.GeometricGraph.GetVertex(fromIndex);
+            //        uint toIndex = routerDb.Network.GeometricGraph.GetEdge(j).To;
+            //        Coordinate toCoord = routerDb.Network.GeometricGraph.GetVertex(toIndex);
+            //        if (fromCoord.Latitude == route.Shape[55].Latitude && fromCoord.Longitude == route.Shape[55].Longitude
+            //            && toCoord.Latitude == route.Shape[56].Latitude && toCoord.Longitude == route.Shape[56].Longitude)//nu gasesc pereche :(
+            //            Console.WriteLine("AI DE PULA MEA CE TARE!!!");
+            //    }
 
-                File.WriteAllText("route"+i+".geojson", routeGeoJson);
-                i++;
-                command = Console.ReadKey().KeyChar;
+            //    File.WriteAllText("route"+i+".geojson", routeGeoJson);
+            //    i++;
+            //    command = Console.ReadKey().KeyChar;
 
-                var instructions = route.GenerateInstructions(routerDb);
-                int a;
-                a = 0;
-            }
+            //    var instructions = route.GenerateInstructions(routerDb);
+            //    int a;
+            //    a = 0;
+        //    }
 
             // calculate a sequence.
             // this should be the result: http://geojson.io/#id=gist:xivk/760552b0abbcb37a3026273b165f63b8&map=16/49.5881/6.1115
