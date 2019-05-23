@@ -98,16 +98,16 @@ namespace TrafficSimulator
 
         public async Task<string> RunOneRouteMultipleTimes()
         {
-            var startPos = new Coordinate(46.768293f, 23.629875f);
+            var startPos = new Coordinate(46.768293f, 23.629875f);//hardcoded start and finish locations
             var endPos = new Coordinate(46.752623f, 23.577261f);
 
             try
             {
-                for (int i = 0; i < configuration.NumberOfCars; i++)
+                for (int i = 0; i < configuration.NumberOfCars; i++)//generate the cars
                 {
                     TrafficParticipant tp = new TrafficParticipant(i,(new TimeSpan(0,0,+configuration.RequestDelay.Seconds*i)),startPos,endPos,configuration);
                     trafficParticipants.Add(tp);
-                    Thread thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));
+                    Thread thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));//run each car on an independent thread
                     thrd.Start();
                 }
                 return "done";

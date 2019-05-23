@@ -1,0 +1,8 @@
+Deserialize and follow routes in Simulator 
+Complete the update endpoint in the LiveTrafficServer
+Write everything down
+Decide on the factor function in the LiveTrafficServer
+Discuss with Ben (Tuesday) and complete the Lua code for weight interpretation in RouteComputingServer
+Write everything down
+
+

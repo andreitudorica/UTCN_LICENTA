@@ -1,5 +1,6 @@
 ﻿using Itinero;
 using Itinero.LocalGeo;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace TrafficSimulator
             startPos = start;
             endPos = end;
             configuration = config;
-            Console.WriteLine(DateTime.Now.ToString()+": TrafficParticipant" + ID + " was created and will request a route in "+delay.ToString());
+            Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " was created and will request a route in " + delay.ToString());
         }
 
         public async void RunTrafficParticipant()
@@ -41,12 +42,32 @@ namespace TrafficSimulator
                 endPos.Latitude + "&endY=" +
                 endPos.Longitude;
             HttpClient httpClient = new HttpClient();
-            Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " is requesting a route: " + requestURI);
-            using (var response = await  httpClient.GetAsync(requestURI))
+            bool receivedRoute = false;
+            while (!receivedRoute)//make sure the participant receives a route (this won't fail as the coordinates chosen are known to have a route between them)
             {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " received the following answer:" + apiResponse);
+                using (var response = await httpClient.GetAsync(requestURI))
+                {
+                    Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " is requesting a route: " + requestURI);
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    try
+                    {
+                        route = new Route();
+                        //find a way to deserialize into Route object
+                        //route = Newtonsoft.Json.JsonConvert.DeserializeObject<Route>(apiResponse); 
+                        Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " received a route:" + apiResponse);
+                        receivedRoute = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " received the following answer:" + e.ToString());
+                    }
+                }
             }
+            //interpret the received route
+            //foreach(var e in route.Branches)
+            //{
+            //    int a=1;
+            //}
         }
     }
 }

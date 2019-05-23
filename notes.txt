@@ -3,3 +3,11 @@ By default each edge holds 1 data item.
 To update that data item use the Edge in the Geometric Graph of the RouterDB routerDb.Network.GeometricGraph.Graph.UpdateEdgeData(1, new uint[2] { 12,13 });
 The data persists between all kinds of Edges for a certain edge.
 
+For live routing there are 2 options:
+- compute occupancy of the graph at a certain momment when computing the full route
+- try computing next decision live for each participant (miht be heavier but should work better)
+Discuss (and study) the effect of both approaches
+
+Edge based/ Vertex based map
+	https://github.com/pgRouting/pgrouting/wiki/Edge-based-Graph-Analysis
+

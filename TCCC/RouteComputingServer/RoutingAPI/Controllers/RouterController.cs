@@ -33,15 +33,15 @@ namespace RoutingAPI.Controllers
         {
             routerDb = new RouterDb();
 
-            /*using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
+            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
             {
                 routerDb = RouterDb.Deserialize(stream);
-            }*/
+            }
 
-            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
+           /* using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
             {
                 routerDb.LoadOsmData(stream, Vehicle.Car);
-            }
+            }*/
 
             // get the profile from the routerdb.
             // this is best-practice in Itinero, to prevent mis-matches.
@@ -55,6 +55,7 @@ namespace RoutingAPI.Controllers
             var carina = new Coordinate(46.752623f, 23.577261f);
             var route = router.Calculate(currentProfile, new Coordinate(startX,startY), new Coordinate(endX, endY));
             //var route = router.Calculate(currentProfile, home, carina);
+            //var routeGeoJson = Newtonsoft.Json.JsonConvert.SerializeObject(route);
             var routeGeoJson = route.ToGeoJson();
             var instructions = route.GenerateInstructions(routerDb);
             return routeGeoJson;

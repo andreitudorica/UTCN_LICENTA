@@ -56,18 +56,15 @@ namespace LiveTrafficServer.Controllers
         }
 
         // GET api/values
-        [HttpGet]
-        public string Get()
+        [HttpGet("UpdateLocation")]
+        public string Get(int edgeId)
         {
-            return "waiting for commands";
+            return "updated";
         }
 
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public string Get()
         {
-            return "value";
+            return "Server is Running. Waiting for commands.";
         }
 
         // POST api/values
