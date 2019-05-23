@@ -6,3 +6,4 @@ D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard1
 D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard1.3\Itinero.AssemblyInfo.cs
 D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard1.3\Itinero.dll
 D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard1.3\Itinero.pdb
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard1.3\Itinero.csprojAssemblyReference.cache

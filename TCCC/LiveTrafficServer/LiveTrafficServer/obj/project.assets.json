@@ -2638,6 +2638,44 @@
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "OsmSharp/6.1.0": {
+        "type": "package",
+        "dependencies": {
+          "protobuf-net": "2.3.7"
+        },
+        "compile": {
+          "lib/netstandard2.0/OsmSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/OsmSharp.dll": {}
+        }
+      },
+      "protobuf-net/2.3.7": {
+        "type": "package",
+        "dependencies": {
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.Emit.ILGeneration": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Xml.XmlSerializer": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/protobuf-net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/protobuf-net.dll": {}
+        }
+      },
+      "Reminiscence/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Reminiscence.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Reminiscence.dll": {}
+        }
+      },
       "Remotion.Linq/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -3537,7 +3575,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/_._": {}
+          "ref/netstandard1.0/System.Reflection.Emit.Lightweight.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.Lightweight.dll": {}
@@ -4288,7 +4326,7 @@
           "System.Xml.XmlDocument": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
@@ -4332,6 +4370,33 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
+        }
+      },
+      "Itinero/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Reminiscence": "1.2.0"
+        },
+        "compile": {
+          "bin/placeholder/Itinero.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Itinero.dll": {}
+        }
+      },
+      "Itinero.IO.Osm/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Itinero": "1.0.0",
+          "OsmSharp": "6.1.0"
+        },
+        "compile": {
+          "bin/placeholder/Itinero.IO.Osm.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Itinero.IO.Osm.dll": {}
         }
       }
     }
@@ -7112,6 +7177,59 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "OsmSharp/6.1.0": {
+      "sha512": "pkS0PcTHaRMmXVg8vGfFaKTEbnHTI8gSqhXbxor4THJk5l2aemIp5xVa9kVNVPChNG2doTcv6Ieu8q4sP4nmzg==",
+      "type": "package",
+      "path": "osmsharp/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/OsmSharp.dll",
+        "lib/netstandard1.3/OsmSharp.dll",
+        "lib/netstandard2.0/OsmSharp.dll",
+        "osmsharp.6.1.0.nupkg.sha512",
+        "osmsharp.nuspec"
+      ]
+    },
+    "protobuf-net/2.3.7": {
+      "sha512": "JG5ZUd42w4osBaDrFpJoEOelyRsuxV+EzY4c8J5o/Qhm+lqhm2iYWUl/T3zf7vhONBD968K190d7co1I2lucOQ==",
+      "type": "package",
+      "path": "protobuf-net/2.3.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/protobuf-net.dll",
+        "lib/net20/protobuf-net.xml",
+        "lib/net35/protobuf-net.dll",
+        "lib/net35/protobuf-net.xml",
+        "lib/net40/protobuf-net.dll",
+        "lib/net40/protobuf-net.xml",
+        "lib/netstandard1.0/protobuf-net.dll",
+        "lib/netstandard1.0/protobuf-net.xml",
+        "lib/netstandard1.3/protobuf-net.dll",
+        "lib/netstandard1.3/protobuf-net.xml",
+        "lib/netstandard2.0/protobuf-net.dll",
+        "lib/netstandard2.0/protobuf-net.xml",
+        "protobuf-net.2.3.7.nupkg.sha512",
+        "protobuf-net.nuspec"
+      ]
+    },
+    "Reminiscence/1.2.0": {
+      "sha512": "MnI0xq2G1zuBlXEMGK3aGsOxyRjmNBGiAJvsA7OJ1unPg58JGGhQXA+MctI8dpPL/8wYG91z3Cd/rhQ2j4GAyg==",
+      "type": "package",
+      "path": "reminiscence/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/Reminiscence.dll",
+        "lib/net45/Reminiscence.dll",
+        "lib/netstandard1.3/Reminiscence.dll",
+        "lib/netstandard2.0/Reminiscence.dll",
+        "lib/portable-net403+sl50+win+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10/Reminiscence.dll",
+        "reminiscence.1.2.0.nupkg.sha512",
+        "reminiscence.nuspec"
       ]
     },
     "Remotion.Linq/2.2.0": {
@@ -11823,10 +11941,22 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "Itinero/1.0.0": {
+      "type": "project",
+      "path": "../Itinero/Itinero.csproj",
+      "msbuildProject": "../Itinero/Itinero.csproj"
+    },
+    "Itinero.IO.Osm/1.0.0": {
+      "type": "project",
+      "path": "../Itinero.IO.Osm/Itinero.IO.Osm.csproj",
+      "msbuildProject": "../Itinero.IO.Osm/Itinero.IO.Osm.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "Itinero >= 1.0.0",
+      "Itinero.IO.Osm >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
       "Microsoft.NETCore.App >= 2.1.0"
@@ -11861,7 +11991,14 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero.IO.Osm\\Itinero.IO.Osm.csproj": {
+              "projectPath": "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero.IO.Osm\\Itinero.IO.Osm.csproj"
+            },
+            "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj": {
+              "projectPath": "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

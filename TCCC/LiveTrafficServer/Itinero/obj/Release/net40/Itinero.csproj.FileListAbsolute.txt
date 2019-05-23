@@ -2,3 +2,9 @@ D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itiner
 D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.csproj.CoreCompileInputs.cache
 D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.AssemblyInfoInputs.cache
 D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.AssemblyInfo.cs
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\bin\Release\net40\Itinero.dll
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\bin\Release\net40\Itinero.pdb
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\bin\Release\net40\Reminiscence.dll
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.csproj.CopyComplete
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.dll
+D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\net40\Itinero.pdb

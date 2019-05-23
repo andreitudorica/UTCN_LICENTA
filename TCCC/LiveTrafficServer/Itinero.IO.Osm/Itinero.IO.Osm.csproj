@@ -43,4 +43,7 @@
     <Compile Include="..\..\SharedAssemblyVersion.cs" />
     <EmbeddedResource Include="Profiles\Defaults\*.lua" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Itinero\Itinero.csproj" />
+  </ItemGroup>
 </Project>

@@ -66,6 +66,28 @@
         "runtime": {
           "lib/net40/protobuf-net.dll": {}
         }
+      },
+      "Reminiscence/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Reminiscence.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Reminiscence.dll": {}
+        }
+      },
+      "Itinero/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5",
+        "dependencies": {
+          "Reminiscence": "1.2.0"
+        },
+        "compile": {
+          "bin/placeholder/Itinero.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Itinero.dll": {}
+        }
       }
     },
     ".NETStandard,Version=v1.6": {
@@ -176,6 +198,15 @@
         },
         "runtime": {
           "lib/netstandard1.3/protobuf-net.dll": {}
+        }
+      },
+      "Reminiscence/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.3/Reminiscence.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Reminiscence.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -1354,6 +1385,22 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Itinero/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.3",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Reminiscence": "1.2.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "compile": {
+          "bin/placeholder/Itinero.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Itinero.dll": {}
+        }
       }
     },
     ".NETStandard,Version=v2.0": {
@@ -1417,6 +1464,15 @@
         },
         "runtime": {
           "lib/netstandard2.0/protobuf-net.dll": {}
+        }
+      },
+      "Reminiscence/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Reminiscence.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Reminiscence.dll": {}
         }
       },
       "System.Collections/4.3.0": {
@@ -1826,6 +1882,19 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Itinero/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Reminiscence": "1.2.0"
+        },
+        "compile": {
+          "bin/placeholder/Itinero.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Itinero.dll": {}
         }
       }
     }
@@ -2254,6 +2323,22 @@
         "lib/netstandard2.0/protobuf-net.xml",
         "protobuf-net.2.3.7.nupkg.sha512",
         "protobuf-net.nuspec"
+      ]
+    },
+    "Reminiscence/1.2.0": {
+      "sha512": "MnI0xq2G1zuBlXEMGK3aGsOxyRjmNBGiAJvsA7OJ1unPg58JGGhQXA+MctI8dpPL/8wYG91z3Cd/rhQ2j4GAyg==",
+      "type": "package",
+      "path": "reminiscence/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/Reminiscence.dll",
+        "lib/net45/Reminiscence.dll",
+        "lib/netstandard1.3/Reminiscence.dll",
+        "lib/netstandard2.0/Reminiscence.dll",
+        "lib/portable-net403+sl50+win+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10/Reminiscence.dll",
+        "reminiscence.1.2.0.nupkg.sha512",
+        "reminiscence.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -5554,19 +5639,27 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "Itinero/1.0.0": {
+      "type": "project",
+      "path": "../Itinero/Itinero.csproj",
+      "msbuildProject": "../Itinero/Itinero.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.5": [
+      "Itinero >= 1.0.0",
       "Microsoft.Net.Http >= 2.2.29",
       "OsmSharp >= 6.1.0"
     ],
     ".NETStandard,Version=v1.6": [
+      "Itinero >= 1.0.0",
       "NETStandard.Library >= 1.6.1",
       "OsmSharp >= 6.1.0",
       "System.Xml.XmlSerializer >= 4.3.0"
     ],
     ".NETStandard,Version=v2.0": [
+      "Itinero >= 1.0.0",
       "NETStandard.Library >= 2.0.3",
       "OsmSharp >= 6.1.0"
     ]
@@ -5603,13 +5696,25 @@
       },
       "frameworks": {
         "net45": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj": {
+              "projectPath": "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj"
+            }
+          }
         },
         "netstandard1.6": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj": {
+              "projectPath": "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj"
+            }
+          }
         },
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj": {
+              "projectPath": "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

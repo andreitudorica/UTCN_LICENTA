@@ -63,10 +63,10 @@ namespace Sample.Basic
             Console.WriteLine(d1[0]);
             var d2 = routerDb.Network.GeometricGraph.GetEdge(1).Data;
             var d3 = routerDb.Network.GetEdge(1).Data;
-            routerDb.Network.GeometricGraph.Graph.UpdateEdgeData(1, new uint[2] { 12,13 });
+            //routerDb.Network.GeometricGraph.Graph.UpdateEdgeData(1, new uint[2] { 12,13 });
             d1 = routerDb.Network.GeometricGraph.Graph.GetEdge(1).Data;
             d2 = routerDb.Network.GeometricGraph.GetEdge(1).Data;
-            Console.WriteLine(d1[0] + " " + d1[1]);
+            //Console.WriteLine(d1[0] + " " + d1[1]);
             Console.WriteLine(d2[0]);
             Console.WriteLine(d3.Distance);
 
