@@ -1049,16 +1049,17 @@
   },
   "libraries": {
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "a/iSwnRZb+LHFk49hQOyThh/ZNC3vsbZsF65XwQIb863qF6msmhdQtxGXFL28Ob2NsCz/drEj28BJd/YPpLRBg==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
         ".nupkg.metadata",
-        "Microsoft.NETCore.Platforms.1.1.0.nupkg.sha512",
-        "Microsoft.NETCore.Platforms.nuspec",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
+        "microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+        "microsoft.netcore.platforms.nuspec",
         "runtime.json"
       ]
     },
@@ -1254,11 +1255,10 @@
       ]
     },
     "Reminiscence/1.2.0": {
-      "sha512": "MnI0xq2G1zuBlXEMGK3aGsOxyRjmNBGiAJvsA7OJ1unPg58JGGhQXA+MctI8dpPL/8wYG91z3Cd/rhQ2j4GAyg==",
+      "sha512": "gED5t0TRkIw2iXigAy1eCOg6OXqee7WUjqdLhwPiv89Yfn9NxH4Z4cc9KYCut9mW2m1Iw8CviON12Ch5Jmh6SA==",
       "type": "package",
       "path": "reminiscence/1.2.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net40/Reminiscence.dll",
         "lib/net45/Reminiscence.dll",
@@ -2431,13 +2431,12 @@
       ]
     },
     "System.Net.Http/4.3.0": {
-      "sha512": "sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
+      "sha512": "6BBc6BUa7pWFL7KUI/c8wb18IobTZHTtcQKksxJI5F9DRDShdtOvBEJzg5jJbFdTll7gRE+5yXUlq72ciLE+QQ==",
       "type": "package",
       "path": "system.net.http/4.3.0",
       "files": [
         ".nupkg.metadata",
-        "System.Net.Http.4.3.0.nupkg.sha512",
-        "System.Net.Http.nuspec",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/Xamarinmac20/_._",
@@ -2508,7 +2507,9 @@
         "runtimes/unix/lib/netstandard1.6/System.Net.Http.dll",
         "runtimes/win/lib/net46/System.Net.Http.dll",
         "runtimes/win/lib/netcore50/System.Net.Http.dll",
-        "runtimes/win/lib/netstandard1.3/System.Net.Http.dll"
+        "runtimes/win/lib/netstandard1.3/System.Net.Http.dll",
+        "system.net.http.4.3.0.nupkg.sha512",
+        "system.net.http.nuspec"
       ]
     },
     "System.Net.Primitives/4.3.0": {
@@ -3490,13 +3491,11 @@
       ]
     },
     "System.Security.Cryptography.Encoding/4.3.0": {
-      "sha512": "1DEWjZZly9ae9C79vFwqaO5kaOlI5q+3/55ohmq/7dpDyDfc8lYe7YVxJUZ5MF/NtbkRjwFRo14yM4OEo9EmDw==",
+      "sha512": "XCat0j5jVC83UG9fofcuiYDwN0PVKc2OWD0QVLjYpXn7dz+gNaANkHPbhNtr5PR8rDQNHrxtI912Hb29YAB14A==",
       "type": "package",
       "path": "system.security.cryptography.encoding/4.3.0",
       "files": [
-        ".nupkg.metadata",
-        "System.Security.Cryptography.Encoding.4.3.0.nupkg.sha512",
-        "System.Security.Cryptography.Encoding.nuspec",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -3526,17 +3525,17 @@
         "ref/xamarinwatchos10/_._",
         "runtimes/unix/lib/netstandard1.3/System.Security.Cryptography.Encoding.dll",
         "runtimes/win/lib/net46/System.Security.Cryptography.Encoding.dll",
-        "runtimes/win/lib/netstandard1.3/System.Security.Cryptography.Encoding.dll"
+        "runtimes/win/lib/netstandard1.3/System.Security.Cryptography.Encoding.dll",
+        "system.security.cryptography.encoding.4.3.0.nupkg.sha512",
+        "system.security.cryptography.encoding.nuspec"
       ]
     },
     "System.Security.Cryptography.Primitives/4.3.0": {
-      "sha512": "7bDIyVFNL/xKeFHjhobUAQqSpJq9YTOpbEs6mR233Et01STBMXNAc/V+BM6dwYGc95gVh/Zf+iVXWzj3mE8DWg==",
+      "sha512": "WtgnP5mOu5zKL3vQMUPT9tV7XVYGV7Jtb0540DgBD7MMN5ojonwIcw8VybZvS6VloGmE7CRt/Hms8adBsN1DRw==",
       "type": "package",
       "path": "system.security.cryptography.primitives/4.3.0",
       "files": [
-        ".nupkg.metadata",
-        "System.Security.Cryptography.Primitives.4.3.0.nupkg.sha512",
-        "System.Security.Cryptography.Primitives.nuspec",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -3554,7 +3553,9 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._"
+        "ref/xamarinwatchos10/_._",
+        "system.security.cryptography.primitives.4.3.0.nupkg.sha512",
+        "system.security.cryptography.primitives.nuspec"
       ]
     },
     "System.Security.Cryptography.X509Certificates/4.3.0": {
@@ -4304,24 +4305,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andrei\\.nuget\\packages\\": {},
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj",
+      "projectUniqueName": "D:\\Andrei\\Scoala\\LICENTA\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj",
       "projectName": "Itinero",
-      "projectPath": "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj",
-      "packagesPath": "C:\\Users\\Andrei\\.nuget\\packages\\",
-      "outputPath": "D:\\Andrei\\Scoala\\Licenta\\TCCC\\LiveTrafficServer\\Itinero\\obj\\",
+      "projectPath": "D:\\Andrei\\Scoala\\LICENTA\\TCCC\\LiveTrafficServer\\Itinero\\Itinero.csproj",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+      "outputPath": "D:\\Andrei\\Scoala\\LICENTA\\TCCC\\LiveTrafficServer\\Itinero\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Andrei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

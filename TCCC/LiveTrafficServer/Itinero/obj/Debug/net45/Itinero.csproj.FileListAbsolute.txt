@@ -8,3 +8,13 @@ D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero\obj\Debug\net45\Itiner
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero\obj\Debug\net45\Itinero.csproj.CopyComplete
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero\obj\Debug\net45\Itinero.dll
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero\obj\Debug\net45\Itinero.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Debug\net45\Itinero.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Debug\net45\Itinero.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Debug\net45\Reminiscence.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\net45\Itinero.csprojAssemblyReference.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\net45\Itinero.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\net45\Itinero.AssemblyInfoInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\net45\Itinero.AssemblyInfo.cs
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\net45\Itinero.csproj.CopyComplete
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\net45\Itinero.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\net45\Itinero.pdb

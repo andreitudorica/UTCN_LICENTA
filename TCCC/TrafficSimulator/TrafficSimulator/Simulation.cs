@@ -6,6 +6,7 @@ using Itinero.Osm.Vehicles;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using TrafficSimulator.Models;
 
@@ -15,28 +16,20 @@ namespace TrafficSimulator
     {
         private ConfigurationModel configuration;
         private RouterDb routerDb;
+        private List<TrafficParticipant> trafficParticipants;
+
         public Simulation(ConfigurationModel config)
         {
             routerDb = new RouterDb();
             configuration = config;
+            trafficParticipants = new List<TrafficParticipant>();
             using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
             {
                 routerDb.LoadOsmData(stream, Vehicle.Car);
             }
         }
 
-        public void Start()
-        {
-            DateTime simulationStart = DateTime.Now;
-
-            //run actual simulation
-            while (DateTime.Now - simulationStart > configuration.SimulationLength)
-            {
-
-            }
-        }
-
-        public void FuckAround()
+        public void TryNewStuff()
         {
             var router = new Router(routerDb);
             var currentProfile = routerDb.GetSupportedProfile("car");
@@ -91,6 +84,54 @@ namespace TrafficSimulator
                         {
                             string apiResponse = await response.Content.ReadAsStringAsync();
                             Console.WriteLine(apiResponse + "Total time:" +(DateTime.Now - routeRequest).ToString(@"dd\.hh\:mm\:ss\.ff"));
+                        }
+                    }
+                }
+                return "done";
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<string> RunOneRouteMultipleTimes()
+        {
+            var startPos = new Coordinate(46.768293f, 23.629875f);
+            var endPos = new Coordinate(46.752623f, 23.577261f);
+
+            try
+            {
+                for (int i = 0; i < configuration.NumberOfCars; i++)
+                {
+                    TrafficParticipant tp = new TrafficParticipant(i,(new TimeSpan(0,0,+configuration.RequestDelay.Seconds*i)),startPos,endPos,configuration);
+                    trafficParticipants.Add(tp);
+                    Thread thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));
+                    thrd.Start();
+                }
+                return "done";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+        }
+
+        public async Task<string> RunRandomRoutes()
+        {
+            try
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    using (var httpClient = new HttpClient())
+                    {
+                        DateTime routeRequest = DateTime.Now;
+                        using (var response = await httpClient.GetAsync("https://localhost:44351/api/values"))
+                        {
+                            string apiResponse = await response.Content.ReadAsStringAsync();
+                            Console.WriteLine(apiResponse + "Total time:" + (DateTime.Now - routeRequest).ToString(@"dd\.hh\:mm\:ss\.ff"));
                         }
                     }
                 }

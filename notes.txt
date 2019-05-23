@@ -1,1 +1,5 @@
 Can modify the number of data entries an edge can take (RouterDb.cs l 59)
+By default each edge holds 1 data item.
+To update that data item use the Edge in the Geometric Graph of the RouterDB routerDb.Network.GeometricGraph.Graph.UpdateEdgeData(1, new uint[2] { 12,13 });
+The data persists between all kinds of Edges for a certain edge.
+

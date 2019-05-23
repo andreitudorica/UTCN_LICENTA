@@ -14,27 +14,24 @@ namespace LiveTrafficServer.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+       
         // GET api/values
-        [HttpGet]
-        public async Task<string> Get()
+        [HttpGet("GetRoute")]//"{profile}/{startX}/{startY}/{endX}/{endY}")]
+        public async Task<string> Get(string profile, float startX, float startY, float endX, float endY)
         {
             var routerDb = new RouterDb();
-            var time =DateTime.Now;
+            var time = DateTime.Now;
             string result = "";
-            /*using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
+            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
             {
                 routerDb.LoadOsmData(stream, Vehicle.Car);
-            }*/
-            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
+            }
+            /*using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
             {
                 routerDb = RouterDb.Deserialize(stream);
-            }
-            result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss")+" ";
+            }*/
+            result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
 
-
-            //change distance of one edge
-
-           
 
             //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
             using (var stream = System.IO.File.OpenWrite("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
@@ -46,15 +43,25 @@ namespace LiveTrafficServer.Controllers
             string apiResponse;
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startX=46.768293&startY=23.629875&endX=46.752623&endY=23.577261"))
+                //using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startX=46.768293&startY=23.629875&endX=46.752623&endY=23.577261"))
+                using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=" + profile + "&startX=" + startX + "&startY=" + startY + "&endX=" + endX + "&endY=" + endY))
                 {
                     apiResponse = await response.Content.ReadAsStringAsync();
                 }
             }
 
             result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
-            return result;
+            Console.WriteLine(result);
+            return apiResponse;
         }
+
+        // GET api/values
+        [HttpGet]
+        public string Get()
+        {
+            return "waiting for commands";
+        }
+
 
         // GET api/values/5
         [HttpGet("{id}")]

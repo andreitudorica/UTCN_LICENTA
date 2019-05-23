@@ -41,7 +41,7 @@
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "sha512-a/iSwnRZb+LHFk49hQOyThh/ZNC3vsbZsF65XwQIb863qF6msmhdQtxGXFL28Ob2NsCz/drEj28BJd/YPpLRBg==",
       "path": "microsoft.netcore.platforms/1.1.0",
       "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
@@ -55,7 +55,7 @@
     "Reminiscence/1.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MnI0xq2G1zuBlXEMGK3aGsOxyRjmNBGiAJvsA7OJ1unPg58JGGhQXA+MctI8dpPL/8wYG91z3Cd/rhQ2j4GAyg==",
+      "sha512": "sha512-gED5t0TRkIw2iXigAy1eCOg6OXqee7WUjqdLhwPiv89Yfn9NxH4Z4cc9KYCut9mW2m1Iw8CviON12Ch5Jmh6SA==",
       "path": "reminiscence/1.2.0",
       "hashPath": "reminiscence.1.2.0.nupkg.sha512"
     }

@@ -1,9 +1,8 @@
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\bin\Release\netstandard2.0\Itinero.deps.json
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\bin\Release\netstandard2.0\Itinero.dll
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\bin\Release\netstandard2.0\Itinero.pdb
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.csproj.CoreCompileInputs.cache
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.AssemblyInfoInputs.cache
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.AssemblyInfo.cs
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.dll
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.pdb
-D:\Andrei\Scoala\Licenta\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.csprojAssemblyReference.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Release\netstandard2.0\Itinero.deps.json
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Release\netstandard2.0\Itinero.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Release\netstandard2.0\Itinero.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.AssemblyInfoInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.AssemblyInfo.cs
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Release\netstandard2.0\Itinero.pdb

@@ -939,7 +939,7 @@
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "sha512-a/iSwnRZb+LHFk49hQOyThh/ZNC3vsbZsF65XwQIb863qF6msmhdQtxGXFL28Ob2NsCz/drEj28BJd/YPpLRBg==",
       "path": "microsoft.netcore.platforms/1.1.0",
       "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
@@ -967,21 +967,21 @@
     "OsmSharp/6.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pkS0PcTHaRMmXVg8vGfFaKTEbnHTI8gSqhXbxor4THJk5l2aemIp5xVa9kVNVPChNG2doTcv6Ieu8q4sP4nmzg==",
+      "sha512": "sha512-WHGffFvoYLbn6zTEYmptb0Ijg2w4wEbD4CeCf2GuoGtfv00KljRpJfqwdwKVZ/WDZz2KADRfIwUnfbbteCPPog==",
       "path": "osmsharp/6.1.0",
       "hashPath": "osmsharp.6.1.0.nupkg.sha512"
     },
     "protobuf-net/2.3.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JG5ZUd42w4osBaDrFpJoEOelyRsuxV+EzY4c8J5o/Qhm+lqhm2iYWUl/T3zf7vhONBD968K190d7co1I2lucOQ==",
+      "sha512": "sha512-8ylltHyPjGUs0Kna9Qxn3NfeEeRH+zU2FkFr+Wf8IQEd3y1P0QP3Jg4BPlUIOKsSEjNHa+les6VlIxr6WvxKFw==",
       "path": "protobuf-net/2.3.7",
       "hashPath": "protobuf-net.2.3.7.nupkg.sha512"
     },
     "Reminiscence/1.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MnI0xq2G1zuBlXEMGK3aGsOxyRjmNBGiAJvsA7OJ1unPg58JGGhQXA+MctI8dpPL/8wYG91z3Cd/rhQ2j4GAyg==",
+      "sha512": "sha512-gED5t0TRkIw2iXigAy1eCOg6OXqee7WUjqdLhwPiv89Yfn9NxH4Z4cc9KYCut9mW2m1Iw8CviON12Ch5Jmh6SA==",
       "path": "reminiscence/1.2.0",
       "hashPath": "reminiscence.1.2.0.nupkg.sha512"
     },
@@ -1023,7 +1023,7 @@
     "runtime.native.System.Net.Http/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZVuZJqnnegJhd2k/PtAbbIcZ3aZeITq3sj06oKfMBSfphW3HDmk/t4ObvbOk/JA/swGR0LNqMksAh/f7gpTROg==",
+      "sha512": "sha512-guqHgQOK2eUgtJae2VKjNawBn1xjC0hfOt5wASHa60XHbIdCsQlqtvMsFG+3hy7yp88V+gi9fZCjubuDkeakcQ==",
       "path": "runtime.native.system.net.http/4.3.0",
       "hashPath": "runtime.native.system.net.http.4.3.0.nupkg.sha512"
     },
@@ -1058,7 +1058,7 @@
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kVXCuMTrTlxq4XOOMAysuNwsXWpYeboGddNGpIgNSZmv1b6r/s/DPk0fYMB7Q5Qo4bY68o48jt4T4y5BVecbCQ==",
+      "sha512": "sha512-Kh9W4agE0r/hK8AX1LvyQI2NrKHBL8pO0gRoDTdDb0LL6Ta1Z2OtFx3lOaAE0ZpCUc/dt9Wzs3rA7a3IsKdOVA==",
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple/4.3.0",
       "hashPath": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple.4.3.0.nupkg.sha512"
     },
@@ -1233,7 +1233,7 @@
     "System.Net.Http/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
+      "sha512": "sha512-6BBc6BUa7pWFL7KUI/c8wb18IobTZHTtcQKksxJI5F9DRDShdtOvBEJzg5jJbFdTll7gRE+5yXUlq72ciLE+QQ==",
       "path": "system.net.http/4.3.0",
       "hashPath": "system.net.http.4.3.0.nupkg.sha512"
     },
@@ -1387,7 +1387,7 @@
     "System.Security.Cryptography.Encoding/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1DEWjZZly9ae9C79vFwqaO5kaOlI5q+3/55ohmq/7dpDyDfc8lYe7YVxJUZ5MF/NtbkRjwFRo14yM4OEo9EmDw==",
+      "sha512": "sha512-XCat0j5jVC83UG9fofcuiYDwN0PVKc2OWD0QVLjYpXn7dz+gNaANkHPbhNtr5PR8rDQNHrxtI912Hb29YAB14A==",
       "path": "system.security.cryptography.encoding/4.3.0",
       "hashPath": "system.security.cryptography.encoding.4.3.0.nupkg.sha512"
     },
@@ -1401,7 +1401,7 @@
     "System.Security.Cryptography.Primitives/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7bDIyVFNL/xKeFHjhobUAQqSpJq9YTOpbEs6mR233Et01STBMXNAc/V+BM6dwYGc95gVh/Zf+iVXWzj3mE8DWg==",
+      "sha512": "sha512-WtgnP5mOu5zKL3vQMUPT9tV7XVYGV7Jtb0540DgBD7MMN5ojonwIcw8VybZvS6VloGmE7CRt/Hms8adBsN1DRw==",
       "path": "system.security.cryptography.primitives/4.3.0",
       "hashPath": "system.security.cryptography.primitives.4.3.0.nupkg.sha512"
     },

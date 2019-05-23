@@ -21,7 +21,7 @@ namespace TrafficSimulator
                 SimulationLength = new TimeSpan(0, 2, 0),
                 SimulationType = ConfigurationModel.SimulationTypeEnum.OneRouteMultipleTimes
             };
-            using (StreamWriter file = File.CreateText(@"SimulationParameters.json"))
+            using (StreamWriter file = File.CreateText("..\\..\\SimulationParameters.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(file, config);
@@ -31,7 +31,7 @@ namespace TrafficSimulator
 
         private static ConfigurationModel GetSimulationParameters()
         {
-            return JsonConvert.DeserializeObject<ConfigurationModel>(File.ReadAllText(@"SimulationParameters.json"));
+            return JsonConvert.DeserializeObject<ConfigurationModel>(File.ReadAllText("..\\..\\SimulationParameters.json"));
         }
 
         private static void Main(string[] args)
@@ -43,14 +43,20 @@ namespace TrafficSimulator
             //
             //configuration = GetSimulationParameters();
             //simulation = new Simulation(configuration);
-            //simulation.FuckAround();
+            //simulation.TryNewStuff();
+            Console.ReadLine();
         }
 
         static async Task MainAsync()
         {
             try
             {
-                await simulation.TestBasicFlow();
+                //await simulation.TestBasicFlow();
+                if (configuration.SimulationType == ConfigurationModel.SimulationTypeEnum.OneRouteMultipleTimes)
+                    await simulation.RunOneRouteMultipleTimes();
+                else if (configuration.SimulationType == ConfigurationModel.SimulationTypeEnum.RandomRoutes)
+                    await simulation.RunRandomRoutes();
+
             }
             catch (Exception ex)
             {

@@ -10,3 +10,15 @@ D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netst
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.csproj.CopyComplete
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.dll
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\bin\Debug\netstandard1.6\Itinero.IO.Osm.deps.json
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\bin\Debug\netstandard1.6\Itinero.IO.Osm.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\bin\Debug\netstandard1.6\Itinero.IO.Osm.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\bin\Debug\netstandard1.6\Itinero.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\bin\Debug\netstandard1.6\Itinero.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.csprojAssemblyReference.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.AssemblyInfoInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.AssemblyInfo.cs
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.csproj.CopyComplete
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero.IO.Osm\obj\Debug\netstandard1.6\Itinero.IO.Osm.pdb

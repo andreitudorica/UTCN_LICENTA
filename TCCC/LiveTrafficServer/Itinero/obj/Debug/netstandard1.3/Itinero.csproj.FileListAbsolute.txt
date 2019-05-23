@@ -7,3 +7,12 @@ D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero\obj\Debug\netstandard1
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero\obj\Debug\netstandard1.3\Itinero.AssemblyInfo.cs
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero\obj\Debug\netstandard1.3\Itinero.dll
 D:\Andrei\Scoala\Licenta\TCCC\routing-develop\src\Itinero\obj\Debug\netstandard1.3\Itinero.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Debug\netstandard1.3\Itinero.deps.json
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Debug\netstandard1.3\Itinero.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\bin\Debug\netstandard1.3\Itinero.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\netstandard1.3\Itinero.csprojAssemblyReference.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\netstandard1.3\Itinero.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\netstandard1.3\Itinero.AssemblyInfoInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\netstandard1.3\Itinero.AssemblyInfo.cs
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\netstandard1.3\Itinero.dll
+D:\Andrei\Scoala\LICENTA\TCCC\LiveTrafficServer\Itinero\obj\Debug\netstandard1.3\Itinero.pdb
