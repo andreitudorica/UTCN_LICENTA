@@ -6,6 +6,7 @@ using Itinero;
 using Itinero.IO.Osm;
 using Itinero.LocalGeo;
 using Itinero.Osm.Vehicles;
+using Itinero.Profiles;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LiveTrafficServer.Controllers
@@ -14,52 +15,72 @@ namespace LiveTrafficServer.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-       
+
         // GET api/values
-        [HttpGet("GetRoute")]//"{profile}/{startX}/{startY}/{endX}/{endY}")]
-        public async Task<string> Get(string profile, float startX, float startY, float endX, float endY)
+        [HttpGet("GetRoute")]//"{profile}/{startLat}/{startLon}/{endLat}/{endLon}")]
+        public async Task<string> Get(string profile, float startLat, float startLon, float endLat, float endLon)
         {
-            var routerDb = new RouterDb();
-            var time = DateTime.Now;
-            string result = "";
-            using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.pbf"))
-            {
-                routerDb.LoadOsmData(stream, Vehicle.Car);
-            }
-            /*using (var stream = System.IO.File.OpenRead("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
-            {
-                routerDb = RouterDb.Deserialize(stream);
-            }*/
-            result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
-
-
-            //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
-            using (var stream = System.IO.File.OpenWrite("D:\\Andrei\\Scoala\\LICENTA\\Maps\\Cluj-Napoca.routerdb"))
-            {
-                routerDb.Serialize(stream);
-            }
-
-            result += " writing RouterDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
             string apiResponse;
             using (var httpClient = new HttpClient())
             {
-                //using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startX=46.768293&startY=23.629875&endX=46.752623&endY=23.577261"))
-                using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=" + profile + "&startX=" + startX + "&startY=" + startY + "&endX=" + endX + "&endY=" + endY))
+                //using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261"))
+                using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=" + profile + "&startLat=" + startLat + "&startLon=" + startLon + "&endLat=" + endLat + "&endLon=" + endLon))
                 {
                     apiResponse = await response.Content.ReadAsStringAsync();
                 }
             }
-
-            result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
-            Console.WriteLine(result);
             return apiResponse;
         }
 
         // GET api/values
         [HttpGet("UpdateLocation")]
-        public string Get(int edgeId)
+        public string Get(float previousEdgeLon, float previousEdgeLat, float currentEdgeLon, float currentEdgeLat)
         {
-            return "updated";
+            try
+            {
+                var routerDb = new RouterDb();
+                var time = DateTime.Now;
+                string result = "";
+                var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
+                using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                {
+                    routerDb = RouterDb.Deserialize(stream);
+                }
+                var router = new Router(routerDb);
+
+                //result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
+
+                //file concurency to be handled 
+                if (previousEdgeLon != 0)
+                {
+                    var previousEdgeLocation = new Coordinate(previousEdgeLon, previousEdgeLat);
+                    var resolvedPrevious = router.Resolve(customCar.Fastest(), previousEdgeLocation);
+                    uint previousEdgeId = resolvedPrevious.EdgeId;
+                    EdgeWeights.SetWeight(routerDb, (uint)previousEdgeId, 50);
+                }
+                if (currentEdgeLon != 0)
+                {
+                    var currentEdgeLocation = new Coordinate(currentEdgeLon, currentEdgeLat);
+                    var resolvedCurrent = router.Resolve(customCar.Fastest(), currentEdgeLocation);
+                    uint currentEdgeId = resolvedCurrent.EdgeId;
+                    EdgeWeights.SetWeight(routerDb, (uint)currentEdgeId, 1);
+                }
+                //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
+                using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                {
+                    routerDb.Serialize(stream);
+                }
+
+                //result += " writing RouterDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
+                //result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
+                Console.WriteLine(result);
+                return result;
+            }
+            catch (Exception e)
+            {
+
+                return "fail";
+            }
         }
 
         public string Get()

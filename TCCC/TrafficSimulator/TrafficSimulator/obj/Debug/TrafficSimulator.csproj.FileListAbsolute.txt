@@ -30,3 +30,4 @@ D:\Andrei\Scoala\LICENTA\TCCC\TrafficSimulator\TrafficSimulator\bin\Debug\System
 D:\Andrei\Scoala\LICENTA\TCCC\TrafficSimulator\TrafficSimulator\bin\Debug\System.Security.Cryptography.Primitives.dll
 D:\Andrei\Scoala\LICENTA\TCCC\TrafficSimulator\TrafficSimulator\bin\Debug\System.Security.Cryptography.X509Certificates.dll
 D:\Andrei\Scoala\LICENTA\TCCC\TrafficSimulator\TrafficSimulator\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\Andrei\Scoala\LICENTA\TCCC\TrafficSimulator\TrafficSimulator\bin\Debug\GeoJSON.dll

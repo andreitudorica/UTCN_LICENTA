@@ -43,8 +43,8 @@ namespace TrafficSimulator
             {
 
                 // calculate route.
-                var home = new Coordinate(46.768293f, 23.629875f);
-                var carina = new Coordinate(46.752623f, 23.577261f);
+                var home = new Itinero.LocalGeo.Coordinate(46.768293f, 23.629875f);
+                var carina = new Itinero.LocalGeo.Coordinate(46.752623f, 23.577261f);
                 var route = router.Calculate(currentProfile, home, carina);
 
                 var routeGeoJson = route.ToGeoJson();
@@ -96,15 +96,16 @@ namespace TrafficSimulator
         }
 
 
-        public async Task<string> RunOneRouteMultipleTimes()
+        public string RunOneRouteMultipleTimes()
         {
-            var startPos = new Coordinate(46.768293f, 23.629875f);//hardcoded start and finish locations
-            var endPos = new Coordinate(46.752623f, 23.577261f);
+            var startPos = new Itinero.LocalGeo.Coordinate(46.768293f, 23.629875f);//hardcoded start and finish locations
+            var endPos = new Itinero.LocalGeo.Coordinate(46.752623f, 23.577261f);
 
             try
             {
                 for (int i = 0; i < configuration.NumberOfCars; i++)//generate the cars
                 {
+
                     TrafficParticipant tp = new TrafficParticipant(i,(new TimeSpan(0,0,+configuration.RequestDelay.Seconds*i)),startPos,endPos,configuration);
                     trafficParticipants.Add(tp);
                     Thread thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));//run each car on an independent thread

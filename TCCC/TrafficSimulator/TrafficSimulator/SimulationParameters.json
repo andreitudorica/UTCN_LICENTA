@@ -1,1 +1,1 @@
-{"SimulationLength":"00:02:00","NumberOfCars":7,"RequestDelay":"00:00:03","LiveTrafficServerUri":"https://localhost:44351","SimulationType":1}
+{"SimulationLength":"00:10:00","NumberOfCars":50,"RequestDelay":"00:00:15","LiveTrafficServerUri":"https://localhost:44351","SimulationType":1}
