@@ -106,7 +106,7 @@ namespace TrafficSimulator
             var updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);
             using (var response = await httpClient.GetAsync(updateURI))
             {
-                Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.StatusCode);
+                Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase);
             }
 
             for (int i = 1; i < route.features.Count; i++)
@@ -121,7 +121,7 @@ namespace TrafficSimulator
 
                 using (var response = await httpClient.GetAsync(updateURI))
                 {
-                    Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.StatusCode);
+                    Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase);
                 }
             }
             Thread.Sleep(ComputeTime(route.features.Count - 1));

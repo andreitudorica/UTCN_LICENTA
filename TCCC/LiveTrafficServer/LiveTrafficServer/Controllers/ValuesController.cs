@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Itinero;
 using Itinero.IO.Osm;
@@ -34,7 +36,7 @@ namespace LiveTrafficServer.Controllers
 
         // GET api/values
         [HttpGet("UpdateLocation")]
-        public string Get(float previousEdgeLon, float previousEdgeLat, float currentEdgeLon, float currentEdgeLat)
+        public IActionResult Get(float previousEdgeLon, float previousEdgeLat, float currentEdgeLon, float currentEdgeLat)
         {
             try
             {
@@ -73,13 +75,12 @@ namespace LiveTrafficServer.Controllers
 
                 //result += " writing RouterDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
                 //result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
-                Console.WriteLine(result);
-                return result;
+                return Ok("succesful");
             }
             catch (Exception e)
             {
 
-                return "fail";
+                return BadRequest(e.ToString());
             }
         }
 
