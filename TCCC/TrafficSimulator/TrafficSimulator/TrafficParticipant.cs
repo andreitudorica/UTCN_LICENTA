@@ -57,11 +57,19 @@ namespace TrafficSimulator
 
         public Itinero.LocalGeo.Coordinate ComputeMiddle(int e)
         {
-            var start = ((Newtonsoft.Json.Linq.JArray)route.features[e].geometry.coordinates[0]).Select(item => (float)item).ToArray();
-            var end = ((Newtonsoft.Json.Linq.JArray)route.features[e].geometry.coordinates[1]).Select(item => (float)item).ToArray();
-            float lon = (start[0] + end[0]) / 2;
-            float lat =  (start[1] + end[1]) / 2;
-            return new Itinero.LocalGeo.Coordinate(lat, lon);
+            try
+            {
+                var start = ((Newtonsoft.Json.Linq.JArray)route.features[e].geometry.coordinates[0]).Select(item => (float)item).ToArray();
+                var end = ((Newtonsoft.Json.Linq.JArray)route.features[e].geometry.coordinates[1]).Select(item => (float)item).ToArray();
+                float lon = (start[0] + end[0]) / 2;
+                float lat = (start[1] + end[1]) / 2;
+                return new Itinero.LocalGeo.Coordinate(lat, lon);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public TimeSpan ComputeTime(int i)
@@ -99,37 +107,47 @@ namespace TrafficSimulator
                     }
                 }
             }
+            
+            //TBD compute a shortest route
+            //TBD make decision based on percentage
+            
             //interpret the received route
-
-            var currentMiddle = ComputeMiddle(0);
+            //in order to get the ID of the edge we are trying to change (add a car) we need a snapping point as close to it as possible, so I chose the middle
+            var currentMiddle = ComputeMiddle(0);//get the first edge of the path
             var previousMiddle = ComputeMiddle(0);
-            var updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);
+            //START ROUTE
+            var updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);//let the live traffic server know that you started the route 
             using (var response = await httpClient.GetAsync(updateURI))
             {
-                Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase);
+                Console.WriteLine("TrafficParticipant " + ID + " Started his route with result: " + response.ReasonPhrase + " First update in " + ComputeTime(0) + " seconds");
             }
 
+            //ROUTE ELEMENTS
             for (int i = 1; i < route.features.Count; i++)
             {
                 Thread.Sleep(ComputeTime(i));
                 previousMiddle = currentMiddle;
                 currentMiddle = ComputeMiddle(i);
-                updateURI = HttpRequestBuilder(previousMiddle.Longitude,
-                                               previousMiddle.Latitude,
-                                               currentMiddle.Longitude,
-                                               currentMiddle.Latitude);
+                updateURI = HttpRequestBuilder(previousMiddle.Latitude,  previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
 
                 using (var response = await httpClient.GetAsync(updateURI))
                 {
-                    Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase);
+                    if(response.StatusCode==System.Net.HttpStatusCode.OK)
+                        Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase +" Next update in " + ComputeTime(i)+ " seconds");
+                    else
+                        Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase + " Message " + response.Content.ToString());
                 }
             }
+
+            //FINISH ROUTE
             Thread.Sleep(ComputeTime(route.features.Count - 1));
             updateURI = HttpRequestBuilder(currentMiddle.Longitude, currentMiddle.Latitude, 0, 0);
             using (var response = await httpClient.GetAsync(updateURI))
             {
-                Console.WriteLine("TrafficParticipant" + ID + " FINISHED");
+                Console.WriteLine("TrafficParticipant" + ID + " FINISHED route after " + (new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[route.features.Count - 1].properties.time) * 1000))));
             }
+
+            //update statistics
         }
     }
 }

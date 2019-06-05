@@ -44,11 +44,22 @@ namespace LiveTrafficServer.Controllers
                 var time = DateTime.Now;
                 string result = "";
                 var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-                using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                while (true)
                 {
-                    routerDb = RouterDb.Deserialize(stream);
+                    try
+                    {
+                        using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                        {
+                            routerDb = RouterDb.Deserialize(stream);
+                        }
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
                 }
-                var router = new Router(routerDb);
+            var router = new Router(routerDb);
 
                 //result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
 
@@ -68,11 +79,22 @@ namespace LiveTrafficServer.Controllers
                     EdgeWeights.SetWeight(routerDb, (uint)currentEdgeId, 1);
                 }
                 //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
-                using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                while (true)
                 {
-                    routerDb.Serialize(stream);
+                    try
+                    {
+                        using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                        {
+                            routerDb.Serialize(stream);
+                        }
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        
+                        Console.WriteLine(e.ToString());
+                    }
                 }
-
                 //result += " writing RouterDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
                 //result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
                 return Ok("succesful");
