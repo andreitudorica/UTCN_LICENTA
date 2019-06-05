@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Itinero;
 using Itinero.IO.Osm;
@@ -23,6 +24,25 @@ namespace LiveTrafficServer.Controllers
         public async Task<string> Get(string profile, float startLat, float startLon, float endLat, float endLon)
         {
             string apiResponse;
+            var routerDb = Startup.routerDb;
+
+            while (true)
+            {
+                try
+                {
+                    using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                    {
+                        routerDb.Serialize(stream);
+                    }
+                    break;
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.ToString());
+                }
+            }
+
             using (var httpClient = new HttpClient())
             {
                 //using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261"))
@@ -34,35 +54,56 @@ namespace LiveTrafficServer.Controllers
             return apiResponse;
         }
 
+        private void writeRouterDbtofile()
+        {
+            while (true)
+            {
+                try
+                {
+                    using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName+ DateTime.Now))
+                    {
+                        Startup.routerDb.Serialize(stream);
+                    }
+                    break;
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.ToString());
+                }
+            }
+        }
+
         // GET api/values
         [HttpGet("UpdateLocation")]
         public IActionResult Get(float previousEdgeLon, float previousEdgeLat, float currentEdgeLon, float currentEdgeLat)
         {
             try
             {
-                var routerDb = new RouterDb();
+                var routerDb = Startup.routerDb;
                 var time = DateTime.Now;
                 string result = "";
                 var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-                while (true)
-                {
-                    try
-                    {
-                        using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
-                        {
-                            routerDb = RouterDb.Deserialize(stream);
-                        }
-                        break;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.ToString());
-                    }
-                }
+                //while (true)
+                //{
+                //    try
+                //    {
+                //        using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                //        {
+                //            routerDb = RouterDb.Deserialize(stream);
+                //        }
+                //        break;
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        Console.WriteLine(e.ToString());
+                //    }
+                //}
             var router = new Router(routerDb);
 
                 //result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
-
+                Thread thr = new Thread(new ThreadStart(writeRouterDbtofile));
+                thr.Start();
                 //file concurency to be handled 
                 if (previousEdgeLon != 0)
                 {
@@ -79,22 +120,7 @@ namespace LiveTrafficServer.Controllers
                     EdgeWeights.SetWeight(routerDb, (uint)currentEdgeId, 1);
                 }
                 //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
-                while (true)
-                {
-                    try
-                    {
-                        using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
-                        {
-                            routerDb.Serialize(stream);
-                        }
-                        break;
-                    }
-                    catch (Exception e)
-                    {
-                        
-                        Console.WriteLine(e.ToString());
-                    }
-                }
+                
                 //result += " writing RouterDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
                 //result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
                 return Ok("succesful");

@@ -74,11 +74,11 @@ namespace TrafficSimulator
 
         public TimeSpan ComputeTime(int i)
         {
-            TimeSpan first = new TimeSpan(0,0,0,0,(int)(float.Parse(route.features[0].properties.time)*1000));
+            TimeSpan first = new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[0].properties.time) * 1000));
             if (i == 0)
                 return first;
-            TimeSpan prev = new TimeSpan(0,0, 0, 0, (int)(float.Parse(route.features[i - 1].properties.time) * 1000));
-            TimeSpan curr = new TimeSpan(0,0, 0, 0, (int)(float.Parse(route.features[i].properties.time) * 1000));
+            TimeSpan prev = new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[i - 1].properties.time) * 1000));
+            TimeSpan curr = new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[i].properties.time) * 1000));
             return (TimeSpan)(curr - prev);
         }
 
@@ -98,7 +98,11 @@ namespace TrafficSimulator
                     try
                     {
                         route = JsonConvert.DeserializeObject<RouteModel>(apiResponse);
-                        Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " received a route (TrafficParticipant)"+ID+"route.txt");
+                        Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " received a route (TrafficParticipant)" + ID + "route.txt");
+
+                        System.IO.File.WriteAllText("TrafficParticipant" + ID + "route.txt", apiResponse);
+
+
                         receivedRoute = true;
                     }
                     catch (Exception e)
@@ -107,10 +111,10 @@ namespace TrafficSimulator
                     }
                 }
             }
-            
+
             //TBD compute a shortest route
             //TBD make decision based on percentage
-            
+
             //interpret the received route
             //in order to get the ID of the edge we are trying to change (add a car) we need a snapping point as close to it as possible, so I chose the middle
             var currentMiddle = ComputeMiddle(0);//get the first edge of the path
@@ -121,26 +125,26 @@ namespace TrafficSimulator
             {
                 Console.WriteLine("TrafficParticipant " + ID + " Started his route with result: " + response.ReasonPhrase + " First update in " + ComputeTime(0) + " seconds");
             }
+            Thread.Sleep(ComputeTime(0));
 
             //ROUTE ELEMENTS
             for (int i = 1; i < route.features.Count; i++)
             {
-                Thread.Sleep(ComputeTime(i));
                 previousMiddle = currentMiddle;
                 currentMiddle = ComputeMiddle(i);
-                updateURI = HttpRequestBuilder(previousMiddle.Latitude,  previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
+                updateURI = HttpRequestBuilder(previousMiddle.Latitude, previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
 
                 using (var response = await httpClient.GetAsync(updateURI))
                 {
-                    if(response.StatusCode==System.Net.HttpStatusCode.OK)
-                        Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase +" Next update in " + ComputeTime(i)+ " seconds");
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase + " Next update in " + ComputeTime(i) + " seconds");
                     else
                         Console.WriteLine("TrafficParticipant" + ID + "Updated his location with result: " + response.ReasonPhrase + " Message " + response.Content.ToString());
                 }
+                Thread.Sleep(ComputeTime(i));
             }
 
             //FINISH ROUTE
-            Thread.Sleep(ComputeTime(route.features.Count - 1));
             updateURI = HttpRequestBuilder(currentMiddle.Longitude, currentMiddle.Latitude, 0, 0);
             using (var response = await httpClient.GetAsync(updateURI))
             {
