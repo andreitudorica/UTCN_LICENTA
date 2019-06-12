@@ -54,26 +54,6 @@ namespace LiveTrafficServer.Controllers
             return apiResponse;
         }
 
-        private void writeRouterDbtofile()
-        {
-            while (true)
-            {
-                try
-                {
-                    using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName+ DateTime.Now))
-                    {
-                        Startup.routerDb.Serialize(stream);
-                    }
-                    break;
-                }
-                catch (Exception e)
-                {
-
-                    Console.WriteLine(e.ToString());
-                }
-            }
-        }
-
         // GET api/values
         [HttpGet("UpdateLocation")]
         public IActionResult Get(float previousEdgeLon, float previousEdgeLat, float currentEdgeLon, float currentEdgeLat)
@@ -102,8 +82,7 @@ namespace LiveTrafficServer.Controllers
             var router = new Router(routerDb);
 
                 //result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
-                Thread thr = new Thread(new ThreadStart(writeRouterDbtofile));
-                thr.Start();
+
                 //file concurency to be handled 
                 if (previousEdgeLon != 0)
                 {

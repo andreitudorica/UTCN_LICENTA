@@ -25,7 +25,9 @@ namespace LiveTrafficServer
         {
             // update the speed profile of this edge.
             var edgeData = routerDb.Network.GetEdge(edgeId).Data;
+            var asdf =  routerDb.EdgeProfiles.Get(edgeData.Profile); 
             edgeData.Profile = (ushort)(87+i);
+            asdf = routerDb.EdgeProfiles.Get(edgeData.Profile);
             routerDb.Network.UpdateEdgeData(edgeId, edgeData);
         }
     }

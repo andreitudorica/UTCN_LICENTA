@@ -9,5 +9,43 @@ For live routing there are 2 options:
 Discuss (and study) the effect of both approaches
 
 Edge based/ Vertex based map
-	https://github.com/pgRouting/pgrouting/wiki/Edge-based-Graph-Analysis
+	https://github.com/pgRouting/pgrouting/wiki/Edge-based-Graph-Analys
+	
+
+
+
+
+- in loc de research e de preferat "identificare de solutii originale pentru"
+- obiectiv general - 
+- in contextul connected cars  (IN CAZUL MEU simulate)
+
+- sa spun ca se ia in considerare strict statusul curent al traficului momentan
+-de mentionat doar car to car nu si infrastructure!!!
+
+
+structura descriere componenta: obiectiv componenta -> deliverable -> what -> how
+capitol 2 - functional requirements
+capitol 4 - obiective procesuale 
+
+live processing serfver - suprotra actiunile tuturor celorlalte componente
+
+
+sagetute pe diagrama
+NUME - to be replaced cu un nume decis pentru sistem 
+sa pun modulele taote intr-u dreptunghi 
+in cuprins numai 4 nivele de headers
+
+codul se scrie cu courier new 11
+
+tot codul relevant se pune in anexa
+
+4.1. sa il mut in capitolul 3 daca nu se justifica prezenta lor foarte clar prin decizii de design si/sau implementare
+
+capitolul 6.
+Evaluari cu input- output 
+puse in tabel, interpretate, concluzii si unde duce acest rezultat
+rezultate dimensiunea de calcul rutelor (timp, distanta, custom)
+rezultate dimensiunea performanta sistemului
+
+
 
