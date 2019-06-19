@@ -2605,12 +2605,11 @@
       ]
     },
     "System.Buffers/4.3.0": {
-      "sha512": "Pcv2b27ffpu09pjN3PgbnQWYEdhOBcesYYsmQO/tZC8Imw74TJJ8X1j+/+Q7uWprz0/sQiUpuCmYsY1w5GSMvg==",
+      "sha512": "ratu44uTIHgeBeI0dE8DWvmXVBSo4u7ozRZZHOMmK/JPpYyo0dAfgSiHlpiObMQ5lEtEyIXA40sKRYg5J6A8uQ==",
       "type": "package",
       "path": "system.buffers/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.1/.xml",
@@ -5670,7 +5669,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Macadamian\\.nuget\\packages\\": {},
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -5679,7 +5678,7 @@
       "projectUniqueName": "D:\\Andrei\\Scoala\\LICENTA\\TCCC\\LiveTrafficServer\\Itinero.IO.Osm\\Itinero.IO.Osm.csproj",
       "projectName": "Itinero.IO.Osm",
       "projectPath": "D:\\Andrei\\Scoala\\LICENTA\\TCCC\\LiveTrafficServer\\Itinero.IO.Osm\\Itinero.IO.Osm.csproj",
-      "packagesPath": "C:\\Users\\Macadamian\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
       "outputPath": "D:\\Andrei\\Scoala\\LICENTA\\TCCC\\LiveTrafficServer\\Itinero.IO.Osm\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
@@ -5687,7 +5686,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Macadamian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

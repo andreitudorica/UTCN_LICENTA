@@ -26,7 +26,9 @@ namespace SetupApplication
             for (int i = 1; i <= 50; i++)
             {
                 routerDb.EdgeProfiles.Add(new AttributeCollection(
+                    new Itinero.Attributes.Attribute("maxspeed", "RO:urban"),
                     new Itinero.Attributes.Attribute("highway", "residential"),
+                    new Itinero.Attributes.Attribute("number-of-cars", "0"),
                     new Itinero.Attributes.Attribute("custom-speed", i + "")));
             }
 

@@ -1,0 +1,7 @@
+D:\Andrei\Scoala\LICENTA\TCCC\RouteFilesComparer\RouteFilesComparer\bin\Debug\RouteFilesComparer.exe.config
+D:\Andrei\Scoala\LICENTA\TCCC\RouteFilesComparer\RouteFilesComparer\bin\Debug\RouteFilesComparer.exe
+D:\Andrei\Scoala\LICENTA\TCCC\RouteFilesComparer\RouteFilesComparer\bin\Debug\RouteFilesComparer.pdb
+D:\Andrei\Scoala\LICENTA\TCCC\RouteFilesComparer\RouteFilesComparer\obj\Debug\RouteFilesComparer.csprojAssemblyReference.cache
+D:\Andrei\Scoala\LICENTA\TCCC\RouteFilesComparer\RouteFilesComparer\obj\Debug\RouteFilesComparer.csproj.CoreCompileInputs.cache
+D:\Andrei\Scoala\LICENTA\TCCC\RouteFilesComparer\RouteFilesComparer\obj\Debug\RouteFilesComparer.exe
+D:\Andrei\Scoala\LICENTA\TCCC\RouteFilesComparer\RouteFilesComparer\obj\Debug\RouteFilesComparer.pdb

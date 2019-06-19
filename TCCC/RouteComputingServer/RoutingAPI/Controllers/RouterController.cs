@@ -20,6 +20,7 @@ namespace RoutingAPI.Controllers
         //[Route("GetRoute/{profile}/{startLat}/{startLon}/{endLat}/{endLon}")]
         public HttpResponseMessage GetRoute(string profile,float startLat,float startLon,float endLat,float endLon)
         {
+
             var routerDb = new RouterDb();
             //load the current Map Data
             var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
@@ -32,11 +33,12 @@ namespace RoutingAPI.Controllers
             var router = new Router(routerDb);
             //test link http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261
             // calculate route.
-            var route = router.Calculate(customCar.Fastest(), new Coordinate(startLat,startLon), new Coordinate(endLat, endLon));
-            //var route = router.Calculate(currentProfile, home, carina);
-            //var routeGeoJson = Newtonsoft.Json.JsonConvert.SerializeObject(route);
+            Route route;
+            if (profile == "shortest")
+                route = router.Calculate(customCar.Shortest(), new Coordinate(startLat,startLon), new Coordinate(endLat, endLon));
+            else
+                route = router.Calculate(customCar.Fastest(), new Coordinate(startLat, startLon), new Coordinate(endLat, endLon)); 
             string routeJson = route.ToGeoJson();
-            var instructions = route.GenerateInstructions(routerDb);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content= new StringContent(routeJson, Encoding.UTF8, "application/json");
             return response;
