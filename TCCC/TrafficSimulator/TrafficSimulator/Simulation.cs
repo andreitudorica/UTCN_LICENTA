@@ -18,7 +18,7 @@ namespace TrafficSimulator
     internal class Simulation
     {
         private ConfigurationModel configuration;
-        private RouterDb routerDb;
+        public static RouterDb routerDb;
         private List<TrafficParticipant> trafficParticipants;
         private List<TimeSpan> simulationTrafficInflictedDelays;
         public static int threshold = 0;
@@ -53,7 +53,12 @@ namespace TrafficSimulator
 
         public Simulation(ConfigurationModel config)
         {
+            var customCar = DynamicVehicle.Load(File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
             routerDb = new RouterDb();
+            using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.PbfMapFileName))
+            {
+                routerDb.LoadOsmData(stream, customCar);
+            }
             configuration = config;
             trafficParticipants = new List<TrafficParticipant>();
             simulationTrafficInflictedDelays = new List<TimeSpan>();

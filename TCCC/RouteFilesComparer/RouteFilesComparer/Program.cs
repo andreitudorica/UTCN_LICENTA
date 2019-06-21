@@ -10,7 +10,7 @@ namespace RouteFilesComparer
     {
         static void Main(string[] args)
         {
-            int n = 6;
+            int n = 7;
             List<string> Routes = new List<string>();
             for (int i = 0; i < n; i++)
                 Routes.Add(System.IO.File.ReadAllText(@"D:\Andrei\Scoala\LICENTA\TCCC\TrafficSimulator\TrafficSimulator\bin\Debug\TrafficParticipant" + i + "route.txt"));

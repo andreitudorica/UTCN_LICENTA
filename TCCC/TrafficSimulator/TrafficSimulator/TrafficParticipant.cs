@@ -102,7 +102,7 @@ namespace TrafficSimulator
                 var end = ComputeEndOfSegment(f, s);
                 float lon = (start.Longitude + end.Longitude) / 2;
                 float lat = (start.Latitude + end.Latitude) / 2;
-                return new Itinero.LocalGeo.Coordinate(lat, lon);
+                return new Itinero.LocalGeo.Coordinate(lon, lat);
             }
             catch (Exception ex)
             {
@@ -113,9 +113,21 @@ namespace TrafficSimulator
 
         public double ComputeDistanceOfSegment(int f, int s)
         {
+
+            //var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
+            //RouterDb routerDb = Simulation.routerDb;
+            //var router = new Router(Simulation.routerDb);
+            //var middle = ComputeMiddle(f, s);
+            //var resolvedPrevious = router.Resolve(customCar.Fastest(), middle);
+            //uint edgeId = resolvedPrevious.EdgeId;
+            //var edge = routerDb.Network.GetEdge(edgeId);
+            //var edgeData = edge.Data.Distance;
+
+
             var start = ComputeStartOfSegment(f, s);
             var end = ComputeEndOfSegment(f, s);
-            return Itinero.LocalGeo.Coordinate.DistanceEstimateInMeter(start, end);
+            var result = Itinero.LocalGeo.Coordinate.DistanceEstimateInMeter(start, end);
+            return result;
         }
 
         public double ComputeDistanceOfFeature(int f)
@@ -219,7 +231,7 @@ namespace TrafficSimulator
                     }
                     Thread.Sleep(timeOfSegment);
                 }
-                Console.WriteLine("Computed Time of feature: " + computedTimeOfFeature + "/" + computedDistanceOfFeature + "\nActual Time of feature:   " + ComputeTimeOfFeature(i) + "/" + ComputeDistanceOfFeature(i));
+                //Console.WriteLine("Computed Time of feature: " + computedTimeOfFeature + "/" + computedDistanceOfFeature + "\nActual Time of feature:   " + ComputeTimeOfFeature(i) + "/" + ComputeDistanceOfFeature(i));
             }
             #endregion
             #region FINISH ROUTE

@@ -70,20 +70,21 @@ namespace LiveTrafficServer.Controllers
                 }
                 catch (Exception e)
                 {
-
-                    Console.WriteLine(e.ToString());
+                    Console.WriteLine(e.Message);
+                    Thread.Sleep(50);
                 }
             }
 
             using (var httpClient = new HttpClient())
-            {
-                //using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261"))
-                //http://localhost:62917/api/router/GetRoute?profile=shortest&startLat=46.7681922912598&startLon=23.6310348510742&endLat=46.7675476074219&endLon=23.5999336242676
-                using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=" + profile + "&startLat=" + startLat + "&startLon=" + startLon + "&endLat=" + endLat + "&endLon=" + endLon))
                 {
-                    apiResponse = await response.Content.ReadAsStringAsync();
+                    //using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261"))
+                    //http://localhost:62917/api/router/GetRoute?profile=shortest&startLat=46.7681922912598&startLon=23.6310348510742&endLat=46.7675476074219&endLon=23.5999336242676
+                    using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=" + profile + "&startLat=" + startLat + "&startLon=" + startLon + "&endLat=" + endLat + "&endLon=" + endLon))
+                    {
+                        apiResponse = await response.Content.ReadAsStringAsync();
+                    }
                 }
-            }
+    
             return apiResponse;
         }
 
@@ -93,27 +94,11 @@ namespace LiveTrafficServer.Controllers
         {
             try
             {
-                var routerDb = Startup.routerDb;
                 var time = DateTime.Now;
                 string result = "";
-                //while (true)
-                //{
-                //    try
-                //    {
-                //        using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
-                //        {
-                //            routerDb = RouterDb.Deserialize(stream);
-                //        }
-                //        break;
-                //    }
-                //    catch (Exception e)
-                //    {
-                //        Console.WriteLine(e.ToString());
-                //    }
-                //}
-                var router = new Router(routerDb);
 
                 //result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
+                lock(Startup.routerDb)
                 EdgeWeights.HandleChange( previousEdgeLon,  previousEdgeLat,  currentEdgeLon,  currentEdgeLat);
                 //file concurency to be handled 
                 

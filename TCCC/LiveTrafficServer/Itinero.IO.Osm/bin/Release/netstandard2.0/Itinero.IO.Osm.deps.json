@@ -410,7 +410,7 @@
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-a/iSwnRZb+LHFk49hQOyThh/ZNC3vsbZsF65XwQIb863qF6msmhdQtxGXFL28Ob2NsCz/drEj28BJd/YPpLRBg==",
+      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "path": "microsoft.netcore.platforms/1.1.0",
       "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
@@ -431,21 +431,21 @@
     "OsmSharp/6.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-WHGffFvoYLbn6zTEYmptb0Ijg2w4wEbD4CeCf2GuoGtfv00KljRpJfqwdwKVZ/WDZz2KADRfIwUnfbbteCPPog==",
+      "sha512": "sha512-pkS0PcTHaRMmXVg8vGfFaKTEbnHTI8gSqhXbxor4THJk5l2aemIp5xVa9kVNVPChNG2doTcv6Ieu8q4sP4nmzg==",
       "path": "osmsharp/6.1.0",
       "hashPath": "osmsharp.6.1.0.nupkg.sha512"
     },
     "protobuf-net/2.3.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8ylltHyPjGUs0Kna9Qxn3NfeEeRH+zU2FkFr+Wf8IQEd3y1P0QP3Jg4BPlUIOKsSEjNHa+les6VlIxr6WvxKFw==",
+      "sha512": "sha512-JG5ZUd42w4osBaDrFpJoEOelyRsuxV+EzY4c8J5o/Qhm+lqhm2iYWUl/T3zf7vhONBD968K190d7co1I2lucOQ==",
       "path": "protobuf-net/2.3.7",
       "hashPath": "protobuf-net.2.3.7.nupkg.sha512"
     },
     "Reminiscence/1.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gED5t0TRkIw2iXigAy1eCOg6OXqee7WUjqdLhwPiv89Yfn9NxH4Z4cc9KYCut9mW2m1Iw8CviON12Ch5Jmh6SA==",
+      "sha512": "sha512-MnI0xq2G1zuBlXEMGK3aGsOxyRjmNBGiAJvsA7OJ1unPg58JGGhQXA+MctI8dpPL/8wYG91z3Cd/rhQ2j4GAyg==",
       "path": "reminiscence/1.2.0",
       "hashPath": "reminiscence.1.2.0.nupkg.sha512"
     },

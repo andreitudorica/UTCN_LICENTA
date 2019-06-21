@@ -24,11 +24,24 @@ namespace RoutingAPI.Controllers
             var routerDb = new RouterDb();
             //load the current Map Data
             var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-            using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+
+            while (true)
             {
-                routerDb = RouterDb.Deserialize(stream);
+                try
+                {
+                    using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                    {
+                        routerDb = RouterDb.Deserialize(stream);
+                    }
+                    break;
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.ToString());
+                }
             }
-            
+
             // create router.
             var router = new Router(routerDb);
             //test link http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261
