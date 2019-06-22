@@ -54,6 +54,22 @@ namespace Sample.Basic
                 routerDb = RouterDb.Deserialize(stream);
             }
 
+            // add custom profiles.
+            var speed1 = routerDb.EdgeProfiles.Add(new AttributeCollection(
+                new Attribute("highway", "residential"),
+                new Attribute("custom-speed", "1")));
+            var speed20 = routerDb.EdgeProfiles.Add(new AttributeCollection(
+                new Attribute("highway", "residential"),
+                new Attribute("custom-speed", "20")));
+            var speed30 = routerDb.EdgeProfiles.Add(new AttributeCollection(
+                new Attribute("highway", "residential"),
+                new Attribute("custom-speed", "30")));
+            var speed40 = routerDb.EdgeProfiles.Add(new AttributeCollection(
+                new Attribute("highway", "residential"),
+                new Attribute("custom-speed", "40")));
+            var speed50 = routerDb.EdgeProfiles.Add(new AttributeCollection(
+                new Attribute("highway", "residential"),
+                new Attribute("custom-speed", "50")));
 
             // define locations, profile and router.
             var home = new Coordinate(46.768293f, 23.629875f);
@@ -71,14 +87,26 @@ namespace Sample.Basic
 
             // update the speed profile of this edge.
             var edgeData = routerDb.Network.GetEdge(resolved.EdgeId).Data;
-            edgeData.Profile = (ushort)88;
+            edgeData.Profile = (ushort)speed1;
             routerDb.Network.UpdateEdgeData(resolved.EdgeId, edgeData);
 
             
             // calculate route.
             var routeAfter = router.Calculate(customCar.Fastest(), home, carina);
             var routeAfterGeoJson = routeAfter.ToGeoJson();
-            File.WriteAllText("routeAfterGeoJson.geojson", routeAfterGeoJson);
+            File.WriteAllText("routeAfterSlowGeoJson.geojson", routeAfterGeoJson);
+
+
+            // update the speed profile of this edge.
+            edgeData = routerDb.Network.GetEdge(resolved.EdgeId).Data;
+            edgeData.Profile = (ushort)speed50;
+            routerDb.Network.UpdateEdgeData(resolved.EdgeId, edgeData);
+
+
+            // calculate route.
+            routeAfter = router.Calculate(customCar.Fastest(), home, carina);
+            routeAfterGeoJson = routeAfter.ToGeoJson();
+            File.WriteAllText("routeAfterFastGeoJson.geojson", routeAfterGeoJson);
 
         }
         //// enable logging.
@@ -117,32 +145,7 @@ namespace Sample.Basic
         //int i = 0;
         //while (command != 'q')
         //{
-
-        //    // calculate route.
-        //    var home = new Coordinate(46.768293f, 23.629875f);
-        //    var carina = new Coordinate(46.752623f, 23.577261f);
-        //    var route = router.Calculate(currentProfile, home, carina);
-
-        //    var routeGeoJson = route.ToGeoJson();
-        //    for (uint j = 0; j < routerDb.Network.GeometricGraph.Graph.VertexCount; j++)
-        //    {
-        //        uint fromIndex = routerDb.Network.GeometricGraph.GetEdge(j).From;
-        //        Coordinate fromCoord = routerDb.Network.GeometricGraph.GetVertex(fromIndex);
-        //        uint toIndex = routerDb.Network.GeometricGraph.GetEdge(j).To;
-        //        Coordinate toCoord = routerDb.Network.GeometricGraph.GetVertex(toIndex);
-        //        if (fromCoord.Latitude == route.Shape[55].Latitude && fromCoord.Longitude == route.Shape[55].Longitude
-        //            && toCoord.Latitude == route.Shape[56].Latitude && toCoord.Longitude == route.Shape[56].Longitude)//nu gasesc pereche :(
-        //            Console.WriteLine("AI DE PULA MEA CE TARE!!!");
-        //    }
-
-        //    File.WriteAllText("route"+i+".geojson", routeGeoJson);
-        //    i++;
-        //    command = Console.ReadKey().KeyChar;
-
-        //    var instructions = route.GenerateInstructions(routerDb);
-        //    int a;
-        //    a = 0;
-        //    }
+        
 
         // calculate a sequence.
         // this should be the result: http://geojson.io/#id=gist:xivk/760552b0abbcb37a3026273b165f63b8&map=16/49.5881/6.1115

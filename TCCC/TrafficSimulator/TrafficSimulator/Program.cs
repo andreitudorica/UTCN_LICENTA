@@ -54,8 +54,8 @@ namespace TrafficSimulator
                 //await simulation.TestBasicFlow();
                 if (configuration.SimulationType == ConfigurationModel.SimulationTypeEnum.OneRouteMultipleTimes)
                     await simulation.RunOneRouteMultipleTimes();
-                else if (configuration.SimulationType == ConfigurationModel.SimulationTypeEnum.RandomRoutes)
-                    await simulation.RunRandomRoutes();
+                else if (configuration.SimulationType == ConfigurationModel.SimulationTypeEnum.MultipleRoutes)
+                    await simulation.RunMultipleRoutes();
 
             }
             catch (Exception ex)

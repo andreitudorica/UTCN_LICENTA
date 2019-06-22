@@ -8,7 +8,7 @@ namespace TrafficSimulator.Models
 {
     public class ConfigurationModel
     {
-        public enum SimulationTypeEnum { OneRouteMultipleTimes = 1, RandomRoutes = 2 }
+        public enum SimulationTypeEnum { OneRouteMultipleTimes = 1, MultipleRoutes = 2 }
         public TimeSpan SimulationLength { get; set; }
         public int NumberOfCars { get; set; }
         public TimeSpan RequestDelay { get; set; }

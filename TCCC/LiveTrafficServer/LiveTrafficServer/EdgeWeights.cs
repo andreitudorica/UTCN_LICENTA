@@ -16,6 +16,7 @@ namespace LiveTrafficServer
             for (int i = 1; i <= 50; i++)
             {
                 routerDb.EdgeProfiles.Add(new AttributeCollection(
+                new Itinero.Attributes.Attribute("highway", "residential"),
                 new Itinero.Attributes.Attribute("custom-speed", i + "")));
             }
         }
@@ -49,7 +50,9 @@ namespace LiveTrafficServer
                 var newEdgeData = edgeData.Profile;
                 if (newEdgeData < 87 + 50)
                     newEdgeData++;
-               
+                else
+                    newEdgeData = 87 + 50;
+                //Console.WriteLine("Edge "+edgeId+ "increased speed ("+ (87-edgeData.Profile) + " -> "+ (87-newEdgeData) + ")");
                 edgeData.Profile = (ushort)(newEdgeData);
                 routerDb.Network.UpdateEdgeData(edgeId, edgeData);
             }
@@ -71,6 +74,9 @@ namespace LiveTrafficServer
                 routerDb.EdgeProfiles.Get(newEdgeData).Select(o => o.Key == "custom-speed");
                 if (newEdgeData > 87 + 1)
                     newEdgeData--;
+                else if(newEdgeData < 87 + 1)
+                    newEdgeData = 87 + 50;
+                //Console.WriteLine("Edge " + edgeId + "decreased speed (" + (87 - edgeData.Profile) + " -> " + (87 - newEdgeData) + ")");
                 edgeData.Profile = (ushort)(newEdgeData);
                 routerDb.Network.UpdateEdgeData(edgeId, edgeData);
             }

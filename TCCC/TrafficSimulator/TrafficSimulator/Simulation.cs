@@ -37,7 +37,6 @@ namespace TrafficSimulator
             for (int i = 1; i <= 50; i++)
             {
                 routerDb.EdgeProfiles.Add(new AttributeCollection(
-                    new Itinero.Attributes.Attribute("maxspeed", "RO:urban"),
                     new Itinero.Attributes.Attribute("highway", "residential"),
                     new Itinero.Attributes.Attribute("number-of-cars", "0"),
                     new Itinero.Attributes.Attribute("custom-speed", i + "")));
@@ -123,21 +122,30 @@ namespace TrafficSimulator
             //var endPos = new Itinero.LocalGeo.Coordinate(46.752623f, 23.577261f); //Golden tulip
             try
             {
+                string path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + "participants 0 to 100 - home to cipariu - 5 s delay.txt";
+                if (!File.Exists(path))
+                {
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        sw.WriteLine("Simulation Date: " + DateTime.Now);
+                    }
+                }
                 for (int choiceThreshold = 0; choiceThreshold <= 100; choiceThreshold += 10)// variate threshold if people chosing the sugested route over people chosng the fastest route
                 {
-                    Console.WriteLine("The threshold was set for "+choiceThreshold+"%.");
-                    
+                    Console.WriteLine("The threshold was set for " + choiceThreshold + "%.");
+
                     HttpClient httpClient = new HttpClient();
-                    using (var response = await httpClient.GetAsync(configuration.LiveTrafficServerUri+ "api/values/InitializeMaps"))
+                    using (var response = await httpClient.GetAsync(configuration.LiveTrafficServerUri + "api/values/InitializeMaps"))
                     {
                         Console.WriteLine("The maps have been Initialized in the Live Traffic Server.");
                     }
 
 
-                        Thread thrd;
+                    Thread thrd;
                     //run first car (separately so I can join last thread at the end of this function)
                     Random rnd = new Random();
-                    var choice = (rnd.Next(99)<choiceThreshold) ? "proposed" : "greedy";
+                    var choice = (rnd.Next(99) < choiceThreshold) ? "proposed" : "greedy";
                     TrafficParticipant tp = new TrafficParticipant(0, (new TimeSpan(0, 0, 0)), startPos, endPos, configuration, choice);
                     trafficParticipants.Add(tp);
                     thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));
@@ -153,9 +161,14 @@ namespace TrafficSimulator
                     }
                     while (tp.isDone == false) ;
                     simulationTrafficInflictedDelays.Add(new TimeSpan());
-                    foreach(var trafficp in trafficParticipants)
+                    foreach (var trafficp in trafficParticipants)
                     {
                         simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1] += trafficp.RouteDuration;
+
+                    }
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        sw.WriteLine(choiceThreshold + "% - Total time: " + simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1] + " - Average time: " + (simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1].Milliseconds) / configuration.NumberOfCars);
                     }
                     //compute statistics
                     trafficParticipants.Clear();
@@ -166,35 +179,97 @@ namespace TrafficSimulator
                 Console.WriteLine(e.ToString());
                 return null;
             }
-            foreach (var stid in simulationTrafficInflictedDelays)
-                Console.WriteLine(stid);
+            for (int i = 0; i < 100; i++)
+                foreach (var stid in simulationTrafficInflictedDelays)
+                    Console.WriteLine(stid);
 
             return "done";
         }
 
-        public async Task<string> RunRandomRoutes()
+        public async Task<string> RunMultipleRoutes()
         {
+            List<Itinero.LocalGeo.Coordinate> starts =new List<Itinero.LocalGeo.Coordinate>();
+            List<Itinero.LocalGeo.Coordinate> ends = new List<Itinero.LocalGeo.Coordinate>();
+            starts.Add(new Itinero.LocalGeo.Coordinate(46.7681917f, 23.6310351f));//home
+            starts.Add(new Itinero.LocalGeo.Coordinate(46.7824045f, 23.6397901f));//IRA
+            ends.Add(new Itinero.LocalGeo.Coordinate(46.7611929f, 23.5647638f));//Big Belly 
+            ends.Add(new Itinero.LocalGeo.Coordinate(46.7707019f, 23.5660589f));//Piata 14 Iulie 
+            //var startPos = new Itinero.LocalGeo.Coordinate(46.7681917f, 23.6310351f);//hardcoded start and finish locations
+            //var endPos = new Itinero.LocalGeo.Coordinate(46.7682747f, 23.6221141f);//mercur
+            //var endPos = new Itinero.LocalGeo.Coordinate(46.7687294f, 23.6190373f);//interservisan
+            //var endPos = new Itinero.LocalGeo.Coordinate(46.767546f, 23.5999328f);//cipariu 
+            //var endPos = new Itinero.LocalGeo.Coordinate(46.7611929f, 23.5647638f);//Big Belly 
+            //var endPos = new Itinero.LocalGeo.Coordinate(46.7824045f, 23.6397901f);//IRA 
+            //var endPos = new Itinero.LocalGeo.Coordinate(46.7707019f, 23.5660589f);//Piata 14 Iulie 
+            //var endPos = new Itinero.LocalGeo.Coordinate(46.752623f, 23.577261f); //Golden tulip
             try
             {
-                for (int i = 0; i < 100; i++)
+                string path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + "participants 0 to 100 - home to cipariu - 5 s delay.txt";
+                if (!File.Exists(path))
                 {
-                    using (var httpClient = new HttpClient())
+                    // Create a file to write to.
+                    using (StreamWriter sw = File.CreateText(path))
                     {
-                        DateTime routeRequest = DateTime.Now;
-                        using (var response = await httpClient.GetAsync("https://localhost:44351/api/values"))
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            Console.WriteLine(apiResponse + "Total time:" + (DateTime.Now - routeRequest).ToString(@"dd\.hh\:mm\:ss\.ff"));
-                        }
+                        sw.WriteLine("Simulation Date: " + DateTime.Now);
                     }
                 }
-                return "done";
+                for (int choiceThreshold = 0; choiceThreshold <= 100; choiceThreshold += 10)// variate threshold if people chosing the sugested route over people chosng the fastest route
+                {
+                    Console.WriteLine("The threshold was set for " + choiceThreshold + "%.");
+
+                    HttpClient httpClient = new HttpClient();
+                    using (var response = await httpClient.GetAsync(configuration.LiveTrafficServerUri + "api/values/InitializeMaps"))
+                    {
+                        Console.WriteLine("The maps have been Initialized in the Live Traffic Server.");
+                    }
+
+
+                    Thread thrd;
+                    //run first car (separately so I can join last thread at the end of this function)
+                    Random rnd = new Random();
+                    var choice = (rnd.Next(99) < choiceThreshold) ? "proposed" : "greedy";
+                    var startPos = starts[rnd.Next(starts.Count)];
+                    var endPos = ends[rnd.Next(ends.Count)];
+                    TrafficParticipant tp = new TrafficParticipant(0, (new TimeSpan(0, 0, 0)), startPos, endPos, configuration, choice);
+                    trafficParticipants.Add(tp);
+                    thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));
+                    thrd.Start();
+
+                    for (int i = 1; i < configuration.NumberOfCars; i++)//generate the cars
+                    {
+                        choice = (rnd.Next(99) < choiceThreshold) ? "proposed" : "greedy";
+                        startPos = starts[rnd.Next(starts.Count)];
+                        endPos = ends[rnd.Next(ends.Count)];
+                        tp = new TrafficParticipant(i, (new TimeSpan(0, 0, +configuration.RequestDelay.Seconds * i)), startPos, endPos, configuration, choice);
+                        trafficParticipants.Add(tp);
+                        thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));//run each car on an independent thread
+                        thrd.Start();
+                    }
+                    while (tp.isDone == false);
+                    simulationTrafficInflictedDelays.Add(new TimeSpan());
+                    foreach (var trafficp in trafficParticipants)
+                    {
+                        simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1] += trafficp.RouteDuration;
+
+                    }
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        sw.WriteLine(choiceThreshold + "% - Total time: " + simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1] + " - Average time: " + (simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1].Milliseconds) / configuration.NumberOfCars);
+                    }
+                    //compute statistics
+                    trafficParticipants.Clear();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(e.ToString());
                 return null;
             }
+            for (int i = 0; i < 100; i++)
+                foreach (var stid in simulationTrafficInflictedDelays)
+                    Console.WriteLine(stid);
+
+            return "done";
         }
     }
 }
