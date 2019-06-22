@@ -31,14 +31,20 @@ namespace LiveTrafficServer.Controllers
                 {
                     routerDb.LoadOsmData(stream, customCar);
                 }
-
+                Startup.profilesStart = routerDb.EdgeProfiles.Add(new AttributeCollection(
+                            
+                new Itinero.Attributes.Attribute("highway", "residential"),
+                new Itinero.Attributes.Attribute("custom-speed", "0"),
+                new Itinero.Attributes.Attribute("car-count", "0")));
                 //add the custom edge profiles to the routerDb (used for live traffic status on map)
-                for (int i = 1; i <= 50; i++)
-                {
-                    routerDb.EdgeProfiles.Add(new AttributeCollection(
-                        new Itinero.Attributes.Attribute("highway", "residential"),
-                        new Itinero.Attributes.Attribute("custom-speed", i + "")));
-                }
+                for (int c = 0; c < 100; c++)
+                    for (int cs = 1; cs <= 50; cs++)
+                    {
+                        routerDb.EdgeProfiles.Add(new AttributeCollection(
+                            new Itinero.Attributes.Attribute("highway", "residential"),
+                            new Itinero.Attributes.Attribute("custom-speed", cs + ""),
+                            new Itinero.Attributes.Attribute("car-count", c+"")));
+                    }
 
                 //write the routerDb to file so every project can use it
                 Startup.routerDb = routerDb;
@@ -74,15 +80,15 @@ namespace LiveTrafficServer.Controllers
             }
 
             using (var httpClient = new HttpClient())
+            {
+                //using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261"))
+                //http://localhost:62917/api/router/GetRoute?profile=shortest&startLat=46.7681922912598&startLon=23.6310348510742&endLat=46.7675476074219&endLon=23.5999336242676
+                using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=" + profile + "&startLat=" + startLat + "&startLon=" + startLon + "&endLat=" + endLat + "&endLon=" + endLon))
                 {
-                    //using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261"))
-                    //http://localhost:62917/api/router/GetRoute?profile=shortest&startLat=46.7681922912598&startLon=23.6310348510742&endLat=46.7675476074219&endLon=23.5999336242676
-                    using (var response = await httpClient.GetAsync("http://localhost:62917/api/router/GetRoute?profile=" + profile + "&startLat=" + startLat + "&startLon=" + startLon + "&endLat=" + endLat + "&endLon=" + endLon))
-                    {
-                        apiResponse = await response.Content.ReadAsStringAsync();
-                    }
+                    apiResponse = await response.Content.ReadAsStringAsync();
                 }
-    
+            }
+
             return apiResponse;
         }
 
@@ -96,12 +102,12 @@ namespace LiveTrafficServer.Controllers
                 string result = "";
 
                 //result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
-                lock(Startup.routerDb)
-                EdgeWeights.HandleChange( previousEdgeLon,  previousEdgeLat,  currentEdgeLon,  currentEdgeLat);
+                lock (Startup.routerDb)
+                    EdgeWeights.HandleChange(previousEdgeLon, previousEdgeLat, currentEdgeLon, currentEdgeLat);
                 //file concurency to be handled 
-                
+
                 //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
-                
+
                 //result += " writing RouterDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
                 //result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
                 return Ok("succesful");

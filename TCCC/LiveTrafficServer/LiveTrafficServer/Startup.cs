@@ -19,6 +19,7 @@ namespace LiveTrafficServer
 
         public static RouterDb routerDb;
         public static Route route;
+        public static uint profilesStart;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;

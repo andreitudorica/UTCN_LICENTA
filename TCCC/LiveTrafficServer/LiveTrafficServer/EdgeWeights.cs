@@ -46,19 +46,24 @@ namespace LiveTrafficServer
             try
             {
                 // update the speed profile of this edge.
-                var edgeData = routerDb.Network.GetEdge(edgeId).Data;
-                var newEdgeData = edgeData.Profile;
-                if (newEdgeData < 87 + 50)
-                    newEdgeData++;
+                var edge = routerDb.Network.GetEdge(edgeId);
+                var edgeData = edge.Data;
+                var edgeProfile = edgeData.Profile;
+                var carCount = Int32.Parse(routerDb.EdgeProfiles.Get(edgeProfile).Where(o=>o.Key=="car-count").First().Value);
+                var dist = edgeData.Distance;
+                if (carCount > 0)
+                    carCount--;
+                var occupancy = (carCount * 4) / dist;
+                if ((int)(50 - 50 * occupancy) <= 0)
+                    edgeData.Profile = (ushort)(Startup.profilesStart + carCount * 50);
                 else
-                    newEdgeData = 87 + 50;
-                //Console.WriteLine("Edge "+edgeId+ "increased speed ("+ (87-edgeData.Profile) + " -> "+ (87-newEdgeData) + ")");
-                edgeData.Profile = (ushort)(newEdgeData);
+                    edgeData.Profile = (ushort)(Startup.profilesStart + carCount * 50 + (int)(50 - 50 * occupancy));
                 routerDb.Network.UpdateEdgeData(edgeId, edgeData);
             }
             catch (Exception e)
             {
-
+                int a = 1;
+                a++;
                 Console.WriteLine(e.Message);
             }
         }
@@ -70,44 +75,74 @@ namespace LiveTrafficServer
                 // update the speed profile of this edge.
                 var edge = routerDb.Network.GetEdge(edgeId);
                 var edgeData = edge.Data;
-                var newEdgeData = edgeData.Profile;
-                routerDb.EdgeProfiles.Get(newEdgeData).Select(o => o.Key == "custom-speed");
-                if (newEdgeData > 87 + 1)
-                    newEdgeData--;
-                else if(newEdgeData < 87 + 1)
-                    newEdgeData = 87 + 50;
-                //Console.WriteLine("Edge " + edgeId + "decreased speed (" + (87 - edgeData.Profile) + " -> " + (87 - newEdgeData) + ")");
-                edgeData.Profile = (ushort)(newEdgeData);
+                var edgeProfile = edgeData.Profile;
+
+                if (edgeProfile < Startup.profilesStart)
+                {
+                    edgeData.Profile = (ushort)Startup.profilesStart;
+                    routerDb.Network.UpdateEdgeData(edgeId, edgeData);
+                    edge = routerDb.Network.GetEdge(edgeId);
+                    edgeData = edge.Data;
+                    edgeProfile = edgeData.Profile;
+                }
+                var carCount = Int32.Parse(routerDb.EdgeProfiles.Get(edgeProfile).Where(o => o.Key == "car-count").First().Value);
+                var dist = edgeData.Distance;
+                if (carCount < 100)
+                    carCount++;
+                var occupancy = (carCount * 4) / dist;
+                if ((int)(50 - 50 * occupancy) <= 0)
+                    edgeData.Profile = (ushort)(Startup.profilesStart + carCount * 50);
+                else
+                    edgeData.Profile = (ushort)(Startup.profilesStart + carCount * 50 + (int)(50 - 50 * occupancy));
                 routerDb.Network.UpdateEdgeData(edgeId, edgeData);
             }
             catch (Exception e)
             {
-
+                int a = 1;
+                a++;
                 Console.WriteLine(e.Message);
             }
         }
 
         public static void HandleChange(float previousEdgeLon, float previousEdgeLat, float currentEdgeLon, float currentEdgeLat)
         {
+            uint previousEdgeId = 0, currentEdgeId = 0;
+            RouterPoint resolvedPrevious, resolvedCurrent;
+            Coordinate currentEdgeLocation, previousEdgeLocation;
+            var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
+            RouterDb routerDb = Startup.routerDb;
+            var router = new Router(routerDb);
 
             try
             {
-                var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-                RouterDb routerDb = Startup.routerDb;
-                var router = new Router(routerDb);
-
                 if (previousEdgeLon != 0)
                 {
-                    var previousEdgeLocation = new Coordinate(previousEdgeLon, previousEdgeLat);
-                    var resolvedPrevious = router.Resolve(customCar.Fastest(), previousEdgeLocation);
-                    uint previousEdgeId = resolvedPrevious.EdgeId;
-                    DecreaseWeight(routerDb, (uint)previousEdgeId);
+                    previousEdgeLocation = new Coordinate(previousEdgeLon, previousEdgeLat);
+                    resolvedPrevious = router.Resolve(customCar.Shortest(), previousEdgeLocation);
+                    previousEdgeId = resolvedPrevious.EdgeId;
                 }
+
+
                 if (currentEdgeLon != 0)
                 {
-                    var currentEdgeLocation = new Coordinate(currentEdgeLon, currentEdgeLat);
-                    var resolvedCurrent = router.Resolve(customCar.Fastest(), currentEdgeLocation);
-                    uint currentEdgeId = resolvedCurrent.EdgeId;
+                    currentEdgeLocation = new Coordinate(currentEdgeLon, currentEdgeLat);
+                    resolvedCurrent = router.Resolve(customCar.Shortest(), currentEdgeLocation);
+                    currentEdgeId = resolvedCurrent.EdgeId;
+                }
+
+                if (previousEdgeLon != 0 && currentEdgeId == 0)
+                {
+                    DecreaseWeight(routerDb, (uint)previousEdgeId);
+                }
+
+                if (currentEdgeLon != 0 && previousEdgeId == 0)
+                {
+                    IncreaseWeight(routerDb, (uint)currentEdgeId);
+                }
+
+                if (previousEdgeId != 0 && currentEdgeId != 0 && previousEdgeId != currentEdgeId)
+                {
+                    DecreaseWeight(routerDb, (uint)previousEdgeId);
                     IncreaseWeight(routerDb, (uint)currentEdgeId);
                 }
             }
@@ -115,6 +150,7 @@ namespace LiveTrafficServer
             {
 
                 Console.WriteLine(e.Message);
+
             }
         }
     }

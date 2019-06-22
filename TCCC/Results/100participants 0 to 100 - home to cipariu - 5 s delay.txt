@@ -1,0 +1,5 @@
+Simulation Date: 22/06/2019 13:52:31
+0% - Total time: 04:59:17.3370000 - Average time: 3
+0% - Total time: 04:59:17.3370000 - Average time: 3
+0% - Total time: 04:59:17.3370000 - Average time: 3
+10% - Total time: 04:59:17.3370000 - Average time: 3

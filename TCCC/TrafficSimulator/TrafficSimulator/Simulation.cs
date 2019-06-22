@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TrafficSimulator.Models;
@@ -22,7 +23,7 @@ namespace TrafficSimulator
         private List<TrafficParticipant> trafficParticipants;
         private List<TimeSpan> simulationTrafficInflictedDelays;
         public static int threshold = 0;
-
+        public DateTime simulationStart;
         public void InitializeMaps()
         {
             var customCar = DynamicVehicle.Load(File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
@@ -61,6 +62,7 @@ namespace TrafficSimulator
             configuration = config;
             trafficParticipants = new List<TrafficParticipant>();
             simulationTrafficInflictedDelays = new List<TimeSpan>();
+            simulationStart = DateTime.Now;
         }
 
         public void TryNewStuff()
@@ -122,7 +124,7 @@ namespace TrafficSimulator
             //var endPos = new Itinero.LocalGeo.Coordinate(46.752623f, 23.577261f); //Golden tulip
             try
             {
-                string path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + "participants 0 to 100 - home to cipariu - 5 s delay.txt";
+                string path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + " participants 0 to 100 - home to cipariu - 5 s delay - TS "  +DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".txt";
                 if (!File.Exists(path))
                 {
                     // Create a file to write to.
@@ -138,7 +140,9 @@ namespace TrafficSimulator
                     HttpClient httpClient = new HttpClient();
                     using (var response = await httpClient.GetAsync(configuration.LiveTrafficServerUri + "api/values/InitializeMaps"))
                     {
+#if DEBUG
                         Console.WriteLine("The maps have been Initialized in the Live Traffic Server.");
+#endif
                     }
 
 
@@ -159,7 +163,46 @@ namespace TrafficSimulator
                         thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));//run each car on an independent thread
                         thrd.Start();
                     }
-                    while (tp.isDone == false) ;
+
+                    #region CONSOLE
+                    while (tp.isDone == false)
+                    {
+#if ! DEBUG             
+                        List<TrafficParticipant> failed = new List<TrafficParticipant>();
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendLine("Simulation time: " + (DateTime.Now - simulationStart).ToString(@"dd\.hh\:mm\:ss"));
+                        sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+                        if (simulationTrafficInflictedDelays.Count > 0)
+                        {
+                            sb.AppendLine("Current Statistics: ");
+                            for (int i = 0; i < simulationTrafficInflictedDelays.Count; i++)
+                            {
+                                sb.AppendLine("Threshold " + i * 10 + "%: Total Time " + simulationTrafficInflictedDelays[i]);
+                            }
+                            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+                        }
+                        sb.AppendLine("The threshold was set for " + choiceThreshold + "%.");
+                        foreach (var trafficpart in trafficParticipants)
+                        {
+                            if (trafficpart.hasFailed)
+                                failed.Add(trafficpart);
+                            if (trafficpart.hasStarted == true && trafficpart.isDone == false)
+                                sb.AppendLine("Traffic Participant "+trafficpart.ID + " - (" + trafficpart.doneSteps + " / " + trafficpart.steps + ") " + trafficpart.behaviour+ " route");
+                        }
+                        if(failed.Count>0)
+                        {
+                            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+                            sb.AppendLine("Failed traffic participants");
+                            foreach (var f in failed)
+                                sb.AppendLine("Traffic Participant "+f.ID+" failed with message: "+f.errorMessage);
+                        }
+                        Console.Clear();
+                        Console.Write(sb.ToString());
+                        Thread.Sleep(1000);
+#endif                  
+                    }
+                    #endregion
+
                     simulationTrafficInflictedDelays.Add(new TimeSpan());
                     foreach (var trafficp in trafficParticipants)
                     {
@@ -179,10 +222,11 @@ namespace TrafficSimulator
                 Console.WriteLine(e.ToString());
                 return null;
             }
+#if DEBUG
             for (int i = 0; i < 100; i++)
                 foreach (var stid in simulationTrafficInflictedDelays)
                     Console.WriteLine(stid);
-
+#endif
             return "done";
         }
 
@@ -204,7 +248,7 @@ namespace TrafficSimulator
             //var endPos = new Itinero.LocalGeo.Coordinate(46.752623f, 23.577261f); //Golden tulip
             try
             {
-                string path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + "participants 0 to 100 - home to cipariu - 5 s delay.txt";
+                string path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + "participants 0 to 100 - multiple routes - 5 s delay.txt";
                 if (!File.Exists(path))
                 {
                     // Create a file to write to.
@@ -245,7 +289,44 @@ namespace TrafficSimulator
                         thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));//run each car on an independent thread
                         thrd.Start();
                     }
-                    while (tp.isDone == false);
+                    #region CONSOLE
+                    while (tp.isDone == false)
+                    {
+#if ! DEBUG             
+                        List<TrafficParticipant> failed = new List<TrafficParticipant>();
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendLine("Simulation time: " + (DateTime.Now - simulationStart).ToString(@"dd\.hh\:mm\:ss"));
+                        sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+                        if (simulationTrafficInflictedDelays.Count > 0)
+                        {
+                            sb.AppendLine("Current Statistics: ");
+                            for (int i = 0; i < simulationTrafficInflictedDelays.Count; i++)
+                            {
+                                sb.AppendLine("Threshold " + i * 10 + "%: Total Time " + simulationTrafficInflictedDelays[i]);
+                            }
+                            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+                        }
+                        sb.AppendLine("The threshold was set for " + choiceThreshold + "%.");
+                        foreach (var trafficpart in trafficParticipants)
+                        {
+                            if (trafficpart.hasFailed)
+                                failed.Add(trafficpart);
+                            if (trafficpart.hasStarted == true && trafficpart.isDone == false)
+                                sb.AppendLine("Traffic Participant "+trafficpart.ID + " - (" + trafficpart.doneSteps + " / " + trafficpart.steps + ") " + trafficpart.behaviour+ " route");
+                        }
+                        if(failed.Count>0)
+                        {
+                            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+                            sb.AppendLine("Failed traffic participants");
+                            foreach (var f in failed)
+                                sb.AppendLine("Traffic Participant "+f.ID+" failed with message: "+f.errorMessage);
+                        }
+                        Console.Clear();
+                        Console.Write(sb.ToString());
+                        Thread.Sleep(1000);
+#endif                  
+                    }
+                    #endregion
                     simulationTrafficInflictedDelays.Add(new TimeSpan());
                     foreach (var trafficp in trafficParticipants)
                     {

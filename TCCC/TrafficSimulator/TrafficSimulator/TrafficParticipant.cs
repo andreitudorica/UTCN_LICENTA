@@ -16,7 +16,7 @@ namespace TrafficSimulator
 {
     class TrafficParticipant
     {
-        private int ID { get; set; }
+        public int ID { get; set; }
         private TimeSpan requestDelay { get; set; }//the momment in simulation this traffic participant requests a route
         private Itinero.LocalGeo.Coordinate startPos { get; set; } //the start location of this traffic participant
         private Itinero.LocalGeo.Coordinate endPos { get; set; } //the target location of this participant
@@ -28,9 +28,13 @@ namespace TrafficSimulator
         public TimeSpan TrafficInflictedDelay { get; set; }
         public TimeSpan RoutingInflictedDelay { get; set; }
         public bool isDone { get; set; }
-
-
-
+        public bool hasStarted { get; set; }
+        public int doneSteps { get; set; }
+        public int steps { get; set; }
+        public bool hasFailed { get; set; }
+        public string errorMessage { get; set; }
+        public DateTime simulationJoinTime { get; set; }
+        private HttpClient httpClient { get; set; }
 
         public TrafficParticipant(int id, TimeSpan delay, Itinero.LocalGeo.Coordinate start, Itinero.LocalGeo.Coordinate end, ConfigurationModel config, string b)
         {
@@ -42,7 +46,13 @@ namespace TrafficSimulator
             behaviour = b;
             route = new RouteModel();
             isDone = false;
-            Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " was created and will request a route in " + delay.ToString());
+            hasStarted = false;
+            hasFailed = false;
+            errorMessage = "";
+            httpClient = new HttpClient();
+#if DEBUG  
+            Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " was created and will request a route in " + TimeSpan.FromTicks(delay.Ticks*CommonVariables.timeMultiplyer));
+#endif
         }
 
         public string HttpRequestBuilder(string profile, double slat, double slon, double elat, double elon)
@@ -155,94 +165,130 @@ namespace TrafficSimulator
             TimeSpan timeOfFeature = ComputeTimeOfFeature(f);
             return new TimeSpan(0, 0, 0, 0, (int)(timeOfFeature.TotalMilliseconds * (segmentDistance / featureDistance)));
         }
-        public async void RunTrafficParticipant()
+
+        public async Task getRoute(Itinero.LocalGeo.Coordinate startPos, Itinero.LocalGeo.Coordinate endPos)
         {
-            #region initialize traffic participant
-            var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-            Thread.Sleep(requestDelay);//delay before route request
+            bool receivedRoute = false;
+            string apiResponse;
             string routeRequestURI;
-            #endregion
-            #region decide behabiour and request route
+
             if (behaviour == "greedy")
                 routeRequestURI = HttpRequestBuilder("shortest", startPos.Latitude, startPos.Longitude, endPos.Latitude, endPos.Longitude);
             else
                 routeRequestURI = HttpRequestBuilder("best", startPos.Latitude, startPos.Longitude, endPos.Latitude, endPos.Longitude);
-            HttpClient httpClient = new HttpClient();
-            bool receivedRoute = false;
-            string apiResponse;
+
+
             while (!receivedRoute)//make sure the participant receives a route (this won't fail as the coordinates chosen are known to have a route between them)
             {
                 using (var response = await httpClient.GetAsync(routeRequestURI))
                 {
+#if DEBUG
                     Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant " + ID + " is requesting a route. His behaviour is " + behaviour);
+#endif
                     apiResponse = await response.Content.ReadAsStringAsync();
                     try
                     {
                         route = JsonConvert.DeserializeObject<RouteModel>(apiResponse);
+#if DEBUG
                         Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant " + ID + " received a route (TrafficParticipant)" + ID + "route.txt");
-
-                        System.IO.File.WriteAllText("TrafficParticipant" + ID + "route.txt", apiResponse);
+#endif
+                        System.IO.File.WriteAllText(CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID + "route.txt", apiResponse);
 
                         RouteDuration = new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[route.features.Count - 1].properties.time) * 1000));
                         receivedRoute = true;
                     }
                     catch (Exception e)
                     {
+#if DEBUG
                         Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " received the following answer:" + e.ToString());
+#endif
                     }
                 }
             }
-            #endregion
+        }
 
-            #region  interpret the received route
-            //in order to get the ID of the edge we are trying to change (add a car) we need a snapping point as close to it as possible, so I chose the middle
-            var currentMiddle = ComputeMiddle(0, 0);//get the first edge of the path
-            var previousMiddle = currentMiddle;
-            #region START ROUTE
-
-            var updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);//let the live traffic server know that you started the route 
-            using (var response = await httpClient.GetAsync(updateURI))
+        public async void RunTrafficParticipant()
+        {
+            try
             {
-                Console.WriteLine("TP" + ID + " Started his route with result: " + response.ReasonPhrase + " First update in " + ComputeTimeOfSegment(0, 0) + " seconds");
-            }
-            Thread.Sleep(ComputeTimeOfSegment(0, 0));
 
-            #endregion
-            #region FOLLOW ROUTE
-            for (int i = 1; i < route.features.Count - 2; i++)
-            {
-                TimeSpan computedTimeOfFeature = new TimeSpan(0, 0, 0, 0);
-                double computedDistanceOfFeature = 0;
-                for (int j = 0; j < route.features[i].geometry.coordinates.Count - 1; j++)
+                #region initialize traffic participant
+
+                var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
+                Thread.Sleep(TimeSpan.FromTicks(requestDelay.Ticks*CommonVariables.timeMultiplyer));//delay before route request
+                simulationJoinTime = DateTime.Now;
+
+                #endregion
+                #region request route initial route
+                await getRoute(startPos, endPos);
+                #endregion
+
+                #region  interpret the received route
+                //in order to get the ID of the edge we are trying to change (add a car) we need a snapping point as close to it as possible, so I chose the middle
+                var currentMiddle = ComputeMiddle(0, 0);//get the first edge of the path
+                var previousMiddle = currentMiddle;
+                #region START ROUTE
+                hasStarted = true;
+                steps = route.features.Count();
+                doneSteps = 0;
+                var updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);//let the live traffic server know that you started the route 
+                await httpClient.GetAsync(updateURI);
+                doneSteps = 1;
+#if DEBUG
+                Console.WriteLine("TP" + ID + " Started his route. First update in " + TimeSpan.FromTicks(ComputeTimeOfSegment(0, 0).Ticks * CommonVariables.timeMultiplyer) + " seconds");
+#endif
+                Thread.Sleep(TimeSpan.FromTicks(ComputeTimeOfSegment(0, 0).Ticks * CommonVariables.timeMultiplyer));
+
+                #endregion
+                #region FOLLOW ROUTE
+                for (int i = 1; i < route.features.Count - 2; i++)
                 {
-                    TimeSpan timeOfSegment = ComputeTimeOfSegment(i, j);
-                    computedTimeOfFeature += timeOfSegment;
-                    computedDistanceOfFeature += ComputeDistanceOfSegment(i, j);
-                    previousMiddle = currentMiddle;
-                    currentMiddle = ComputeMiddle(i, j);
-                    updateURI = HttpRequestBuilder(previousMiddle.Latitude, previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
-
-                    using (var response = await httpClient.GetAsync(updateURI))
+                    //request new route de la feature i+1
+                    doneSteps = i + 1;
+                    TimeSpan computedTimeOfFeature = new TimeSpan(0, 0, 0, 0);
+                    double computedDistanceOfFeature = 0;
+                    for (int j = 0; j < route.features[i].geometry.coordinates.Count - 1; j++)
                     {
-                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                            Console.WriteLine("TP" + ID + " Updated his segment (" + ComputeStartOfSegment(i, j).ToString() + "->" + ComputeEndOfSegment(i, j).ToString() + ") with result: " + response.ReasonPhrase + " Next update in " + timeOfSegment + " seconds (" + i + "/" + route.features.Count + ")");
-                        else
+                        TimeSpan timeOfSegment = ComputeTimeOfSegment(i, j);
+                        computedTimeOfFeature += timeOfSegment;
+                        computedDistanceOfFeature += ComputeDistanceOfSegment(i, j);
+                        previousMiddle = currentMiddle;
+                        currentMiddle = ComputeMiddle(i, j);
+                        updateURI = HttpRequestBuilder(previousMiddle.Latitude, previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
+                        await httpClient.GetAsync(updateURI);
+#if DEBUG
+                   
+                    
+                       // if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                            Console.WriteLine("TP" + ID + " Updated his segment (" + ComputeStartOfSegment(i, j).ToString() + "->" + ComputeEndOfSegment(i, j).ToString() + "). Next update in " + TimeSpan.FromTicks(timeOfSegment.Ticks * CommonVariables.timeMultiplyer) + " seconds (" + i + "/" + route.features.Count + ")");
+                       /* else
                             Console.WriteLine("TP" + ID + " Updated his location with result: " + response.ReasonPhrase + " Message " + response.Content.ToString());
+                    */
+#endif
+                        Thread.Sleep(TimeSpan.FromTicks(timeOfSegment.Ticks*CommonVariables.timeMultiplyer));
                     }
-                    Thread.Sleep(timeOfSegment);
+                    //Console.WriteLine("Computed Time of feature: " + computedTimeOfFeature + "/" + computedDistanceOfFeature + "\nActual Time of feature:   " + ComputeTimeOfFeature(i) + "/" + ComputeDistanceOfFeature(i));
                 }
-                //Console.WriteLine("Computed Time of feature: " + computedTimeOfFeature + "/" + computedDistanceOfFeature + "\nActual Time of feature:   " + ComputeTimeOfFeature(i) + "/" + ComputeDistanceOfFeature(i));
+                #endregion
+                #region FINISH ROUTE
+                doneSteps = route.features.Count;
+                updateURI = HttpRequestBuilder(currentMiddle.Latitude, currentMiddle.Longitude, 0, 0);
+                using (var response = await httpClient.GetAsync(updateURI))
+                {
+#if DEBUG
+                Console.WriteLine("TrafficParticipant" + ID + " FINISHED route after " + TimeSpan.FromTicks((DateTime.Now-simulationJoinTime).Ticks/CommonVariables.timeMultiplyer));
+#endif
+                }
+                isDone = true;
+                #endregion
+                #endregion
             }
-            #endregion
-            #region FINISH ROUTE
-            updateURI = HttpRequestBuilder(currentMiddle.Latitude, currentMiddle.Longitude, 0, 0);
-            using (var response = await httpClient.GetAsync(updateURI))
+            catch (Exception e)
             {
-                Console.WriteLine("TrafficParticipant" + ID + " FINISHED route after " + (new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[route.features.Count - 1].properties.time) * 1000))));
+                hasFailed = true;
+                errorMessage = e.Message;
+                throw;
             }
-            isDone = true;
-            #endregion 
-            #endregion 
             //update statistics
         }
     }
