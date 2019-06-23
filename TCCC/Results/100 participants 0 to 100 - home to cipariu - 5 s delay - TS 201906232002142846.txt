@@ -1,0 +1,10 @@
+Simulation Date: 23/06/2019 20:02:14
+Threshold 0%
+ Total Time: 17:41:36.3285698
+ Average Time: 00:10:36.9632856
+ Average Time without waitings: 16:55:13.3623854
+ Average features touched 48.01 features
+ Average segments touched 89.03segments
+ Average speed 39.7927206307009km/h
+ Average update wait Time 00:00:00.3125625
+ Average route request wait Time 00:00:00.3125625

@@ -98,18 +98,8 @@ namespace LiveTrafficServer.Controllers
         {
             try
             {
-                var time = DateTime.Now;
-                string result = "";
-
-                //result += "reading RouteDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss") + " ";
                 lock (Startup.routerDb)
                     EdgeWeights.HandleChange(previousEdgeLon, previousEdgeLat, currentEdgeLon, currentEdgeLat);
-                //file concurency to be handled 
-
-                //routerDb.AddContracted(routerDb.GetSupportedProfile("car"));
-
-                //result += " writing RouterDB: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
-                //result += " finished computing route: " + (DateTime.Now - time).ToString(@"dd\.hh\:mm\:ss\.ff") + " ";
                 return Ok("succesful");
             }
             catch (Exception e)

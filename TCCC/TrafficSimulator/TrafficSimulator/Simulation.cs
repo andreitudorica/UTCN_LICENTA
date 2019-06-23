@@ -16,40 +16,30 @@ using TrafficSimulator.Models;
 
 namespace TrafficSimulator
 {
+    internal class StatisticsEntry
+    {
+
+        public TimeSpan totalTime;
+        public TimeSpan averageTime;
+        public double averageTouchedFeatures;
+        public double averageTouchedSegments;
+        public double averageSpeed;
+        public TimeSpan totalUpdateWaitTime;
+        public TimeSpan totalRouteRequestWaitTime;
+        public TimeSpan averageUpdateWaitTime;
+        public TimeSpan averageRouteRequestWaitTime;
+        public TimeSpan averageTimeWithoutWaiting;
+    }
+
     internal class Simulation
     {
         private ConfigurationModel configuration;
         public static RouterDb routerDb;
         private List<TrafficParticipant> trafficParticipants;
-        private List<TimeSpan> simulationTrafficInflictedDelays;
+        private List<StatisticsEntry> Statistics;
         public static int threshold = 0;
         public DateTime simulationStart;
-        public void InitializeMaps()
-        {
-            var customCar = DynamicVehicle.Load(File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-            routerDb = new RouterDb();
-            //load pbf file of the map
-            using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.PbfMapFileName))
-            {
-                routerDb.LoadOsmData(stream, customCar);
-            }
-
-            //add the custom edge profiles to the routerDb (used for live traffic status on map)
-            for (int i = 1; i <= 50; i++)
-            {
-                routerDb.EdgeProfiles.Add(new AttributeCollection(
-                    new Itinero.Attributes.Attribute("highway", "residential"),
-                    new Itinero.Attributes.Attribute("number-of-cars", "0"),
-                    new Itinero.Attributes.Attribute("custom-speed", i + "")));
-            }
-
-            //write the routerDb to file so every project can use it
-            using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
-            {
-                routerDb.Serialize(stream);
-            }
-        }
-
+        public string path;
 
         public Simulation(ConfigurationModel config)
         {
@@ -61,7 +51,7 @@ namespace TrafficSimulator
             }
             configuration = config;
             trafficParticipants = new List<TrafficParticipant>();
-            simulationTrafficInflictedDelays = new List<TimeSpan>();
+            Statistics = new List<StatisticsEntry>();
             simulationStart = DateTime.Now;
         }
 
@@ -114,6 +104,91 @@ namespace TrafficSimulator
             }
         }
 
+        public void ReleaseConsole(int choiceThreshold)
+        {
+            List<TrafficParticipant> failed = new List<TrafficParticipant>();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Simulation time: " + (DateTime.Now - simulationStart).ToString(@"dd\.hh\:mm\:ss"));
+            sb.AppendLine("Traffic Participants: " + configuration.NumberOfCars + " Time multiplyer: " + CommonVariables.timeMultiplyer);
+            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+            if (Statistics.Count > 0)
+            {
+                sb.AppendLine("Current Statistics: ");
+                for (int i = 0; i < Statistics.Count; i++)
+                {
+                    sb.AppendLine("Threshold: " + i * 10
+                        + "% Total Time: " + Statistics[i].totalTime
+                        + "\n Average Time: " + Statistics[i].averageTime
+                        + "\n Average Time without waitings: " + (Statistics[i].averageTime - Statistics[i].averageUpdateWaitTime - Statistics[i].averageRouteRequestWaitTime)
+                        + "\n Average features touched " + Statistics[i].averageTouchedFeatures
+                        + "\n Average segments touched " + Statistics[i].averageTouchedSegments
+                        + "\n Average speed " + Statistics[i].averageSpeed
+                        + "\n Average update wait Time: " + Statistics[i].averageUpdateWaitTime
+                        + "\n Average route request wait Time: " + Statistics[i].averageUpdateWaitTime
+                        + "____________________________________________");
+                }
+                sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+            }
+            sb.AppendLine("The threshold was set for " + choiceThreshold + "%.");
+            foreach (var trafficpart in trafficParticipants)
+            {
+                if (trafficpart.hasFailed)
+                    failed.Add(trafficpart);
+                if (trafficpart.hasStarted == true && trafficpart.isDone == false && trafficpart.hasFailed == false)
+                    sb.AppendLine("Traffic Participant " + trafficpart.ID + " - (" + trafficpart.doneSteps + " / " + trafficpart.steps + ") " + trafficpart.behaviour + " route" + " - reroutings " + trafficpart.reroutingCount);
+            }
+            if (failed.Count > 0)
+            {
+                sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
+                sb.AppendLine("Failed traffic participants");
+                foreach (var f in failed)
+                    sb.AppendLine("Traffic Participant " + f.ID + " failed with message: " + f.errorMessage);
+            }
+            Console.Clear();
+            Console.Write(sb.ToString());
+        }
+
+        public void ManageStatistics(int choiceThreshold)
+        {
+            Statistics.Add(new StatisticsEntry());
+            foreach (var trafficp in trafficParticipants)
+            {
+                if (trafficp.hasFailed == false)
+                {
+                    Statistics[Statistics.Count - 1].totalTime += trafficp.RouteDuration;
+                    Statistics[Statistics.Count - 1].averageTimeWithoutWaiting += trafficp.RouteDuration - trafficp.RouteRequestTotalWaitTime - trafficp.UpdateRequestTotalWaitTime;
+                    Statistics[Statistics.Count - 1].averageTouchedFeatures += trafficp.steps;
+                    Statistics[Statistics.Count - 1].averageTouchedSegments += trafficp.segmentsTouched;
+                    Statistics[Statistics.Count - 1].averageSpeed += trafficp.averageSpeed;
+                    Statistics[Statistics.Count - 1].totalRouteRequestWaitTime += trafficp.RouteRequestTotalWaitTime;
+                    Statistics[Statistics.Count - 1].totalUpdateWaitTime += trafficp.UpdateRequestTotalWaitTime;
+                    Statistics[Statistics.Count - 1].averageRouteRequestWaitTime += TimeSpan.FromTicks(trafficp.RouteRequestTotalWaitTime.Ticks / trafficp.RouteRequests);
+                    Statistics[Statistics.Count - 1].averageUpdateWaitTime += TimeSpan.FromTicks(trafficp.UpdateRequestTotalWaitTime.Ticks / trafficp.UpdateRequests);
+                }
+            }
+            Statistics[Statistics.Count - 1].averageTime = TimeSpan.FromTicks(Statistics[Statistics.Count - 1].totalTime.Ticks / configuration.NumberOfCars);
+            Statistics[Statistics.Count - 1].averageTouchedFeatures /= configuration.NumberOfCars;
+            Statistics[Statistics.Count - 1].averageTouchedSegments /= configuration.NumberOfCars;
+            Statistics[Statistics.Count - 1].averageRouteRequestWaitTime = TimeSpan.FromTicks(Statistics[Statistics.Count - 1].averageRouteRequestWaitTime.Ticks / configuration.NumberOfCars);
+            Statistics[Statistics.Count - 1].averageUpdateWaitTime = TimeSpan.FromTicks(Statistics[Statistics.Count - 1].averageUpdateWaitTime.Ticks / configuration.NumberOfCars);
+            Statistics[Statistics.Count - 1].averageSpeed /= configuration.NumberOfCars;
+
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine("Threshold " + choiceThreshold
+                            + "%\n Total Time: " + Statistics[choiceThreshold / 10].totalTime
+                            + "\n Average Time: " + Statistics[choiceThreshold / 10].averageTime
+                            + "\n Average Time without waitings: " + Statistics[choiceThreshold / 10].averageTimeWithoutWaiting
+                            + "\n Average features touched " + Statistics[choiceThreshold / 10].averageTouchedFeatures
+                            + " features\n Average segments touched " + Statistics[choiceThreshold / 10].averageTouchedSegments
+                            + "segments\n Average speed " + Statistics[choiceThreshold / 10].averageSpeed
+                            + "km/h\n Average update wait Time " + Statistics[choiceThreshold / 10].averageUpdateWaitTime
+                            + "\n Average route request wait Time " + Statistics[choiceThreshold / 10].averageUpdateWaitTime
+                            );
+            }
+            //compute statistics
+            trafficParticipants.Clear();
+        }
 
         public async Task<string> RunOneRouteMultipleTimes()
         {
@@ -124,7 +199,7 @@ namespace TrafficSimulator
             //var endPos = new Itinero.LocalGeo.Coordinate(46.752623f, 23.577261f); //Golden tulip
             try
             {
-                string path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + " participants 0 to 100 - home to cipariu - 5 s delay - TS "  +DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".txt";
+                path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + " participants 0 to 100 - home to cipariu - 5 s delay - TS " + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".txt";
                 if (!File.Exists(path))
                 {
                     // Create a file to write to.
@@ -165,56 +240,19 @@ namespace TrafficSimulator
                     }
 
                     #region CONSOLE
-                    while (tp.isDone == false)
+                    while (true)
                     {
+                        bool allDone = true;
+                        trafficParticipants.ForEach(t => { if (!(t.isDone || t.hasFailed)) allDone = false; });
+                        if (allDone) break;
 #if ! DEBUG             
-                        List<TrafficParticipant> failed = new List<TrafficParticipant>();
-                        StringBuilder sb = new StringBuilder();
-                        sb.AppendLine("Simulation time: " + (DateTime.Now - simulationStart).ToString(@"dd\.hh\:mm\:ss"));
-                        sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
-                        if (simulationTrafficInflictedDelays.Count > 0)
-                        {
-                            sb.AppendLine("Current Statistics: ");
-                            for (int i = 0; i < simulationTrafficInflictedDelays.Count; i++)
-                            {
-                                sb.AppendLine("Threshold " + i * 10 + "%: Total Time " + simulationTrafficInflictedDelays[i]);
-                            }
-                            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
-                        }
-                        sb.AppendLine("The threshold was set for " + choiceThreshold + "%.");
-                        foreach (var trafficpart in trafficParticipants)
-                        {
-                            if (trafficpart.hasFailed)
-                                failed.Add(trafficpart);
-                            if (trafficpart.hasStarted == true && trafficpart.isDone == false)
-                                sb.AppendLine("Traffic Participant "+trafficpart.ID + " - (" + trafficpart.doneSteps + " / " + trafficpart.steps + ") " + trafficpart.behaviour+ " route");
-                        }
-                        if(failed.Count>0)
-                        {
-                            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
-                            sb.AppendLine("Failed traffic participants");
-                            foreach (var f in failed)
-                                sb.AppendLine("Traffic Participant "+f.ID+" failed with message: "+f.errorMessage);
-                        }
-                        Console.Clear();
-                        Console.Write(sb.ToString());
+                        ReleaseConsole(choiceThreshold);
                         Thread.Sleep(1000);
 #endif                  
                     }
                     #endregion
+                    ManageStatistics(choiceThreshold);
 
-                    simulationTrafficInflictedDelays.Add(new TimeSpan());
-                    foreach (var trafficp in trafficParticipants)
-                    {
-                        simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1] += trafficp.RouteDuration;
-
-                    }
-                    using (StreamWriter sw = File.AppendText(path))
-                    {
-                        sw.WriteLine(choiceThreshold + "% - Total time: " + simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1] + " - Average time: " + (simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1].Milliseconds) / configuration.NumberOfCars);
-                    }
-                    //compute statistics
-                    trafficParticipants.Clear();
                 }
             }
             catch (Exception e)
@@ -222,17 +260,12 @@ namespace TrafficSimulator
                 Console.WriteLine(e.ToString());
                 return null;
             }
-#if DEBUG
-            for (int i = 0; i < 100; i++)
-                foreach (var stid in simulationTrafficInflictedDelays)
-                    Console.WriteLine(stid);
-#endif
             return "done";
         }
 
         public async Task<string> RunMultipleRoutes()
         {
-            List<Itinero.LocalGeo.Coordinate> starts =new List<Itinero.LocalGeo.Coordinate>();
+            List<Itinero.LocalGeo.Coordinate> starts = new List<Itinero.LocalGeo.Coordinate>();
             List<Itinero.LocalGeo.Coordinate> ends = new List<Itinero.LocalGeo.Coordinate>();
             starts.Add(new Itinero.LocalGeo.Coordinate(46.7681917f, 23.6310351f));//home
             starts.Add(new Itinero.LocalGeo.Coordinate(46.7824045f, 23.6397901f));//IRA
@@ -248,7 +281,7 @@ namespace TrafficSimulator
             //var endPos = new Itinero.LocalGeo.Coordinate(46.752623f, 23.577261f); //Golden tulip
             try
             {
-                string path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + "participants 0 to 100 - multiple routes - 5 s delay.txt";
+                path = CommonVariables.PathToResultsFolder + configuration.NumberOfCars + "participants 0 to 100 - multiple routes - 5 s delay.txt";
                 if (!File.Exists(path))
                 {
                     // Create a file to write to.
@@ -278,7 +311,6 @@ namespace TrafficSimulator
                     trafficParticipants.Add(tp);
                     thrd = new Thread(new ThreadStart(tp.RunTrafficParticipant));
                     thrd.Start();
-
                     for (int i = 1; i < configuration.NumberOfCars; i++)//generate the cars
                     {
                         choice = (rnd.Next(99) < choiceThreshold) ? "proposed" : "greedy";
@@ -290,55 +322,19 @@ namespace TrafficSimulator
                         thrd.Start();
                     }
                     #region CONSOLE
-                    while (tp.isDone == false)
+                    while (true)
                     {
-#if ! DEBUG             
-                        List<TrafficParticipant> failed = new List<TrafficParticipant>();
-                        StringBuilder sb = new StringBuilder();
-                        sb.AppendLine("Simulation time: " + (DateTime.Now - simulationStart).ToString(@"dd\.hh\:mm\:ss"));
-                        sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
-                        if (simulationTrafficInflictedDelays.Count > 0)
-                        {
-                            sb.AppendLine("Current Statistics: ");
-                            for (int i = 0; i < simulationTrafficInflictedDelays.Count; i++)
-                            {
-                                sb.AppendLine("Threshold " + i * 10 + "%: Total Time " + simulationTrafficInflictedDelays[i]);
-                            }
-                            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
-                        }
-                        sb.AppendLine("The threshold was set for " + choiceThreshold + "%.");
-                        foreach (var trafficpart in trafficParticipants)
-                        {
-                            if (trafficpart.hasFailed)
-                                failed.Add(trafficpart);
-                            if (trafficpart.hasStarted == true && trafficpart.isDone == false)
-                                sb.AppendLine("Traffic Participant "+trafficpart.ID + " - (" + trafficpart.doneSteps + " / " + trafficpart.steps + ") " + trafficpart.behaviour+ " route");
-                        }
-                        if(failed.Count>0)
-                        {
-                            sb.AppendLine("----------------------------------------------------------------------------------------------------------------------");
-                            sb.AppendLine("Failed traffic participants");
-                            foreach (var f in failed)
-                                sb.AppendLine("Traffic Participant "+f.ID+" failed with message: "+f.errorMessage);
-                        }
-                        Console.Clear();
-                        Console.Write(sb.ToString());
+                        bool allDone = true;
+                        trafficParticipants.ForEach(t => { if (!(t.isDone || t.hasFailed)) allDone = false; });
+                        if (allDone) break;
+#if !DEBUG
+                        ReleaseConsole(choiceThreshold);
                         Thread.Sleep(1000);
 #endif                  
                     }
                     #endregion
-                    simulationTrafficInflictedDelays.Add(new TimeSpan());
-                    foreach (var trafficp in trafficParticipants)
-                    {
-                        simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1] += trafficp.RouteDuration;
 
-                    }
-                    using (StreamWriter sw = File.AppendText(path))
-                    {
-                        sw.WriteLine(choiceThreshold + "% - Total time: " + simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1] + " - Average time: " + (simulationTrafficInflictedDelays[simulationTrafficInflictedDelays.Count - 1].Milliseconds) / configuration.NumberOfCars);
-                    }
-                    //compute statistics
-                    trafficParticipants.Clear();
+                    ManageStatistics(choiceThreshold);
                 }
             }
             catch (Exception e)
@@ -346,10 +342,6 @@ namespace TrafficSimulator
                 Console.WriteLine(e.ToString());
                 return null;
             }
-            for (int i = 0; i < 100; i++)
-                foreach (var stid in simulationTrafficInflictedDelays)
-                    Console.WriteLine(stid);
-
             return "done";
         }
     }

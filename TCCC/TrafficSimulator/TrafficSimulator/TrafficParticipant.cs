@@ -5,6 +5,7 @@ using Itinero.Profiles;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -26,8 +27,10 @@ namespace TrafficSimulator
         private ConfigurationModel configuration { get; set; } //current simulation configuration
         public string behaviour { get; set; }
         public TimeSpan RouteDuration { get; set; }
-        public TimeSpan TrafficInflictedDelay { get; set; }
-        public TimeSpan RoutingInflictedDelay { get; set; }
+        public TimeSpan RouteRequestTotalWaitTime { get; set; }
+        public TimeSpan UpdateRequestTotalWaitTime { get; set; }
+        public int RouteRequests { get; set; }
+        public int UpdateRequests { get; set; }
         public bool isDone { get; set; }
         public bool hasStarted { get; set; }
         public int doneSteps { get; set; }
@@ -36,6 +39,11 @@ namespace TrafficSimulator
         public string errorMessage { get; set; }
         public DateTime simulationJoinTime { get; set; }
         private HttpClient httpClient { get; set; }
+        private string apiResponse { get; set; }
+        public int reroutingCount { get; set; }
+        public double averageSpeed { get; set; }
+        public int segmentsTouched { get; set; }
+
 
         public TrafficParticipant(int id, TimeSpan delay, Itinero.LocalGeo.Coordinate start, Itinero.LocalGeo.Coordinate end, ConfigurationModel config, string b)
         {
@@ -51,6 +59,7 @@ namespace TrafficSimulator
             hasFailed = false;
             errorMessage = "";
             httpClient = new HttpClient();
+            httpClient.Timeout = new TimeSpan(1, 0, 0, 0);
 #if DEBUG  
             Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " was created and will request a route in " + TimeSpan.FromTicks(delay.Ticks * CommonVariables.timeMultiplyer));
 #endif
@@ -124,17 +133,6 @@ namespace TrafficSimulator
 
         public double ComputeDistanceOfSegment(int f, int s)
         {
-
-            //var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-            //RouterDb routerDb = Simulation.routerDb;
-            //var router = new Router(Simulation.routerDb);
-            //var middle = ComputeMiddle(f, s);
-            //var resolvedPrevious = router.Resolve(customCar.Fastest(), middle);
-            //uint edgeId = resolvedPrevious.EdgeId;
-            //var edge = routerDb.Network.GetEdge(edgeId);
-            //var edgeData = edge.Data.Distance;
-
-
             var start = ComputeStartOfSegment(f, s);
             var end = ComputeEndOfSegment(f, s);
             var result = Itinero.LocalGeo.Coordinate.DistanceEstimateInMeter(start, end);
@@ -170,7 +168,6 @@ namespace TrafficSimulator
         public async Task getRoute(Itinero.LocalGeo.Coordinate startPos, Itinero.LocalGeo.Coordinate endPos, bool init)
         {
             bool receivedRoute = false;
-            string apiResponse;
             string routeRequestURI;
 
             if (behaviour == "greedy")
@@ -187,21 +184,22 @@ namespace TrafficSimulator
                     if (init)
                         Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant " + ID + " is requesting a route. His behaviour is " + behaviour);
 #endif
+                    DateTime time = DateTime.Now;
                     apiResponse = await response.Content.ReadAsStringAsync();
+                    RouteRequests++;
+                    RouteRequestTotalWaitTime += (DateTime.Now - time);
                     try
                     {
                         newRoute = JsonConvert.DeserializeObject<RouteModel>(apiResponse);
-#if DEBUG
                         if (init)
                         {
+                            string path = CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID ;
+                            if (!Directory.Exists(path))
+                                Directory.CreateDirectory(path);
+#if DEBUG
                             Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant " + ID + " received a route (TrafficParticipant)" + ID + "route.txt");
 #endif
-                            System.IO.File.WriteAllText(CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID + "route.txt", apiResponse);
-                        }
-                        else
-                        {
-
-                            System.IO.File.WriteAllText(CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant_new" + ID + "route.txt", apiResponse);
+                            System.IO.File.WriteAllText(path + "\\route.txt", apiResponse);
                         }
                         if (init)
                             route = newRoute;
@@ -241,9 +239,19 @@ namespace TrafficSimulator
                 Itinero.LocalGeo.Coordinate previousMiddle;
 
                 #region FOLLOW ROUTE
-                for (int feature = 0; feature < route.features.Count; feature++)
+
+                for (int feature = 0; feature < route.features.Count-2; feature++)
                 {
-                    //request new route de la feature i+1
+                    doneSteps = feature;
+                    steps = route.features.Count - 2;
+                    try
+                    {
+                        averageSpeed += Double.Parse(route.features[feature].properties.maxspeed);
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
 
                     TimeSpan computedTimeOfFeature = new TimeSpan(0, 0, 0, 0);
                     double computedDistanceOfFeature = 0;
@@ -258,17 +266,22 @@ namespace TrafficSimulator
 
                         if (feature == 0 && segment == 0)
                             updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);//let the live traffic server know that you started the route 
-                        else if (feature == route.features.Count - 1 && segment == route.features[feature].geometry.coordinates.Count - 2)
+                        else if (feature == route.features.Count - 3 && segment == route.features[feature].geometry.coordinates.Count - 2)
                             updateURI = HttpRequestBuilder(currentMiddle.Latitude, currentMiddle.Longitude, 0, 0);
                         else
                             updateURI = HttpRequestBuilder(previousMiddle.Latitude, previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
 
+                        DateTime time = DateTime.Now;
                         await httpClient.GetAsync(updateURI);
+                        UpdateRequests++;
+                        UpdateRequestTotalWaitTime += (DateTime.Now - time);
 #if DEBUG           
                         Console.WriteLine("TP" + ID + " Updated his segment (" + ComputeStartOfSegment(feature, segment).ToString() + "->" + ComputeEndOfSegment(feature, segment).ToString() + "). Next update in " + TimeSpan.FromTicks(timeOfSegment.Ticks * CommonVariables.timeMultiplyer) + " seconds (" + feature + "/" + route.features.Count + ")");
 #endif
                         try
                         {
+                            averageSpeed += ComputeDistanceOfSegment(feature, segment) /timeOfSegment.TotalSeconds*3.6;
+                            segmentsTouched++;
                             Thread.Sleep(TimeSpan.FromTicks(timeOfSegment.Ticks * CommonVariables.timeMultiplyer));
                         }
                         catch (Exception e)
@@ -278,19 +291,17 @@ namespace TrafficSimulator
                         }
                     }
 
-                    if (feature < route.features.Count - 2)
+                    if (feature < route.features.Count - 3)
                     {
-                        Console.WriteLine($"!!!!!!!!!! old route length {route.features.Count}");
+                        int oldLength = route.features.Count ;
                         var pos = ComputeMiddle(feature, route.features[feature].geometry.coordinates.Count - 2);
                         try
                         {
                             await getRoute(new Itinero.LocalGeo.Coordinate(pos.Latitude, pos.Longitude), endPos, false);
 
-
                             if (newRoute.features != null)
                             {
-                                //if (Double.Parse(newRoute.features[0].properties.distance) < 1)
-                                    newRoute.features.RemoveAt(0);
+                                newRoute.features.RemoveAt(0);
                                 newRoute.features.ForEach(f =>
                                 {
                                     f.properties.distance = (Double.Parse(f.properties.distance) + Double.Parse(route.features[feature].properties.distance)).ToString();
@@ -307,7 +318,14 @@ namespace TrafficSimulator
                         {
                             Console.WriteLine(e.Message);
                         }
-                        Console.WriteLine($"!!!!!!!!!! new route length {route.features.Count}");
+                        if (route.features.Count != oldLength)
+                        {
+#if DEBUG
+                            Console.WriteLine($"TP{ID} Rerouted!!");
+#endif
+                            reroutingCount++;
+                            System.IO.File.WriteAllText(CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID + "\\reroute"+reroutingCount+".txt", apiResponse);
+                        }
                     }
 
                 }
@@ -315,8 +333,10 @@ namespace TrafficSimulator
 #if DEBUG
                 Console.WriteLine("TrafficParticipant" + ID + " FINISHED route after " + TimeSpan.FromTicks((DateTime.Now - simulationJoinTime).Ticks / CommonVariables.timeMultiplyer));
 #endif
+                RouteDuration = TimeSpan.FromTicks((DateTime.Now - simulationJoinTime).Ticks / CommonVariables.timeMultiplyer);
+                averageSpeed /= segmentsTouched;
                 isDone = true;
-                #endregion
+#endregion
             }
             catch (Exception e)
             {
@@ -325,7 +345,6 @@ namespace TrafficSimulator
 #endif
                 hasFailed = true;
                 errorMessage = e.Message;
-                throw;
             }
             //update statistics
         }
