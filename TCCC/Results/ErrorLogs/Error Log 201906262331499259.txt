@@ -1,0 +1,8 @@
+Simulation Time: 26/06/2019 23:31:49
+Number of cars: 500
+Request delay: 00:00:10
+Simulation typeMultipleRoutes
+Time multiplyer: 1
+Start threshold: 0
+End threshold: 100
+_______________________________________________________

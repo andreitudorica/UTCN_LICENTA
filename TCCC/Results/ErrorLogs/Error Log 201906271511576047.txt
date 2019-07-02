@@ -1,0 +1,9 @@
+Simulation Time: 27/06/2019 15:11:57
+Number of cars: 500
+Request delay: 00:00:10
+Simulation typeMultipleRoutes
+Time multiplyer: 1delay Between Route Request10000 millisec 
+Start threshold: 20
+End threshold: 100
+_______________________________________________________
+Unexpected character encountered while parsing value: <. Path '', line 0, position 0.

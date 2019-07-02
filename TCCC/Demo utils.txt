@@ -1,0 +1,3 @@
+//test link for RCS https://localhost:44392/api/routes/GetRoute?profile=shortest&startLat=46.7681922912598&startLon=23.6310348510742&endLat=46.7675476074219&endLon=23.5999336242676&mapRefresh=false
+//test link for this server https://localhost:44351/api/traffic/GetRoute?profile=shortest&startLat=46.7681922912598&startLon=23.6310348510742&endLat=46.7675476074219&endLon=23.5999336242676
+           

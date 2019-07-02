@@ -1,0 +1,7 @@
+time in simulation: 00:07:55.4346822
+ behaviour: proposed
+ routeDuration: 00:07:37.9180000
+ averageSpeed: 49.5094239783635
+ route request wait time 00:00:13.4996102 / 26 requests
+
+ update wait time 00:00:03.4782215 / 83 uppdates/n

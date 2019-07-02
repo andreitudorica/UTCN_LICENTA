@@ -16,22 +16,21 @@
  *  limitations under the License.
  */
 
-using Itinero.LocalGeo;
+using Itinero.Algorithms;
+using Itinero.Algorithms.Default.EdgeBased;
+using Itinero.Algorithms.Search;
+using Itinero.Algorithms.Weights;
+using Itinero.Data.Contracted;
+using Itinero.Data.Edges;
 using Itinero.Data.Network;
+using Itinero.Graphs.Geometric;
+using Itinero.LocalGeo;
+using Itinero.Logging;
 using Itinero.Profiles;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Itinero.Algorithms.Weights;
-using Itinero.Graphs.Geometric;
-using Itinero.Data.Edges;
-using Itinero.Logging;
 using System.Text;
-using Itinero.Algorithms;
-using Itinero.Data.Contracted;
 using System.Threading;
-using Itinero.Algorithms.Default.EdgeBased;
-using Itinero.Algorithms.Search;
 
 namespace Itinero
 {
@@ -86,7 +85,7 @@ namespace Itinero
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets the default weight handler for the given profile instance.
         /// </summary>
@@ -187,7 +186,7 @@ namespace Itinero
                 { // when there is a cache, built it on demand.
                     var profileNames = new StringBuilder();
                     var profileArray = new Profile[profiles.Length];
-                    for(var i = 0; i < profiles.Length; i++)
+                    for (var i = 0; i < profiles.Length; i++)
                     {
                         if (i > 0)
                         {
@@ -259,7 +258,7 @@ namespace Itinero
         /// <summary>
         /// Searches for the closest point on the routing network that's routable for the given profiles.
         /// </summary>
-        public static Result<RouterPoint> TryResolve(this RouterBase router, IProfileInstance profile, float latitude, float longitude, 
+        public static Result<RouterPoint> TryResolve(this RouterBase router, IProfileInstance profile, float latitude, float longitude,
             float searchDistanceInMeter, CancellationToken cancellationToken)
         {
             return router.TryResolve(new IProfileInstance[] { profile }, latitude, longitude, searchDistanceInMeter, cancellationToken);
@@ -440,7 +439,7 @@ namespace Itinero
             var sourcePoint = router.TryResolve(profiles, sourceLatitude, sourceLongitude, 50, cancellationToken);
             var targetPoint = router.TryResolve(profiles, targetLatitude, targetLongitude, 50, cancellationToken);
 
-            if(sourcePoint.IsError)
+            if (sourcePoint.IsError)
             {
                 return sourcePoint.ConvertError<Route>();
             }
@@ -465,7 +464,7 @@ namespace Itinero
         public static Result<Route[]> TryCalculate(this RouterBase router, IProfileInstance profile, RouterPoint source, RouterPoint[] targets, CancellationToken cancellationToken)
         {
             var result = router.TryCalculate(profile, new RouterPoint[] { source }, targets, cancellationToken);
-            if(result.IsError)
+            if (result.IsError)
             {
                 return result.ConvertError<Route[]>();
             }
@@ -474,7 +473,7 @@ namespace Itinero
             {
                 return new Result<Route[]>("No routes found.");
             }
-            
+
             var routes = new Route[result.Value[0].Length];
             for (var j = 0; j < result.Value[0].Length; j++)
             {
@@ -927,7 +926,7 @@ namespace Itinero
         /// <summary>
         /// Resolves a location but also checks if it's connected to the rest of the network.
         /// </summary>
-        public static Result<RouterPoint> TryResolveConnected(this RouterBase router, IProfileInstance profileInstance, float latitude, float longitude, 
+        public static Result<RouterPoint> TryResolveConnected(this RouterBase router, IProfileInstance profileInstance, float latitude, float longitude,
             float radiusInMeter, float maxSearchDistance, bool? forward,
             CancellationToken cancellationToken)
         {
@@ -1143,8 +1142,8 @@ namespace Itinero
         /// <summary>
         /// Calculates a route the given locations;
         /// </summary>
-        public static Result<Route> TryCalculate<T>(this RouterBase router, IProfileInstance profile, WeightHandler<T> weightHandler, 
-            RouterPoint source, RouterPoint target, RoutingSettings<T> settings, CancellationToken cancellationToken) 
+        public static Result<Route> TryCalculate<T>(this RouterBase router, IProfileInstance profile, WeightHandler<T> weightHandler,
+            RouterPoint source, RouterPoint target, RoutingSettings<T> settings, CancellationToken cancellationToken)
             where T : struct
         {
             var path = router.TryCalculateRaw(profile, weightHandler, source, target, settings, cancellationToken);
@@ -1185,16 +1184,16 @@ namespace Itinero
         /// <returns>A route along all the given locations.</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Result<Route> TryCalculate(this RouterBase router, IProfileInstance profile,
-            RouterPoint[] locations, float turnPenalty, Tuple<bool?, bool?>[] preferredTurns = null, 
+            RouterPoint[] locations, float turnPenalty, Tuple<bool?, bool?>[] preferredTurns = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (locations.Length < 2)
             {
-                throw new ArgumentOutOfRangeException(nameof(locations), 
+                throw new ArgumentOutOfRangeException(nameof(locations),
                     "Cannot calculate a routing along less than two locations.");
             }
-            
-            var massResolvingAlgorith = new MassResolvingAlgorithm(router, new[] {profile}, locations);
+
+            var massResolvingAlgorith = new MassResolvingAlgorithm(router, new[] { profile }, locations);
             return router.TryCalculate(profile, massResolvingAlgorith, turnPenalty, preferredTurns, cancellationToken);
         }
 
@@ -1210,16 +1209,16 @@ namespace Itinero
         /// <returns>A route along all the given locations.</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Result<Route> TryCalculate(this RouterBase router, IProfileInstance profile,
-            RouterPoint[] locations, float turnPenalty, float?[] preferredDirections, 
+            RouterPoint[] locations, float turnPenalty, float?[] preferredDirections,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (locations.Length < 2)
             {
-                throw new ArgumentOutOfRangeException(nameof(locations), 
+                throw new ArgumentOutOfRangeException(nameof(locations),
                     "Cannot calculate a routing along less than two locations.");
             }
-            
-            var massResolvingAlgorith = new MassResolvingAlgorithm(router, new[] {profile}, locations);
+
+            var massResolvingAlgorith = new MassResolvingAlgorithm(router, new[] { profile }, locations);
             return router.TryCalculate(profile, massResolvingAlgorith, turnPenalty, preferredDirections, cancellationToken);
         }
 
@@ -1230,7 +1229,7 @@ namespace Itinero
         {
             return router.TryCalculate(profile, locations, 0, (Tuple<bool?, bool?>[])null, cancellationToken);
         }
-        
+
         /// <summary> 
         /// Calculates a route along the given locations.
         /// </summary>
@@ -1242,12 +1241,12 @@ namespace Itinero
         /// <param name="preferredTurns">The perferred turns. First value for each point is the arrival direction, second value the departure direction.</param>
         /// <returns>A route along all the given locations.</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static Result<Route> TryCalculate(this RouterBase router, IProfileInstance profile, Coordinate[] locations, float turnPenalty = 0, 
+        public static Result<Route> TryCalculate(this RouterBase router, IProfileInstance profile, Coordinate[] locations, float turnPenalty = 0,
             Tuple<bool?, bool?>[] preferredTurns = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return router.TryCalculate(profile, new MassResolvingAlgorithm(router, new[] { profile }, locations), turnPenalty, preferredTurns, cancellationToken);
         }
-        
+
         /// <summary> 
         /// Calculates a route along the given locations.
         /// </summary>
@@ -1259,7 +1258,7 @@ namespace Itinero
         /// <param name="preferredDirections">The perferred directions in degrees.</param>
         /// <returns>A route along all the given locations.</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static Result<Route> TryCalculate(this RouterBase router, IProfileInstance profile, Coordinate[] locations, float turnPenalty = 0, 
+        public static Result<Route> TryCalculate(this RouterBase router, IProfileInstance profile, Coordinate[] locations, float turnPenalty = 0,
             float?[] preferredDirections = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return router.TryCalculate(profile, new MassResolvingAlgorithm(router, new[] { profile }, locations), turnPenalty, preferredDirections, cancellationToken);
@@ -1342,7 +1341,7 @@ namespace Itinero
         {
             if (preferredDirections == null)
             {
-                return router.TryCalculate(profile, resolvingAlgorithm, turnPenalty, (Tuple<bool?, bool?>[]) null,
+                return router.TryCalculate(profile, resolvingAlgorithm, turnPenalty, (Tuple<bool?, bool?>[])null,
                     cancellationToken);
             }
 
@@ -1412,7 +1411,7 @@ namespace Itinero
             CancellationToken cancellationToken)
             where T : struct
         {
-            return router.TryCalculateWeight(profile,  weightHandler, locations, locations, cancellationToken);
+            return router.TryCalculateWeight(profile, weightHandler, locations, locations, cancellationToken);
         }
 
         /// <summary>
@@ -1511,7 +1510,7 @@ namespace Itinero
         /// <summary>
         /// Calculates a weight matrix between directed edges, returning weight exclusing the first and last edge.
         /// </summary>
-        public static Result<T[][]> TryCalculateWeight<T>(this RouterBase router, IProfileInstance profileInstance, WeightHandler<T> weightHandler, DirectedEdgeId[] sources, 
+        public static Result<T[][]> TryCalculateWeight<T>(this RouterBase router, IProfileInstance profileInstance, WeightHandler<T> weightHandler, DirectedEdgeId[] sources,
             DirectedEdgeId[] targets, RoutingSettings<T> settings, CancellationToken cancellationToken)
             where T : struct
         {
@@ -1541,7 +1540,7 @@ namespace Itinero
                     {
                         if (!(contracted.HasNodeBasedGraph && contracted.NodeBasedIsEdgedBased))
                         {
-                            Logging.Logger.Log("Router", TraceEventType.Warning, 
+                            Logging.Logger.Log("Router", TraceEventType.Warning,
                                 "There is a contracted graph in the routerdb but it cannot be used for directional queries. Rebuild the routerDb, falling back to uncontracted routing.");
                             contracted = null;
                         }
@@ -1633,7 +1632,7 @@ namespace Itinero
                     return new Result<T[][]>(weights);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new Result<T[][]>(ex.Message);
             }
@@ -1717,11 +1716,11 @@ namespace Itinero
                             path = source.EdgePathTo(router.Db, weightHandler, target, !sourceForward.Value);
                         }
                     }
-                    else if(sourceForward.HasValue)
+                    else if (sourceForward.HasValue)
                     { // only source is set.
                         path = source.EdgePathTo(router.Db, weightHandler, target, !sourceForward.Value);
                     }
-                    else if(targetForward.HasValue)
+                    else if (targetForward.HasValue)
                     { // only target is set.
                         path = source.EdgePathTo(router.Db, weightHandler, target, !targetForward.Value);
                     }
@@ -1729,7 +1728,7 @@ namespace Itinero
                     { // both are don't care.
                         path = source.EdgePathTo(router.Db, weightHandler, target);
                     }
-                    
+
                     if (path != null)
                     { // update settings objects to prevent uneeded searches.
                         if (settings == null)
@@ -1748,8 +1747,8 @@ namespace Itinero
                 var result = router.TryCalculateRaw<T>(profileInstance, weightHandler, source, sourceForward, target, targetForward, settings, cancellationToken);
                 if (result != null &&
                     !result.IsError)
-                { 
-                    if (path == null || 
+                {
+                    if (path == null ||
                         weightHandler.IsSmallerThan(result.Value.Weight, path.Weight))
                     { // the found path is better.
                         path = result.Value;
@@ -1778,7 +1777,7 @@ namespace Itinero
                     path = router.Db.BuildEdgePath(weightHandler, source, target, vertices);
                     return router.BuildRoute(profileInstance.Profile, weightHandler, source, target, path, cancellationToken);
                 }
-                else if (settings != null && 
+                else if (settings != null &&
                     !settings.DirectionAbsolute)
                 { // no route was found but maybe because the requested directions aren't available.
                     if (sourceForward.HasValue)
@@ -1799,7 +1798,7 @@ namespace Itinero
                     return new Result<Route>("Route not found.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new Result<Route>(ex.Message);
             }
@@ -1815,10 +1814,10 @@ namespace Itinero
         /// <param name="targetDirection">The direction to arrive on at the target location, an angle in degrees relative to north, null if don't care.</param>
         /// <param name="diffLimit">The diff limit when the angle is smaller than this we consider it the same direction.</param>
         /// <returns></returns>
-        public static Result<Route> TryCalculate(this RouterBase router, IProfileInstance profileInstance, RouterPoint source, float? sourceDirection, 
+        public static Result<Route> TryCalculate(this RouterBase router, IProfileInstance profileInstance, RouterPoint source, float? sourceDirection,
             RouterPoint target, float? targetDirection, float diffLimit = 45, RoutingSettings<float> settings = null)
         {
-            return router.TryCalculate(profileInstance, router.GetDefaultWeightHandler(profileInstance), source, sourceDirection, 
+            return router.TryCalculate(profileInstance, router.GetDefaultWeightHandler(profileInstance), source, sourceDirection,
                 target, targetDirection, diffLimit, settings);
         }
 
@@ -1882,7 +1881,7 @@ namespace Itinero
         /// <summary>
         /// Calculates a route along the given locations.
         /// </summary>        
-        public static Route Calculate(this RouterBase router, IProfileInstance profile, RouterPoint source, float? sourceDirection, 
+        public static Route Calculate(this RouterBase router, IProfileInstance profile, RouterPoint source, float? sourceDirection,
             RouterPoint target, float? targetDirection, CancellationToken cancellationToken)
         {
             return router.TryCalculate<float>(profile, router.GetDefaultWeightHandler(profile), source, sourceDirection, target, targetDirection, 45, null, cancellationToken).Value;

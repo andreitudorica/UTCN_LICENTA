@@ -1,0 +1,10 @@
+Simulation Time: 26/06/2019 23:37:58
+Number of cars: 500
+Request delay: 00:00:10
+Simulation typeMultipleRoutes
+Time multiplyer: 1
+Start threshold: 0
+End threshold: 100
+_______________________________________________________
+Object reference not set to an instance of an object.
+Object reference not set to an instance of an object.

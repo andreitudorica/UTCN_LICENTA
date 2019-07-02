@@ -1,0 +1,18 @@
+Simulation Length00:22:17.7226041
+Number of cars: 100
+Request delay: 00:00:05
+Simulation typeOneRouteMultipleTimes
+Time multiplyer: 1
+Start threshold: 100
+End threshold: 100
+_______________________________________________________
+Simulation Date: 26/06/2019 02:19:47
+Threshold 100%
+ Total Time: 05:09:35.0290000
+ Average Route Time: 00:03:05.7502900
+ Average Time in simulation without waitings: 05:10:20.4743976
+ Average features touched 49.35 features
+ Average segments touched 49.35segments
+ Average speed 49.7684515153941km/h
+ Average update wait Time 00:00:00.1910565
+ Average route request wait Time 00:00:14.7144822

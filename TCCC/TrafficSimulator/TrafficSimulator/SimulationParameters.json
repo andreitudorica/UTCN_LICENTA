@@ -1,1 +1,11 @@
-{"SimulationLength":"00:3:00","NumberOfCars":100,"RequestDelay":"00:00:05","LiveTrafficServerUri":"https://localhost:44351","SimulationType":1}
+{
+  "SimulationLength": "00:3:00",
+  "NumberOfCars": 500,
+  "RequestDelay": "00:00:10",
+  "LiveTrafficServerUri": "https://localhost:44351",
+  "SimulationType": 2,
+  "timeMultiplyer": 1,
+  "startTH": 70,
+  "endTH": 100,
+  "delayBetweenRouteRequest":  10000
+}

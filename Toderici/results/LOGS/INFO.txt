@@ -1,8 +1,0 @@
-Sum ETAs for BRA 8043
-Sum ETAs for CCRA 8043
-Avg of speeds for BRA 5.942477
-Avg of speeds for CCRA 5.942477
-Nb of segments touched by BRA 347
-Nb of segments touched by CCRA 347
-Avg of densities for BRA 2.7679274E-4
-Avg of densities for CCRA 2.7679274E-4

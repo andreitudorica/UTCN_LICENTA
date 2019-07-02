@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Itinero;
+using LiveTrafficServer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,28 +18,9 @@ namespace LiveTrafficServer
     public class Startup
     {
 
-        public static RouterDb routerDb;
-        public static Route route;
-        public static uint profilesStart;
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
-            routerDb = new RouterDb();
-            while (true)
-            {
-                try
-                {
-                    using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
-                    {
-                        routerDb = RouterDb.Deserialize(stream);
-                    }
-                    break;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.ToString());
-                }
-            }
+            Configuration = configuration;           
         }
 
         public IConfiguration Configuration { get; }

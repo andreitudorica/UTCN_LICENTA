@@ -1,0 +1,7 @@
+time in simulation: 00:08:20.4568370
+ behaviour: greedy
+ routeDuration: 00:07:44.7330000
+ averageSpeed: 49.1631518704475
+ route request wait time 00:00:30.7320614 / 29 requests
+
+ update wait time 00:00:04.3191661 / 81 uppdates/n

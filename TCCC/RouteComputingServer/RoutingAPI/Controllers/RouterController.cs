@@ -19,31 +19,32 @@ namespace RoutingAPI.Controllers
     {
         //[System.Web.Http.HttpGet]
         //[Route("GetRoute/{profile}/{startLat}/{startLon}/{endLat}/{endLon}")]
-        public HttpResponseMessage GetRoute(string profile,float startLat,float startLon,float endLat,float endLon)
+        public HttpResponseMessage GetRoute(string profile,float startLat,float startLon,float endLat,float endLon,bool mapRefresh)
         {
 
-            var routerDb = new RouterDb();
+            var routerDb = WebApiApplication.routerDb;
             //load the current Map Data
             var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-
-            while (true)
+            if (mapRefresh)
             {
-                try
+                while (true)
                 {
-                    using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                    try
                     {
-                        routerDb = RouterDb.Deserialize(stream);
+                        using (var stream = System.IO.File.OpenRead(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
+                        {
+                            routerDb = RouterDb.Deserialize(stream);
+                        }
+                        break;
                     }
-                    break;
-                }
-                catch (Exception e)
-                {
+                    catch (Exception e)
+                    {
 
-                    Console.WriteLine(e.Message);
-                    Thread.Sleep(100);
+                        Console.WriteLine(e.Message);
+                        Thread.Sleep(100);
+                    }
                 }
             }
-
             // create router.
             var router = new Router(routerDb);
             //test link http://localhost:62917/api/router/GetRoute?profile=car&startLat=46.768293&startLon=23.629875&endLat=46.752623&endLon=23.577261

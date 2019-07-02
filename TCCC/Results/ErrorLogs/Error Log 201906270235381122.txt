@@ -1,0 +1,64 @@
+Simulation Time: 27/06/2019 02:35:38
+Number of cars: 500
+Request delay: 00:00:10
+Simulation typeMultipleRoutes
+Time multiplyer: 1delay Between Route Request10000 millisec 
+Start threshold: 0
+End threshold: 100
+_______________________________________________________
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Number must be either non-negative and less than or equal to Int32.MaxValue or -1.
+Parameter name: timeout
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Number must be either non-negative and less than or equal to Int32.MaxValue or -1.
+Parameter name: timeout
+Index was outside the bounds of the array.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Index was outside the bounds of the array.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Number must be either non-negative and less than or equal to Int32.MaxValue or -1.
+Parameter name: timeout
+Index was outside the bounds of the array.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Number must be either non-negative and less than or equal to Int32.MaxValue or -1.
+Parameter name: timeout
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Index was outside the bounds of the array.
+Number must be either non-negative and less than or equal to Int32.MaxValue or -1.
+Parameter name: timeout
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Number must be either non-negative and less than or equal to Int32.MaxValue or -1.
+Parameter name: timeout
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Source array was not long enough. Check srcIndex and length, and the array's lower bounds.
+Index was outside the bounds of the array.
+Number must be either non-negative and less than or equal to Int32.MaxValue or -1.
+Parameter name: timeout
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.
+Index was outside the bounds of the array.

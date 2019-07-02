@@ -25,12 +25,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GeoJSON, Version=2.0.0.0, Culture=neutral, PublicKeyToken=67a0afa7ce9a900b, processorArchitecture=MSIL">
@@ -118,9 +119,11 @@
       <Link>CommonVars.cs</Link>
     </Compile>
     <Compile Include="Models\ConfigurationModel.cs" />
+    <Compile Include="Models\RequestModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouteModel.cs" />
+    <Compile Include="Models\RouteModel.cs" />
+    <Compile Include="RequestSerializer.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="TrafficParticipant.cs" />
   </ItemGroup>
@@ -128,6 +131,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="SimulationParameters.json" />
+    <None Include="SimulatorClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

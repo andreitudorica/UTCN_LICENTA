@@ -1,1 +1,0 @@
-Threshold 0%: Total Time 02:48:49.0689877 Average Time: 00:01:41.2906898 Average segments touched 20 Average speed 0

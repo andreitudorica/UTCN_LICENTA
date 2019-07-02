@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TrafficSimulator.Program" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAIAAAAACABAAEAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="simulation" />
+      <Field Name="configuration" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TrafficSimulator.StatisticsEntry">
+    <Position X="11.5" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAAgAAIAAAAEAAAAAAAAAQEABAABAAAAAABAAAA=</HashCode>
+      <FileName>Simulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficSimulator.Simulation" Collapsed="true">
+    <Position X="8" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgOBUAAAAAAkAgACAAAgAACABCAAAAAgEAAAAAA=</HashCode>
+      <FileName>Simulation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="requestSerializer" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="Statistics" />
+      <Field Name="trafficParticipants" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TrafficSimulator.TrafficParticipant" Collapsed="true">
+    <Position X="4.75" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gEQADUEAgYARgwAAQBhCAABQABCAhAAQAAAQAEBQBQI=</HashCode>
+      <FileName>TrafficParticipant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficSimulator.RequestSerializer" Collapsed="true">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAACAgABAAAJQAAIEAAKgABAAgAAAABAAAAAAAAA=</HashCode>
+      <FileName>RequestSerializer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="routeRequests" />
+      <Field Name="updateRequests" />
+      <Field Name="trafficParticipants" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TrafficSimulator.Models.ConfigurationModel" Collapsed="true">
+    <Position X="2.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAACIAFAAEAAiAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\ConfigurationModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficSimulator.Models.RequestModel" Collapsed="true">
+    <Position X="11.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

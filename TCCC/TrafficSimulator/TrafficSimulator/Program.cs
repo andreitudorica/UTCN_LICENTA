@@ -40,10 +40,6 @@ namespace TrafficSimulator
             configuration = GetSimulationParameters();
             simulation = new Simulation(configuration);
             MainAsync().Wait();
-            //
-            //configuration = GetSimulationParameters();
-            //simulation = new Simulation(configuration);
-            //simulation.TryNewStuff();
             Console.ReadLine();
         }
 

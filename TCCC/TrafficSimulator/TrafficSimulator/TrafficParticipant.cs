@@ -15,35 +15,34 @@ using TrafficSimulator.Models;
 
 namespace TrafficSimulator
 {
-    class TrafficParticipant
+    public class TrafficParticipant
     {
         public int ID { get; set; }
+        public DateTime simulationJoinTime { get; set; }
         private TimeSpan requestDelay { get; set; }//the momment in simulation this traffic participant requests a route
         private Itinero.LocalGeo.Coordinate startPos { get; set; } //the start location of this traffic participant
         private Itinero.LocalGeo.Coordinate endPos { get; set; } //the target location of this participant
         private RouteModel proposedRoute { get; set; } //the route proposed  for this traffic participant
-        private RouteModel route { get; set; } //the route the traffic participant actually chose
-        private RouteModel newRoute { get; set; } //the route the traffic participant actually chose
-        private ConfigurationModel configuration { get; set; } //current simulation configuration
+        public RouteModel route { get; set; } //the route the traffic participant actually chose
+        public RouteModel newRoute { get; set; } //the route the traffic participant actually chose
+        private ConfigurationModel simulationConfig { get; set; } //current simulation configuration
         public string behaviour { get; set; }
-        public TimeSpan RouteDuration { get; set; }
-        public TimeSpan RouteRequestTotalWaitTime { get; set; }
-        public TimeSpan UpdateRequestTotalWaitTime { get; set; }
+        public TimeSpan routeDuration { get; set; }
+        public TimeSpan routeRequestTotalWaitTime { get; set; }
+        public TimeSpan updateRequestTotalWaitTime { get; set; }
+        public TimeSpan timeInSimulation { get; set; }
         public int RouteRequests { get; set; }
         public int UpdateRequests { get; set; }
-        public bool isDone { get; set; }
-        public bool hasStarted { get; set; }
         public int doneSteps { get; set; }
         public int steps { get; set; }
-        public bool hasFailed { get; set; }
+        public bool updated { get; set; }
+        public string status { get; set; }
         public string errorMessage { get; set; }
-        public DateTime simulationJoinTime { get; set; }
-        private HttpClient httpClient { get; set; }
-        private string apiResponse { get; set; }
+        public string routeRequestSerializerResponse { get; set; }
         public int reroutingCount { get; set; }
         public double averageSpeed { get; set; }
         public int segmentsTouched { get; set; }
-
+        private DateTime lastRerouteRequest { get; set; }
 
         public TrafficParticipant(int id, TimeSpan delay, Itinero.LocalGeo.Coordinate start, Itinero.LocalGeo.Coordinate end, ConfigurationModel config, string b)
         {
@@ -51,24 +50,20 @@ namespace TrafficSimulator
             requestDelay = delay;
             startPos = start;
             endPos = end;
-            configuration = config;
+            simulationConfig = config;
             behaviour = b;
             route = new RouteModel();
-            isDone = false;
-            hasStarted = false;
-            hasFailed = false;
+            status = "created";
             errorMessage = "";
-            httpClient = new HttpClient();
-            httpClient.Timeout = new TimeSpan(1, 0, 0, 0);
 #if DEBUG  
-            Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " was created and will request a route in " + TimeSpan.FromTicks(delay.Ticks * CommonVariables.timeMultiplyer));
+            Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " was created and will request a route in " + TimeSpan.FromTicks(delay.Ticks * simulationConfig.timeMultiplyer));
 #endif
         }
 
         public string HttpRequestBuilder(string profile, double slat, double slon, double elat, double elon)
         {
-            string endPoint = "api/values/GetRoute";
-            return configuration.LiveTrafficServerUri + endPoint + "?profile=" +
+            string endPoint = "api/traffic/GetRoute";
+            return simulationConfig.LiveTrafficServerUri + endPoint + "?profile=" +
                 profile + "&startLat=" +
                 slat + "&startLon=" +
                 slon + "&endLat=" +
@@ -78,8 +73,8 @@ namespace TrafficSimulator
 
         public string HttpRequestBuilder(float plon, float plat, float clon, float clat)
         {
-            string endPoint = "api/values/UpdateLocation";
-            return configuration.LiveTrafficServerUri + endPoint
+            string endPoint = "api/traffic/UpdateLocation";
+            return simulationConfig.LiveTrafficServerUri + endPoint
                 + "?previousEdgeLon=" + plon
                 + "&previousEdgeLat=" + plat
                 + "&currentEdgeLon=" + clon
@@ -167,7 +162,6 @@ namespace TrafficSimulator
 
         public async Task getRoute(Itinero.LocalGeo.Coordinate startPos, Itinero.LocalGeo.Coordinate endPos, bool init)
         {
-            bool receivedRoute = false;
             string routeRequestURI;
 
             if (behaviour == "greedy")
@@ -176,43 +170,41 @@ namespace TrafficSimulator
                 routeRequestURI = HttpRequestBuilder("best", startPos.Latitude, startPos.Longitude, endPos.Latitude, endPos.Longitude);
 
 
-            while (!receivedRoute)//make sure the participant receives a route (this won't fail as the coordinates chosen are known to have a route between them)
-            {
-                using (var response = await httpClient.GetAsync(routeRequestURI))
-                {
+            DateTime time = DateTime.Now;
+            status = "waiting for route";
+            Simulation.requestSerializer.AddRouteRequest(new RequestModel() { trafficParticipantID = ID, request = routeRequestURI });
+            routeRequestSerializerResponse = null;
 #if DEBUG
-                    if (init)
-                        Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant " + ID + " is requesting a route. His behaviour is " + behaviour);
+            if (init)
+                 Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant " + ID + " is requesting a route.");
 #endif
-                    DateTime time = DateTime.Now;
-                    apiResponse = await response.Content.ReadAsStringAsync();
-                    RouteRequests++;
-                    RouteRequestTotalWaitTime += (DateTime.Now - time);
-                    try
-                    {
-                        newRoute = JsonConvert.DeserializeObject<RouteModel>(apiResponse);
-                        if (init)
-                        {
-                            string path = CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID ;
-                            if (!Directory.Exists(path))
-                                Directory.CreateDirectory(path);
+            await Task.Run(()=>{ while (routeRequestSerializerResponse == null) Thread.Sleep(10); });
+            status = "other";
+            RouteRequests++;
+            routeRequestTotalWaitTime += (DateTime.Now - time);
+
+            try
+            {
+               
+                if (init)
+                {
+                    string path = CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID;
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
 #if DEBUG
                             Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant " + ID + " received a route (TrafficParticipant)" + ID + "route.txt");
 #endif
-                            System.IO.File.WriteAllText(path + "\\route.txt", apiResponse);
-                        }
-                        if (init)
-                            route = newRoute;
-                        RouteDuration = new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[route.features.Count - 1].properties.time) * 1000));
-                        receivedRoute = true;
-                    }
-                    catch (Exception e)
-                    {
+                    System.IO.File.WriteAllText(path + "\\route.txt", routeRequestSerializerResponse);
+                }
+                if (init)
+                    route = newRoute;
+            }
+            catch (Exception e)
+            {
 #if DEBUG
                         Console.WriteLine(DateTime.Now.ToString() + ": TrafficParticipant" + ID + " received the following answer:" + e.ToString());
 #endif
-                    }
-                }
+                System.IO.File.AppendAllText(Simulation.ErrorLogsFile,DateTime.Now.ToString() + ": TrafficParticipant" + ID + " received the following answer:" + e.ToString()+"\n");
             }
         }
 
@@ -224,13 +216,16 @@ namespace TrafficSimulator
                 #region initialize traffic participant
                 string updateURI;
                 var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
-                Thread.Sleep(TimeSpan.FromTicks(requestDelay.Ticks * CommonVariables.timeMultiplyer));//delay before route request
+                status = "waiting to join";
+                Thread.Sleep(TimeSpan.FromTicks(requestDelay.Ticks * simulationConfig.timeMultiplyer));//delay before route request
+                //Thread.Sleep(new TimeSpan(0,0,0,ID));
                 simulationJoinTime = DateTime.Now;
-                hasStarted = true;
+                status = "in traffic";
 
                 #endregion
-                #region request route initial route
+                #region request initial route
                 await getRoute(startPos, endPos, true);
+                lastRerouteRequest = DateTime.Now;
                 #endregion
 
                 #region  interpret the received route
@@ -240,60 +235,96 @@ namespace TrafficSimulator
 
                 #region FOLLOW ROUTE
 
-                for (int feature = 0; feature < route.features.Count-2; feature++)
+                for (int feature = 0; feature < route.features.Count - 2; feature++)
                 {
                     doneSteps = feature;
                     steps = route.features.Count - 2;
+                    //averageSpeed += Double.Parse(route.features[feature].properties.maxspeed);
+
+                    previousMiddle = currentMiddle;
+                    currentMiddle = ComputeMiddle(feature, 0);
+
+                    if (feature == 0)
+                        updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);//let the live traffic server know that you started the route 
+                    else if (feature == route.features.Count - 3)
+                        updateURI = HttpRequestBuilder(currentMiddle.Latitude, currentMiddle.Longitude, 0, 0);
+                    else
+                        updateURI = HttpRequestBuilder(previousMiddle.Latitude, previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
+
+                    DateTime time = DateTime.Now;
+
+                    updated = false;
+                    status = "waiting for update";
+                    Simulation.requestSerializer.AddUpdateRequest(new RequestModel() { trafficParticipantID=ID,request=updateURI});
+                    while(!updated)
+                        Thread.Sleep(10);
+                    UpdateRequests++;
+                    updateRequestTotalWaitTime += (DateTime.Now - time);
+#if DEBUG
+                        Console.WriteLine("TP" + ID + " Updated. Next update in " + TimeSpan.FromTicks(ComputeTimeOfFeature(feature).Ticks * simulationConfig.timeMultiplyer)
+                                                    + " seconds (" + feature + "/" + (route.features.Count-3) + ")" + 
+                                                    " distance from start: "+ Double.Parse(route.features[feature].properties.distance)+ " time from start: "+ new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[feature].properties.time) * 1000)));
+#endif
                     try
                     {
-                        averageSpeed += Double.Parse(route.features[feature].properties.maxspeed);
+                        averageSpeed += ComputeDistanceOfFeature(feature) / ComputeTimeOfFeature(feature).TotalSeconds * 3.6;
+                        segmentsTouched++;
+                        status = "in traffic";
+                        Thread.Sleep(TimeSpan.FromTicks(ComputeTimeOfFeature(feature).Ticks * simulationConfig.timeMultiplyer));
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        
-                    }
-
-                    TimeSpan computedTimeOfFeature = new TimeSpan(0, 0, 0, 0);
-                    double computedDistanceOfFeature = 0;
-                    for (int segment = 0; segment < route.features[feature].geometry.coordinates.Count - 1; segment++)
-                    {
-                        TimeSpan timeOfSegment = ComputeTimeOfSegment(feature, segment);
-                        computedTimeOfFeature += timeOfSegment;
-                        computedDistanceOfFeature += ComputeDistanceOfSegment(feature, segment);
-
-                        previousMiddle = currentMiddle;
-                        currentMiddle = ComputeMiddle(feature, segment);
-
-                        if (feature == 0 && segment == 0)
-                            updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);//let the live traffic server know that you started the route 
-                        else if (feature == route.features.Count - 3 && segment == route.features[feature].geometry.coordinates.Count - 2)
-                            updateURI = HttpRequestBuilder(currentMiddle.Latitude, currentMiddle.Longitude, 0, 0);
-                        else
-                            updateURI = HttpRequestBuilder(previousMiddle.Latitude, previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
-
-                        DateTime time = DateTime.Now;
-                        await httpClient.GetAsync(updateURI);
-                        UpdateRequests++;
-                        UpdateRequestTotalWaitTime += (DateTime.Now - time);
-#if DEBUG           
-                        Console.WriteLine("TP" + ID + " Updated his segment (" + ComputeStartOfSegment(feature, segment).ToString() + "->" + ComputeEndOfSegment(feature, segment).ToString() + "). Next update in " + TimeSpan.FromTicks(timeOfSegment.Ticks * CommonVariables.timeMultiplyer) + " seconds (" + feature + "/" + route.features.Count + ")");
-#endif
-                        try
-                        {
-                            averageSpeed += ComputeDistanceOfSegment(feature, segment) /timeOfSegment.TotalSeconds*3.6;
-                            segmentsTouched++;
-                            Thread.Sleep(TimeSpan.FromTicks(timeOfSegment.Ticks * CommonVariables.timeMultiplyer));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("thread sleep failed");
-                            Console.WriteLine(e.Message);
-                        }
+                        Console.WriteLine("thread sleep failed");
+                        Console.WriteLine(e.Message);
+                        System.IO.File.AppendAllText(Simulation.ErrorLogsFile, e.Message + "\n");
                     }
 
-                    if (feature < route.features.Count - 3)
+                    #region follow route segment by segments
+                    //                for (int feature = 0; feature < route.features.Count-2; feature++)
+                    //                {
+                    //                    doneSteps = feature;
+                    //                    steps = route.features.Count - 2;
+                    //                        averageSpeed += Double.Parse(route.features[feature].properties.maxspeed);
+
+                    //                    for (int segment = 0; segment < route.features[feature].geometry.coordinates.Count - 1; segment++)
+                    //                    {
+                    //                        TimeSpan timeOfSegment = ComputeTimeOfSegment(feature, segment);
+
+                    //                        previousMiddle = currentMiddle;
+                    //                        currentMiddle = ComputeMiddle(feature, segment);
+
+                    //                        if (feature == 0 && segment == 0)
+                    //                            updateURI = HttpRequestBuilder(0, 0, currentMiddle.Latitude, currentMiddle.Longitude);//let the live traffic server know that you started the route 
+                    //                        else if (feature == route.features.Count - 3 && segment == route.features[feature].geometry.coordinates.Count - 2)
+                    //                            updateURI = HttpRequestBuilder(currentMiddle.Latitude, currentMiddle.Longitude, 0, 0);
+                    //                        else
+                    //                            updateURI = HttpRequestBuilder(previousMiddle.Latitude, previousMiddle.Longitude, currentMiddle.Latitude, currentMiddle.Longitude);
+
+                    //                        DateTime time = DateTime.Now;
+                    //                        await httpClient.GetAsync(updateURI);
+                    //                        UpdateRequests++;
+                    //                        UpdateRequestTotalWaitTime += (DateTime.Now - time);
+                    //#if DEBUG           
+                    //                        Console.WriteLine("TP" + ID + " Updated his segment (" + ComputeStartOfSegment(feature, segment).ToString() + "->" + ComputeEndOfSegment(feature, segment).ToString() + "). Next update in " + TimeSpan.FromTicks(timeOfSegment.Ticks * CommonVariables.timeMultiplyer) + " seconds (" + feature + "/" + route.features.Count + ")");
+                    //#endif
+                    //                        try
+                    //                        {
+                    //                            averageSpeed += ComputeDistanceOfSegment(feature, segment) /timeOfSegment.TotalSeconds*3.6;
+                    //                            segmentsTouched++;
+                    //                            totalSleepTime += TimeSpan.FromTicks(timeOfSegment.Ticks * CommonVariables.timeMultiplyer);
+                    //                            Thread.Sleep(TimeSpan.FromTicks(timeOfSegment.Ticks * CommonVariables.timeMultiplyer));
+                    //                        }
+                    //                        catch (Exception e)
+                    //                        {
+                    //                            Console.WriteLine("thread sleep failed");
+                    //                            Console.WriteLine(e.Message);
+                    //                        }
+                    //                    }
+                    #endregion
+                    if (feature > 0 && feature < route.features.Count - 3 && (DateTime.Now-lastRerouteRequest).TotalMilliseconds>simulationConfig.delayBetweenRouteRequest)
                     {
-                        int oldLength = route.features.Count ;
+                        int oldLength = route.features.Count;
+                        int newLength = 0;
                         var pos = ComputeMiddle(feature, route.features[feature].geometry.coordinates.Count - 2);
                         try
                         {
@@ -301,50 +332,64 @@ namespace TrafficSimulator
 
                             if (newRoute.features != null)
                             {
-                                newRoute.features.RemoveAt(0);
-                                newRoute.features.ForEach(f =>
+                                lastRerouteRequest = DateTime.Now;
+                                for (int fe = 1; fe < newRoute.features.Count; fe++)
                                 {
-                                    f.properties.distance = (Double.Parse(f.properties.distance) + Double.Parse(route.features[feature].properties.distance)).ToString();
-                                    f.properties.time = (Double.Parse(f.properties.time) + Double.Parse(route.features[feature].properties.time)).ToString();
-                                });
+                                    var f = newRoute.features[fe];
+                                    f.properties.distance = (Double.Parse(f.properties.distance) - Double.Parse(newRoute.features[0].properties.distance) + Double.Parse(route.features[feature].properties.distance)).ToString();
+                                    f.properties.time = (Double.Parse(f.properties.time) - Double.Parse(newRoute.features[0].properties.time) + Double.Parse(route.features[feature].properties.time)).ToString();
+                                }
+                                newRoute.features.RemoveAt(0);
 
-
-                                route.features.RemoveRange(feature + 1, route.features.Count - feature - 1);
-                                route.features.AddRange(newRoute.features);
+                                newLength = newRoute.features.Count + 1 + feature;
                             }
 
                         }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
+                            System.IO.File.AppendAllText(Simulation.ErrorLogsFile, e.Message + "\n");
                         }
-                        if (route.features.Count != oldLength)
+                        if (Math.Abs(newLength - oldLength) >= 2)
                         {
+
+                            route.features.RemoveRange(feature + 1, route.features.Count - feature - 1);
+                            route.features.AddRange(newRoute.features);
 #if DEBUG
                             Console.WriteLine($"TP{ID} Rerouted!!");
 #endif
                             reroutingCount++;
-                            System.IO.File.WriteAllText(CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID + "\\reroute"+reroutingCount+".txt", apiResponse);
+                            System.IO.File.WriteAllText(CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID + "\\reroute" + reroutingCount + ".txt", routeRequestSerializerResponse);
                         }
                     }
 
                 }
                 #endregion
 #if DEBUG
-                Console.WriteLine("TrafficParticipant" + ID + " FINISHED route after " + TimeSpan.FromTicks((DateTime.Now - simulationJoinTime).Ticks / CommonVariables.timeMultiplyer));
+                Console.WriteLine("TrafficParticipant" + ID + " FINISHED route after " + TimeSpan.FromTicks((DateTime.Now - simulationJoinTime).Ticks / simulationConfig.timeMultiplyer));
 #endif
-                RouteDuration = TimeSpan.FromTicks((DateTime.Now - simulationJoinTime).Ticks / CommonVariables.timeMultiplyer);
+                routeDuration = TimeSpan.FromTicks((new TimeSpan(0, 0, 0, 0, (int)(float.Parse(route.features[route.features.Count - 1].properties.time) * 1000))).Ticks);
+                timeInSimulation = TimeSpan.FromTicks((DateTime.Now - simulationJoinTime).Ticks);
                 averageSpeed /= segmentsTouched;
-                isDone = true;
-#endregion
+                status = "done";
+
+                System.IO.File.WriteAllText(CommonVariables.PathToResultsFolder + "Routes\\" + "TrafficParticipant" + ID + "statistics.txt",
+                                            "time in simulation: " + timeInSimulation +
+                                            "\n behaviour: " + behaviour +
+                                            "\n routeDuration: " + routeDuration +
+                                            "\n averageSpeed: " + averageSpeed +
+                                            "\n route request wait time " + routeRequestTotalWaitTime + " / " + RouteRequests + " requests\n" +
+                                            "\n update wait time " + updateRequestTotalWaitTime + " / " + UpdateRequests + " uppdates/n");
+                #endregion
             }
             catch (Exception e)
             {
 #if DEBUG
                 Console.WriteLine(e.Message);
 #endif
-                hasFailed = true;
+                status = "failed";
                 errorMessage = e.Message;
+                System.IO.File.AppendAllText(Simulation.ErrorLogsFile, e.Message + "\n");
             }
             //update statistics
         }

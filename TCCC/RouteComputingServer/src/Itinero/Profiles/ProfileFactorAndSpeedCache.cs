@@ -107,11 +107,20 @@ namespace Itinero.Profiles
 
                 for (uint edgeProfile = 0; edgeProfile < _db.EdgeProfiles.Count; edgeProfile++)
                 {
-                    var edgeProfileTags = _db.EdgeProfiles.Get(edgeProfile);
-                    for (var p = 0; p < profiles.Length; p++)
+
+                    try
                     {
-                        edgeProfileFactors[p][edgeProfile]
-                            = profiles[p].FactorAndSpeed(edgeProfileTags);
+                        var edgeProfileTags = _db.EdgeProfiles.Get(edgeProfile);
+                        for (var p = 0; p < profiles.Length; p++)
+                        {
+                            edgeProfileFactors[p][edgeProfile]
+                                = profiles[p].FactorAndSpeed(edgeProfileTags);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        /**/
+                        throw e;
                     }
                 }
 

@@ -22,15 +22,19 @@ namespace SetupApplication
                 routerDb.LoadOsmData(stream, customCar);
             }
 
+            routerDb.EdgeProfiles.Add(new AttributeCollection(
+            new Itinero.Attributes.Attribute("highway", "residential"),
+                new Itinero.Attributes.Attribute("custom-speed", "0"),
+                new Itinero.Attributes.Attribute("car-count", "0")));
             //add the custom edge profiles to the routerDb (used for live traffic status on map)
-            for (int i = 1; i <= 50; i++)
-            {
-                routerDb.EdgeProfiles.Add(new AttributeCollection(
-                    new Itinero.Attributes.Attribute("maxspeed", "RO:urban"),
-                    new Itinero.Attributes.Attribute("highway", "residential"),
-                    new Itinero.Attributes.Attribute("number-of-cars", "0"),
-                    new Itinero.Attributes.Attribute("custom-speed", i + "")));
-            }
+            for (int c = 0; c < 100; c++)
+                for (int cs = 1; cs <= 50; cs++)
+                {
+                    routerDb.EdgeProfiles.Add(new AttributeCollection(
+                        new Itinero.Attributes.Attribute("highway", "residential"),
+                        new Itinero.Attributes.Attribute("custom-speed", cs + ""),
+                        new Itinero.Attributes.Attribute("car-count", c + "")));
+                }
 
             //write the routerDb to file so every project can use it
             using (var stream = System.IO.File.OpenWrite(CommonVariables.PathToCommonFolder + CommonVariables.RouterDbFileName))
