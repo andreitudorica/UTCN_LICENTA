@@ -5,7 +5,7 @@
   "LiveTrafficServerUri": "https://localhost:44351",
   "SimulationType": 2,
   "timeMultiplyer": 1,
-  "startTH": 70,
+  "startTH": 80,
   "endTH": 100,
   "delayBetweenRouteRequest":  10000
 }
