@@ -17,33 +17,26 @@
       <FileName>Services\EdgeWeightsService.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LiveTrafficServer.Services.MapsService">
-    <Position X="8" Y="2.5" Width="1.75" />
-    <Members>
-      <Field Name="customCar" Hidden="true" />
-      <Field Name="profilesStart" Hidden="true" />
-      <Field Name="route" Hidden="true" />
-      <Field Name="router" Hidden="true" />
-      <Field Name="updatesCount" Hidden="true" />
-    </Members>
-    <TypeIdentifier>
-      <HashCode>AAAIAAAFAAAAgACAAAAAAABAAACAAAQAAAAAAAAAAAA=</HashCode>
-      <FileName>Services\MapsService.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="routerDb" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="LiveTrafficServer.Services.RoutesService">
-    <Position X="8" Y="4.25" Width="1.75" />
+    <Position X="8" Y="5.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\RoutesService.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Itinero.RouterDb" Collapsed="true">
-    <Position X="5.5" Y="3" Width="1.5" />
+    <Position X="5.5" Y="3.5" Width="1.5" />
     <TypeIdentifier />
+  </Class>
+  <Class Name="LiveTrafficServer.Services.MapsService">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <Members>
+      <Field Name="route" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAFAAAAgACAAAAAAABAAACAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\MapsService.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

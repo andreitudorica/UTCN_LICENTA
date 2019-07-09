@@ -9,19 +9,26 @@
   </Class>
   <Class Name="RouteComputingServer.Services.MapsService">
     <Position X="9" Y="3" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAABAAAAAACAAAAAAABAAACAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\MapsService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="routerDb" />
+      <Field Name="customCar" />
+      <Field Name="router" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Itinero.RouterDb" Collapsed="true">
-    <Position X="6.5" Y="3.25" Width="1.5" />
+    <Position X="6.5" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Itinero.Profiles.DynamicVehicle" Collapsed="true">
+    <Position X="6.5" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Itinero.Router" Collapsed="true">
+    <Position X="6.5" Y="3" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />

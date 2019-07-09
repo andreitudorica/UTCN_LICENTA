@@ -12,22 +12,6 @@ using TrafficSimulator.Models;
 
 namespace TrafficSimulator
 {
-    internal class StatisticsEntry
-    {
-
-        public TimeSpan totalTime;
-        public TimeSpan averageTime;
-        public double averageTouchedFeatures;
-        public double averageTouchedSegments;
-        public double averageSpeed;
-        public TimeSpan totalUpdateWaitTime;
-        public TimeSpan totalRouteRequestWaitTime;
-        public TimeSpan averageUpdateWaitTime;
-        public TimeSpan averageRouteRequestWaitTime;
-        public TimeSpan averageTimeWithoutWaiting;
-        public int threshold;
-    }
-
     internal class Simulation
     {
         public static RequestSerializer requestSerializer;

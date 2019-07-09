@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Models\ConfigurationModel.cs" />
     <Compile Include="Models\RequestModel.cs" />
+    <Compile Include="Models\StatisticsEntry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RouteModel.cs" />

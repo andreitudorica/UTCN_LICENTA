@@ -39,11 +39,11 @@ namespace TrafficSimulator
             //GenerateDefaultConfig();
             configuration = GetSimulationParameters();
             simulation = new Simulation(configuration);
-            MainAsync().Wait();
+            RunSimulation().Wait();
             Console.ReadLine();
         }
 
-        static async Task MainAsync()
+        static async Task RunSimulation()
         {
             try
             {

@@ -32,20 +32,15 @@ namespace RouteComputingServer.Controllers
 
             try
             {
-                var routerDb = MapsService.routerDb; //load the current Map Data
-                var customCar = DynamicVehicle.Load(System.IO.File.ReadAllText(CommonVariables.PathToCommonFolder + CommonVariables.CustomCarProfileFileName));
                 if (mapRefresh)
                 {
                     MapsService.LoadMaps();
-                    routerDb = MapsService.routerDb;
                 }
-                var router = new Router(routerDb); // create router.
-
                 Route route;
                 if (profile == "shortest")
-                    route = router.Calculate(customCar.Shortest(), new Coordinate(startLat, startLon), new Coordinate(endLat, endLon));
+                    route = MapsService.router.Calculate(MapsService.customCar.Shortest(), new Coordinate(startLat, startLon), new Coordinate(endLat, endLon));
                 else
-                    route = router.Calculate(customCar.Fastest(), new Coordinate(startLat, startLon), new Coordinate(endLat, endLon));
+                    route = MapsService.router.Calculate(MapsService.customCar.Fastest(), new Coordinate(startLat, startLon), new Coordinate(endLat, endLon));
                 string routeJson = route.ToGeoJson();
                 return Ok(routeJson);
             }
